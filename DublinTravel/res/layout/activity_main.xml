@@ -1,0 +1,198 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/grey_background"
+    android:orientation="vertical" >
+    
+	<LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:gravity="center_horizontal" >
+
+        <ImageView
+            android:id="@+id/busEireannLogo"
+            android:layout_width="95dp"
+            android:layout_height="90dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/bus_eireann" />
+
+        <ImageView
+            android:id="@+id/luasLogo"
+            android:layout_width="91dp"
+            android:layout_height="89dp"
+            android:src="@drawable/luas" />
+
+        <ImageView
+            android:id="@+id/carsLogo"
+            android:layout_width="105dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/cars" />
+
+        <ImageView
+            android:id="@+id/irishRailLogo"
+            android:layout_width="97dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/irish_rail" />
+
+        <ImageView
+            android:id="@+id/dublinBusLogo"
+            android:layout_width="98dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/dublin_bus" />
+    
+    </LinearLayout>
+
+	<LinearLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+   		android:baselineAligned="false"  >
+
+    	<LinearLayout
+        	android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+        	android:layout_weight="0.35"
+        	android:orientation="vertical" >
+        
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal" 
+                android:layout_weight="0.5"
+                android:gravity="center_vertical" >
+
+                <EditText
+                    android:id="@+id/stop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"/>
+
+                <Button
+                    android:id="@+id/goBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Go" />
+				
+                <!--  
+                <ListView
+                    android:id="@+id/stopInfoView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7" >
+                </ListView>
+                -->
+
+                <TableLayout
+                   	android:layout_width="0dp"
+                   	android:layout_weight="0.7"
+                    android:layout_height="match_parent" >
+
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/busId"
+            				android:text="Bus"
+            				android:gravity="center"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+        				<TextView
+          					android:id="@+id/destination"
+            				android:text="Destination"
+            				android:gravity="center"
+          					android:layout_width="0dp"
+                   			android:layout_weight="0.33"/>
+        				<TextView
+        				    android:id="@+id/dueTime"
+            				android:gravity="center"
+            				android:text="Due Time"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/busId1"
+            				android:gravity="center"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+        				<TextView
+          					android:id="@+id/destination1"
+            				android:gravity="center"
+          					android:layout_width="0dp"
+                   			android:layout_weight="0.33"/>
+        				<TextView
+        				    android:id="@+id/dueTime1"
+            				android:gravity="center"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+                    </TableRow>
+                    
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/busId2"
+            				android:gravity="center"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+        				<TextView
+          					android:id="@+id/destination2"
+            				android:gravity="center"
+          					android:layout_width="0dp"
+                   			android:layout_weight="0.33"/>
+        				<TextView
+        				    android:id="@+id/dueTime2"
+            				android:gravity="center"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+                    </TableRow>
+                    
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/busId3"
+            				android:gravity="center"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+        				<TextView
+          					android:id="@+id/destination3"
+            				android:gravity="center"
+          					android:layout_width="0dp"
+                   			android:layout_weight="0.33"/>
+        				<TextView
+        				    android:id="@+id/dueTime3"
+            				android:gravity="center"
+            				android:layout_width="0dp"
+                   			android:layout_weight="0.33" />
+                    </TableRow>
+                    
+                    
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+
+        	<WebView
+           		android:id="@+id/webView1"
+            	android:layout_width="match_parent"
+            	android:layout_height="0dp"
+            	android:layout_weight="0.5" />
+        
+    	</LinearLayout>
+
+    	<ListView
+        	android:id="@+id/twitter"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="0.65" >
+    	</ListView>
+
+	</LinearLayout>
+
+</LinearLayout>

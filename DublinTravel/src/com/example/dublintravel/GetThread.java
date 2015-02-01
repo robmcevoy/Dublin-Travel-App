@@ -31,7 +31,7 @@ public class GetThread extends AsyncTask<StopInfoTable, Void, String>{
 	protected void onPostExecute(String result) {
 
 		wipe();
-		ArrayList<StopInfo> stopInfoArray = jh.getJSONNextDue(result);
+		ArrayList<StopInfo> stopInfoArray = jh.getStopInfo(result);
 		TextView route;
 		TextView dest;
 		TextView duetime;

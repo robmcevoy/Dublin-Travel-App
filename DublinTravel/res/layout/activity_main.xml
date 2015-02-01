@@ -88,28 +88,28 @@
 
                     <TableRow>
                         <TextView
-                            android:id="@+id/busId"
+                            android:id="@+id/routeIdHeader"
             				android:text="Bus"
             				android:gravity="center"
             				android:layout_width="0dp"
                    			android:layout_weight="0.33" />
         				<TextView
-          					android:id="@+id/destination"
+          					android:id="@+id/destinationHeader"
             				android:text="Destination"
             				android:gravity="center"
           					android:layout_width="0dp"
                    			android:layout_weight="0.33"/>
         				<TextView
-        				    android:id="@+id/dueTime"
+        				    android:id="@+id/dueTimeHeader"
             				android:gravity="center"
-            				android:text="Due Time"
+            				android:text="Due (mins)"
             				android:layout_width="0dp"
                    			android:layout_weight="0.33" />
                     </TableRow>
 
                     <TableRow>
                         <TextView
-                            android:id="@+id/busId1"
+                            android:id="@+id/routeId1"
             				android:gravity="center"
             				android:layout_width="0dp"
                    			android:layout_weight="0.33" />
@@ -127,7 +127,7 @@
                     
                     <TableRow>
                         <TextView
-                            android:id="@+id/busId2"
+                            android:id="@+id/routeId2"
             				android:gravity="center"
             				android:layout_width="0dp"
                    			android:layout_weight="0.33" />
@@ -145,7 +145,7 @@
                     
                     <TableRow>
                         <TextView
-                            android:id="@+id/busId3"
+                            android:id="@+id/routeId3"
             				android:gravity="center"
             				android:layout_width="0dp"
                    			android:layout_weight="0.33" />

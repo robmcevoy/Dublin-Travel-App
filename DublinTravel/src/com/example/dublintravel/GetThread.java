@@ -24,26 +24,35 @@ public class GetThread extends AsyncTask<StopInfoTable, Void, String>{
 	}
 	
 	protected String doInBackground(StopInfoTable... arg0) {
-		//HttpSender httpSender = new HttpSender();
 		stopInfoTable = arg0[0]; 
 		return hs.sendGetRequest("http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid="+stop+"&operator=bac&format=json", true);
 	}
 	
-	 protected void onPostExecute(String result) {
-		 /*
-		 final ArrayList<String> list = new ArrayList<String>();
-		 result = jh.getJSONNextDue(result);
-		 list.add(result + " mins");
-		 ArrayAdapter arrayAdapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, list);
-		 lv.setAdapter(arrayAdapter);
-		 */
-		 StopInfo Object = jh.getJSONNextDue(result);
-		 TextView t =stopInfoTable.getTableElement(6);
-		 TextView t1 =stopInfoTable.getTableElement(0);
-		 TextView t2 =stopInfoTable.getTableElement(3);
-		 t1.setText(Object.getBusId());
-		 t2.setText(Object.getDestination());
-		 t.setText(Object.getDueTime());
-     }
+	protected void onPostExecute(String result) {
+
+		wipe();
+		ArrayList<StopInfo> stopInfoArray = jh.getJSONNextDue(result);
+		TextView route;
+		TextView dest;
+		TextView duetime;
+		int index = 0;
+		for(StopInfo stopInfo:stopInfoArray){
+			route = stopInfoTable.getTableElement(index);
+			dest = stopInfoTable.getTableElement(index+1);
+			duetime = stopInfoTable.getTableElement(index+2);
+			route.setText(stopInfo.getRouteId());
+			dest.setText(stopInfo.getDestination());
+			duetime.setText(stopInfo.getDueTime());
+			index = index+3;
+		}
+    }
+	
+	public void wipe(){
+		TextView textView;
+		for(int i=0; i<stopInfoTable.getTableSize(); i++){
+			textView = stopInfoTable.getTableElement(i);
+			textView.setText("");
+		}
+	}
 
 }

@@ -69,16 +69,16 @@ public class MainActivity extends Activity {
 	    
 	    final EditText stop = (EditText) findViewById(R.id.stop); 
 	    final Button stopEntered = (Button) findViewById(R.id.goBtn);
-	    final TextView busId1 = (TextView) findViewById(R.id.busId1);
-	    final TextView busId2 = (TextView) findViewById(R.id.busId2);
-	    final TextView busId3 = (TextView) findViewById(R.id.busId3);
+	    final TextView routeId1 = (TextView) findViewById(R.id.routeId1);
+	    final TextView routeId2 = (TextView) findViewById(R.id.routeId2);
+	    final TextView routeId3 = (TextView) findViewById(R.id.routeId3);
 	    final TextView dest1 = (TextView) findViewById(R.id.destination1);
 	    final TextView dest2 = (TextView) findViewById(R.id.destination2);
 	    final TextView dest3 = (TextView) findViewById(R.id.destination3);
 	    final TextView dueTime1 = (TextView) findViewById(R.id.dueTime1);
 	    final TextView dueTime2 = (TextView) findViewById(R.id.dueTime2);
 	    final TextView dueTime3 = (TextView) findViewById(R.id.dueTime3);
-	    final StopInfoTable stopInfoTable = new StopInfoTable(busId1, busId2, busId3,
+	    final StopInfoTable stopInfoTable = new StopInfoTable(routeId1, routeId2, routeId3,
 	    												dest1, dest2, dest3,
 	    												dueTime1, dueTime2, dueTime3);
 	    final Context context = this;
@@ -87,8 +87,11 @@ public class MainActivity extends Activity {
         {
             public void onClick(View v)
             {
-            	GetThread si = new GetThread(context, stop.getText().toString());
-    			si.execute(stopInfoTable);
+            	String newStop = stop.getText().toString();
+            	if(!newStop.equals("")){
+            		GetThread si = new GetThread(context, newStop);
+            		si.execute(stopInfoTable);
+            	}
             }
         });
 	    

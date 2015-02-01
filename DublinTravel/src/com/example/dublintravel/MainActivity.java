@@ -1,25 +1,14 @@
 package com.example.dublintravel;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -72,15 +61,21 @@ public class MainActivity extends Activity {
 	    final TextView routeId1 = (TextView) findViewById(R.id.routeId1);
 	    final TextView routeId2 = (TextView) findViewById(R.id.routeId2);
 	    final TextView routeId3 = (TextView) findViewById(R.id.routeId3);
+	    final TextView routeId4 = (TextView) findViewById(R.id.routeId4);
+	    final TextView routeId5 = (TextView) findViewById(R.id.routeId5);
 	    final TextView dest1 = (TextView) findViewById(R.id.destination1);
 	    final TextView dest2 = (TextView) findViewById(R.id.destination2);
 	    final TextView dest3 = (TextView) findViewById(R.id.destination3);
+	    final TextView dest4 = (TextView) findViewById(R.id.destination4);
+	    final TextView dest5 = (TextView) findViewById(R.id.destination5);
 	    final TextView dueTime1 = (TextView) findViewById(R.id.dueTime1);
 	    final TextView dueTime2 = (TextView) findViewById(R.id.dueTime2);
 	    final TextView dueTime3 = (TextView) findViewById(R.id.dueTime3);
-	    final StopInfoTable stopInfoTable = new StopInfoTable(routeId1, routeId2, routeId3,
-	    												dest1, dest2, dest3,
-	    												dueTime1, dueTime2, dueTime3);
+	    final TextView dueTime4 = (TextView) findViewById(R.id.dueTime4);
+	    final TextView dueTime5 = (TextView) findViewById(R.id.dueTime5);
+	    final StopInfoTable stopInfoTable = new StopInfoTable(routeId1, routeId2, routeId3, routeId4, routeId5,
+	    													dest1, dest2, dest3, dest4, dest5,
+	    													dueTime1, dueTime2, dueTime3, dueTime4, dueTime5);
 	    final Context context = this;
 	    
 	    stopEntered.setOnClickListener(new View.OnClickListener()

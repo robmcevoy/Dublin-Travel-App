@@ -8,7 +8,6 @@ import org.json.JSONObject;
 //used as a helper to parse JSON format web service responses
 public class JSONHelper {
 	
-	// returns a String representing the time until the next public transporter arrives at the stop provided
 	public ArrayList<StopInfo> getJSONNextDue(String data){
 		
 		String duetime="";
@@ -17,7 +16,7 @@ public class JSONHelper {
 		String errorCode="";
 		String errorMessage="";
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
-		final int MAX_NUM_RESULTS=3;
+		final int MAX_NUM_RESULTS=5;
 		final String NO_ERROR_CODE="0";
 		int resultsLength;
 		StopInfo stopInfo;
@@ -45,9 +44,12 @@ public class JSONHelper {
 			return stopInfoArray;
 			
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			errorMessage = "caught exception " + e.toString();
+			stopInfo = new StopInfo();
+			stopInfo.setErrorMessage(errorMessage);
+			stopInfoArray.add(stopInfo);
+			return stopInfoArray;
 		}
-		return null;
 	}
 
 }

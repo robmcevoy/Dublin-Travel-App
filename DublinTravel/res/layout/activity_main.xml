@@ -14,31 +14,36 @@
             android:layout_width="95dp"
             android:layout_height="90dp"
             android:paddingRight="5dp"
-            android:src="@drawable/bus_eireann" />
+            android:src="@drawable/bus_eireann" 
+            android:contentDescription="@string/bus_eireann_cd"/>
 
         <ImageView
             android:id="@+id/luasLogo"
             android:layout_width="91dp"
             android:layout_height="89dp"
-            android:src="@drawable/luas" />
+            android:src="@drawable/luas"
+            android:contentDescription="@string/luas_cd" />
 
         <ImageView
             android:id="@+id/carsLogo"
             android:layout_width="105dp"
             android:layout_height="match_parent"
-            android:src="@drawable/cars" />
+            android:src="@drawable/cars"
+            android:contentDescription="@string/app_cd"  />
 
         <ImageView
             android:id="@+id/irishRailLogo"
             android:layout_width="97dp"
             android:layout_height="match_parent"
-            android:src="@drawable/irish_rail" />
+            android:src="@drawable/irish_rail"
+            android:contentDescription="@string/irish_rail_cd" />
 
         <ImageView
             android:id="@+id/dublinBusLogo"
             android:layout_width="98dp"
             android:layout_height="match_parent"
-            android:src="@drawable/dublin_bus" />
+            android:src="@drawable/dublin_bus"
+            android:contentDescription="@string/dublin_bus_cd" />
     
     </LinearLayout>
 
@@ -63,117 +68,108 @@
                 <EditText
                     android:id="@+id/stop"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"/>
+                    android:layout_height="45dp"
+                    android:layout_weight="0.2"
+                    android:paddingRight="10dp"
+                    android:hint="@string/stop_id_hint" />
 
                 <Button
                     android:id="@+id/goBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Go" />
-				
-                <!--  
-                <ListView
-                    android:id="@+id/stopInfoView"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7" >
-                </ListView>
-                -->
+                    style="@style/go_button"/>
 
                 <TableLayout
                    	android:layout_width="0dp"
                    	android:layout_weight="0.7"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp" >
 
-                    <TableRow>
+                    <TableRow
+                        android:layout_height="0dp"
+                   		android:layout_weight="0.15" >
                         <TextView
                             android:id="@+id/routeIdHeader"
-            				android:text="Bus"
-            				android:gravity="center"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				android:text="@string/route_header" 
+            				style="@style/table_header" />
         				<TextView
           					android:id="@+id/destinationHeader"
-            				android:text="Destination"
-            				android:gravity="center"
-          					android:layout_width="0dp"
-                   			android:layout_weight="0.33"/>
+            				android:text="@string/destination_header"
+            				style="@style/table_header" />
         				<TextView
         				    android:id="@+id/dueTimeHeader"
-            				android:gravity="center"
-            				android:text="Due (mins)"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				android:text="@string/duetime_header"
+            				style="@style/table_header" />
                     </TableRow>
 
-                    <TableRow>
+                    <TableRow
+                        android:layout_height="0dp"
+                   		android:layout_weight="0.15">
                         <TextView
                             android:id="@+id/routeId1"
-            				android:gravity="center"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				style="@style/table_element" />
         				<TextView
           					android:id="@+id/destination1"
-            				android:gravity="center"
-          					android:layout_width="0dp"
-                   			android:layout_weight="0.33"/>
+            				style="@style/table_element"/>
         				<TextView
         				    android:id="@+id/dueTime1"
-            				android:gravity="center"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				style="@style/table_element" />
                     </TableRow>
                     
-                    <TableRow>
+                    <TableRow
+                        android:layout_height="0dp"
+                   		android:layout_weight="0.15">
                         <TextView
                             android:id="@+id/routeId2"
-            				android:gravity="center"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				style="@style/table_element" />
         				<TextView
           					android:id="@+id/destination2"
-            				android:gravity="center"
-          					android:layout_width="0dp"
-                   			android:layout_weight="0.33"/>
+            				style="@style/table_element"/>
         				<TextView
         				    android:id="@+id/dueTime2"
-            				android:gravity="center"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				style="@style/table_element" />
                     </TableRow>
                     
-                    <TableRow>
+                    <TableRow
+                        android:layout_height="0dp"
+                   		android:layout_weight="0.15">
                         <TextView
                             android:id="@+id/routeId3"
-            				android:gravity="center"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				style="@style/table_element" />
         				<TextView
           					android:id="@+id/destination3"
-            				android:gravity="center"
-          					android:layout_width="0dp"
-                   			android:layout_weight="0.33"/>
+            				style="@style/table_element"/>
         				<TextView
         				    android:id="@+id/dueTime3"
-            				android:gravity="center"
-            				android:layout_width="0dp"
-                   			android:layout_weight="0.33" />
+            				style="@style/table_element" />
                     </TableRow>
                     
+                    <TableRow
+                        android:layout_height="0dp"
+                   		android:layout_weight="0.15">
+                        <TextView
+                            android:id="@+id/routeId4"
+            				style="@style/table_element" />
+        				<TextView
+          					android:id="@+id/destination4"
+            				style="@style/table_element"/>
+        				<TextView
+        				    android:id="@+id/dueTime4"
+            				style="@style/table_element" />
+                    </TableRow>
                     
-
                     <TableRow
-                        android:id="@+id/tableRow3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="0dp"
+                   		android:layout_weight="0.15">
+                        <TextView
+                            android:id="@+id/routeId5"
+            				style="@style/table_element" />
+        				<TextView
+          					android:id="@+id/destination5"
+            				style="@style/table_element"/>
+        				<TextView
+        				    android:id="@+id/dueTime5"
+            				style="@style/table_element" />
                     </TableRow>
-
-                    <TableRow
-                        android:id="@+id/tableRow4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-                    </TableRow>
+ 
                 </TableLayout>
 
             </LinearLayout>

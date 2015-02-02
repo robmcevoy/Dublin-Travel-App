@@ -36,4 +36,10 @@ public class StopInfoTable {
 		return table.size();
 	}
 	
+	public void wipeTable(){
+		for(TextView textView: table){
+			textView.setText("");
+		}
+	}
+	
 }

@@ -3,12 +3,14 @@ package com.example.dublintravel;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -33,30 +35,9 @@ public class MainActivity extends Activity {
 	            view.loadUrl(url);
 	            return true;
 	        }});
-		
-		/*
-		final ListView listview1 = (ListView) findViewById(R.id.stopInfoView);
-		final ListView listview2 = (ListView) findViewById(R.id.twitter);
-		final ImageView irishRailLogo = (ImageView) findViewById(R.id.irishRailLogo);
-		irishRailLogo.setClickable(true);
-		irishRailLogo.setOnClickListener(new View.OnClickListener() {
-		    public void onClick(View v) {  
-		    }
-		});
-	    String[] values = new String[] { "Android", "iPhone", "WindowsMobile", "adbab", "anything", "anything", "anything"};
-
-	    final ArrayList<String> list = new ArrayList<String>();
-	    for (int i = 0; i < values.length; ++i) {
-	      list.add(values[i]);
-	    }
-	    ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-	    arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    listview1.setAdapter(arrayAdapter);
-	    listview2.setAdapter(arrayAdapter);
-	    */
 	    /***************************************************************/
 	    
-	    final EditText stop = (EditText) findViewById(R.id.stop); 
+	    final EditText stop = (EditText) findViewById(R.id.stop);
 	    final Button stopEntered = (Button) findViewById(R.id.goBtn);
 	    final TextView routeId1 = (TextView) findViewById(R.id.routeId1);
 	    final TextView routeId2 = (TextView) findViewById(R.id.routeId2);
@@ -76,7 +57,15 @@ public class MainActivity extends Activity {
 	    final StopInfoTable stopInfoTable = new StopInfoTable(routeId1, routeId2, routeId3, routeId4, routeId5,
 	    													dest1, dest2, dest3, dest4, dest5,
 	    													dueTime1, dueTime2, dueTime3, dueTime4, dueTime5);
-	    final Context context = this;
+	    final ImageView dublinBusImageView = (ImageView) findViewById(R.id.dublinBusLogo);
+	    final DublinBusOperator dublinBusOperator = new DublinBusOperator();
+	   // final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
+	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
+	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
+	    final LuasOperator luasOperator = new LuasOperator();
+	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
+	    
+	    final RtpiController rtpiController = new RtpiController(this,stopInfoTable);
 	    
 	    stopEntered.setOnClickListener(new View.OnClickListener()
         {
@@ -84,9 +73,32 @@ public class MainActivity extends Activity {
             {
             	String newStop = stop.getText().toString();
             	if(!newStop.equals("")){
-            		GetThread si = new GetThread(context, newStop);
-            		si.execute(stopInfoTable);
+            		rtpiController.changeStop(newStop);
             	}
+            }
+        });
+	    
+	    dublinBusImageView.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
+            }
+        });
+	    
+	    busEireannImageView.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	rtpiController.changeOperator(busEireannOperator, busEireannImageView);
+            }
+        });
+	    
+	    luasImageView.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	rtpiController.changeOperator(luasOperator, luasImageView);
             }
         });
 	    

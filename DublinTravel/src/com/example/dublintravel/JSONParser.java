@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 //used as a helper to parse JSON format web service responses
-public class JSONHelper implements Parser {
+public class JSONParser implements Parser {
 	
 	public ArrayList<StopInfo> getStopInfo(String data){
 		

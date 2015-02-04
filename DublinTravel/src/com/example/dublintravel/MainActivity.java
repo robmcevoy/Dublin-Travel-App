@@ -59,7 +59,8 @@ public class MainActivity extends Activity {
 	    													dueTime1, dueTime2, dueTime3, dueTime4, dueTime5);
 	    final ImageView dublinBusImageView = (ImageView) findViewById(R.id.dublinBusLogo);
 	    final DublinBusOperator dublinBusOperator = new DublinBusOperator();
-	   // final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
+	    final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
+	    final RtpiXmlOperator irishRailOperator = new RtpiXmlOperator();
 	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
 	    final LuasOperator luasOperator = new LuasOperator();
@@ -101,6 +102,16 @@ public class MainActivity extends Activity {
             	rtpiController.changeOperator(luasOperator, luasImageView);
             }
         });
+	    
+	    irishRailImageView.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	rtpiController.changeOperator(irishRailOperator, irishRailImageView);
+            }
+        });
+	    
+	    
 	    
 	}
 

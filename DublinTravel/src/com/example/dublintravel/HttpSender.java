@@ -18,7 +18,7 @@ public class HttpSender {
 	private final String AUTHENTICATION =  "Basic cm9ibWNldm95OjE4MDltY2V2b3kyMDE0";
 	
 	public String sendGetRequest(String address, boolean needsAuth1){
-		// sends a http request and returns the response as a string
+		// sends a http request and returns the response as a string		
 		needsAuth = needsAuth1;
 		String result="nothing";
 		URL url;
@@ -31,7 +31,7 @@ public class HttpSender {
 			InputStream in = uc.getInputStream();
 			result = convertInputStreamToString(in);
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			return "exception in http sender: " + e.toString();
 		}
 		return result;
 	}

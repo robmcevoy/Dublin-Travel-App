@@ -15,18 +15,20 @@ public class GetThread extends AsyncTask<StopInfoTable, Void, String>{
 	HttpSender hs;
 	Operator operator;
 	String stop;
+	boolean needsAuth;
 	
-	public GetThread(Context context, Operator operator, String stop){
+	public GetThread(Context context, Operator operator, String stop, Boolean needsAuth){
 		this.context = context;
 		hs = new HttpSender();
 		this.operator = operator;
 		this.stop =stop;
+		this.needsAuth = needsAuth;
 	}
 	
 	protected String doInBackground(StopInfoTable... arg0) {
 		stopInfoTable = arg0[0]; 
 		//return hs.sendGetRequest("http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid="+stop+"&operator=bac&format=json", true);
-		return hs.sendGetRequest(operator.generateUrlString(stop), true);
+		return hs.sendGetRequest(operator.generateUrlString(stop), needsAuth);
 	}
 	
 	protected void onPostExecute(String result) {

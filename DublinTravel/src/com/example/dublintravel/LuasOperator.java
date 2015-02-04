@@ -1,22 +1,9 @@
 package com.example.dublintravel;
 
-public class LuasOperator implements Operator {
+public class LuasOperator extends RtpiJsonOperator {
 
-	private final String OPERATOR_CODE="luas";
-	private final String URL_START = "http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
-	private final String URL_MIDDLE = "&operator=";
-	private final String URL_END = "&format=json";
-	private Parser parser;
-	
 	LuasOperator(){
-		parser = new JSONParser();
+		OPERATOR_CODE="luas";
 	}
-	
-	public Parser getParser(){
-		return parser;
-	}
-	
-	public String generateUrlString(String stop) {
-		return URL_START + stop + URL_MIDDLE + OPERATOR_CODE + URL_END;
-	}
+
 }

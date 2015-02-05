@@ -23,6 +23,7 @@ public class XMLParser implements Parser {
 		
 		ArrayList<StopInfo> allStops = new ArrayList<StopInfo>();
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
+		int count=0;
 		StopInfo stopInfo;
 		String errorMessage;
 		
@@ -38,6 +39,7 @@ public class XMLParser implements Parser {
 		    	route = node.getChildText("Direction", namespace);
 		    	stopInfo = new StopInfo(route, destination, duetime);
 		    	allStops.add(stopInfo);
+		    	count++;
 		    }
  
 		} catch (Exception e) {
@@ -47,7 +49,7 @@ public class XMLParser implements Parser {
 			stopInfoArray.add(stopInfo);
 		}
 		Collections.sort(allStops);
-		for(int i=0; i< MAX_NUM_RESULTS; i++){
+		for(int i=0; ((i< MAX_NUM_RESULTS) && i<count); i++){
 			stopInfoArray.add(allStops.get(i));
 		}
 		return stopInfoArray;

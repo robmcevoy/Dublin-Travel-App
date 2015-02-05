@@ -1,6 +1,6 @@
 package com.example.dublintravel;
 
-public class StopInfo {
+public class StopInfo implements Comparable<StopInfo> {
 
 	private String routeId;
 	private String destination;
@@ -41,5 +41,16 @@ public class StopInfo {
 		this.errorMessage = message;
 		this.error = true;
 	}
-	
+
+	public int compareTo(StopInfo another) {
+		if(Integer.parseInt(dueTime) < Integer.parseInt(another.getDueTime())){
+			return -1;
+		}
+		else if(dueTime.equals(another.getDueTime())){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
 }

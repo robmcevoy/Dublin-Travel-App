@@ -1,18 +1,14 @@
 package com.example.dublintravel;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-// Helper class to aid in the process of sending http requests to rest apis
 
 public class HttpSender {
 	
-	// only calls to the RTPI dub linked services need authentication
-	// calls to Irish rail do not
 	private boolean needsAuth;
 	
 	private final String AUTHENTICATION =  "Basic cm9ibWNldm95OjE4MDltY2V2b3kyMDE0";

@@ -13,12 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class RtpiDashboard extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.rtpi_dashboard);
 		
 		/****************** TEMP STUFF *******************/
 		WebView myWebView = (WebView) findViewById(R.id.webView1);

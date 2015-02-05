@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/grey_background"
+    style="@style/background"
     android:orientation="vertical" >
     
 	<LinearLayout
@@ -15,7 +15,8 @@
 	        android:layout_height="90dp"
 	        android:layout_weight="0.00"
 	        android:contentDescription="@string/bus_eireann_cd"
-	        android:padding="1dp"
+	        android:paddingRight="5dp"
+	        android:paddingLeft="5dp"
 	        android:src="@drawable/bus_eireann" 
 	        android:background="#000000"/>
 

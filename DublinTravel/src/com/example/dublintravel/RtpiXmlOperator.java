@@ -1,7 +1,8 @@
 package com.example.dublintravel;
 
-public class RtpiXmlOperator implements Operator {
+public class RtpiXmlOperator extends Operator{
 
+	protected String OPERATOR_CODE="";
 	private final String URL_START = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=";
 	private Parser parser;
 	private boolean NEEDS_AUTH=false;
@@ -20,6 +21,10 @@ public class RtpiXmlOperator implements Operator {
 	
 	public boolean needsAuth(){
 		return NEEDS_AUTH;
+	}
+	
+	public String getOperatorCode(){
+		return OPERATOR_CODE;
 	}
 
 }

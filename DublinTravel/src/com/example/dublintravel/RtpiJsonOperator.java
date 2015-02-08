@@ -1,6 +1,6 @@
 package com.example.dublintravel;
 
-public class RtpiJsonOperator implements Operator {
+public class RtpiJsonOperator extends Operator{
 	
 	protected String OPERATOR_CODE="";
 	private final String URL_START = "http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
@@ -23,6 +23,10 @@ public class RtpiJsonOperator implements Operator {
 	
 	public boolean needsAuth(){
 		return NEEDS_AUTH;
+	}
+	
+	public String getOperatorCode(){
+		return OPERATOR_CODE;
 	}
 
 }

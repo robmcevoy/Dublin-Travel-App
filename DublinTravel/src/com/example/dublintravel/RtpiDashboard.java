@@ -60,13 +60,27 @@ public class RtpiDashboard extends Activity {
 	    final ImageView dublinBusImageView = (ImageView) findViewById(R.id.dublinBusLogo);
 	    final DublinBusOperator dublinBusOperator = new DublinBusOperator();
 	    final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
-	    final RtpiXmlOperator irishRailOperator = new RtpiXmlOperator();
+	    final RtpiXmlOperator irishRailOperator = new IrishRailOperator();
 	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
 	    final LuasOperator luasOperator = new LuasOperator();
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    
 	    final RtpiController rtpiController = new RtpiController(this,stopInfoTable);
+	    
+	    final Bundle EXTRAS = getIntent().getExtras();
+		String  selected;
+		if (EXTRAS != null) {
+			selected = (String) EXTRAS.get("operator");
+			if(selected.equals(dublinBusOperator.getOperatorCode()))
+				rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
+			else if(selected.equals(luasOperator.getOperatorCode()))
+				rtpiController.changeOperator(luasOperator, luasImageView);
+			else if(selected.equals(busEireannOperator.getOperatorCode()))
+				rtpiController.changeOperator(busEireannOperator, busEireannImageView);
+			else
+				rtpiController.changeOperator(irishRailOperator, irishRailImageView);
+		}
 	    
 	    stopEntered.setOnClickListener(new View.OnClickListener()
         {
@@ -79,43 +93,25 @@ public class RtpiDashboard extends Activity {
             }
         });
 	    
-	    dublinBusImageView.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-            	rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
-            }
-        });
-	    
-	    busEireannImageView.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-            	rtpiController.changeOperator(busEireannOperator, busEireannImageView);
-            }
-        });
-	    
-	    luasImageView.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-            	rtpiController.changeOperator(luasOperator, luasImageView);
-            }
-        });
-	    
-	    irishRailImageView.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-            	rtpiController.changeOperator(irishRailOperator, irishRailImageView);
-            }
-        });
-	    
+	    operatorClick(irishRailImageView,irishRailOperator, rtpiController );
+	    operatorClick(luasImageView,luasOperator, rtpiController );
+	    operatorClick(busEireannImageView,busEireannOperator, rtpiController );
+	    operatorClick(dublinBusImageView,dublinBusOperator, rtpiController );
 	    
 	    
 	}
+	
+	public void operatorClick(final ImageView imageview, final Operator operator, final RtpiController rtpiController ){
+		imageview.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	rtpiController.changeOperator(operator, imageview);
+            }
+        });
+	}
 
-	@Override
+	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);

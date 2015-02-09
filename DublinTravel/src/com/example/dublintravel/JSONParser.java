@@ -13,6 +13,8 @@ import org.json.JSONObject;
 //used as a helper to parse JSON format web service responses
 public class JSONParser implements Parser {
 	
+	final String NO_ERROR_CODE="0";
+	
 	public ArrayList<StopInfo> getStopInfo(String data){
 		
 		String duetime="";
@@ -57,7 +59,38 @@ public class JSONParser implements Parser {
 		}
 	}
 	
-	public String convertToTimeFormat(String duetime){
+	public ArrayList<Stop> getStops(String data){
+		ArrayList<Stop> stopArray = new ArrayList<Stop>();
+		String errorCode;
+		String errorMessage;
+		int resultsLength;
+		String name;
+		String stopId;
+		Stop stop;
+		try {
+			JSONObject json = new JSONObject(data);
+			errorCode = json.getString("errorcode");
+			errorMessage = json.getString("errormessage");
+			if(errorCode.equals(NO_ERROR_CODE)){
+				JSONArray result = json.getJSONArray("results");
+				resultsLength = result.length();
+				for(int i=0; i<resultsLength; i++){
+					JSONObject resultItem = result.getJSONObject(i);
+					name = convertToTimeFormat(resultItem.getString("fullname"));
+					stopId = resultItem.getString("stopid");
+					stop = new Stop(stopId, name);
+					stopArray.add(stop);
+				}
+			}
+			else{
+			}
+		} catch (JSONException e) {
+
+		}
+		return stopArray;
+	}
+	
+	private String convertToTimeFormat(String duetime){
 		
 		if(!duetime.contains(":")){
 			return duetime;

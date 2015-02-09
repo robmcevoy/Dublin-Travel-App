@@ -18,7 +18,7 @@
 	        android:paddingRight="5dp"
 	        android:paddingLeft="5dp"
 	        android:src="@drawable/bus_eireann" 
-	        android:background="#000000"/>
+	        android:background="@color/dark_grey"/>
 
 	    <ImageView
 	        android:id="@+id/luasLogo"
@@ -27,7 +27,7 @@
 	        android:contentDescription="@string/luas_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/luas"
-	         android:background="#000000"  />
+	        android:background="@color/dark_grey"  />
 
 	    <ImageView
 	        android:id="@+id/carsLogo"
@@ -36,7 +36,7 @@
 	        android:contentDescription="@string/app_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/cars"
-	        android:background="#000000"  />
+	        android:background="@color/dark_grey"  />
 
 	    <ImageView
 	        android:id="@+id/irishRailLogo"
@@ -45,7 +45,7 @@
 	        android:contentDescription="@string/irish_rail_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/irish_rail"
-	        android:background="#000000" />
+	        android:background="@color/dark_grey" />
 
 	    <ImageView
 	        android:id="@+id/dublinBusLogo"
@@ -54,7 +54,7 @@
 	        android:contentDescription="@string/dublin_bus_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/dublin_bus" 
-	        android:background="#000000" />
+	        android:background="@color/dark_grey" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -77,17 +77,14 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true" >
 
-                <EditText
+                <TextView
                     android:id="@+id/stop"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:paddingRight="10dp"
-                    android:hint="@string/stop_id_hint" />
+                   	style="@style/stopTextView" />
 
-                <Button
-                    android:id="@+id/goBtn"
-                    style="@style/go_button"/>
 
                 <TableLayout
                    	android:layout_width="0dp"

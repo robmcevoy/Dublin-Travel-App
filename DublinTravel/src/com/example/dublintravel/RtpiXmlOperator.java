@@ -4,6 +4,7 @@ public class RtpiXmlOperator extends Operator{
 
 	protected String OPERATOR_CODE="";
 	private final String URL_START = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=";
+	private final String STOPS_URL="http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML ";
 	private Parser parser;
 	private boolean NEEDS_AUTH=false;
 	
@@ -15,8 +16,12 @@ public class RtpiXmlOperator extends Operator{
 		return parser;
 	}
 
-	public String generateUrlString(String stop) {
+	public String generateRealtimeInfoUrlString(String stop) {
 		return URL_START + stop;
+	}
+	
+	public String generateStopsUrl(){
+		return STOPS_URL;
 	}
 	
 	public boolean needsAuth(){

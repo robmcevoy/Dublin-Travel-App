@@ -12,7 +12,7 @@ public class RtpiController {
 	private String currentStop;
 	private Operator operator;
 	private ImageView activeImageView;
-	private final int BLACK = Color.argb(255, 0, 0, 0);
+	private final int DARK_GREY = Color.argb(255, 51, 51, 51);
 	private final int ORANGE = Color.argb(255, 255, 153, 0);
 	
 	RtpiController(Context context, StopInfoTable stopInfoTable){
@@ -23,7 +23,7 @@ public class RtpiController {
 	
 	public void changeStop(String newStop){
 		currentStop = newStop;
-		GetThread si = new GetThread(context, operator, currentStop, operator.needsAuth());
+		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop);
 		si.execute(stopInfoTable);
 	}
 	
@@ -36,12 +36,16 @@ public class RtpiController {
 	private void changeImageViewBorder(ImageView imageView){
 		int color;
 		if(activeImageView != null){
-			color = BLACK;
+			color = DARK_GREY;
 			activeImageView.setBackgroundColor(color);
 		}
 		color = ORANGE;
 		imageView.setBackgroundColor(color);
 		activeImageView = imageView;
+	}
+	
+	public Operator getCurrentOperator(){
+		return operator;
 	}
 	
 }

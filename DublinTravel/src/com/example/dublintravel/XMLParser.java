@@ -54,4 +54,28 @@ public class XMLParser implements Parser {
 		}
 		return stopInfoArray;
 	}
+	
+	public ArrayList<Stop> getStops(String data){
+		ArrayList<Stop> stops = new ArrayList<Stop>();
+		SAXBuilder saxBuilder = new SAXBuilder();
+		String stopId;
+		String name;
+		Stop stop;
+		try{
+			Document doc = saxBuilder.build(new StringReader(data));
+			Element rootNode = doc.getRootElement();
+			Namespace namespace = rootNode.getNamespace();
+		    List list = rootNode.getChildren("objStation", namespace);
+		    for(int i=0; (i<list.size()); i++){
+		    	Element node = (Element)list.get(i);
+		    	stopId = node.getChildText("StationCode", namespace);
+		    	name = node.getChildText("StationDesc", namespace);
+		    	stop = new Stop(stopId, name);
+		    	stops.add(stop);
+		    }
+		}
+		catch (Exception e) {
+		}
+		return stops;
+	}
 }

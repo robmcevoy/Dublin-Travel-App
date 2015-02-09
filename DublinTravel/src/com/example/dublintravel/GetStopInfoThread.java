@@ -2,33 +2,25 @@ package com.example.dublintravel;
 
 import java.util.ArrayList;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-public class GetThread extends AsyncTask<StopInfoTable, Void, String>{
+public class GetStopInfoThread extends AsyncTask<StopInfoTable, Void, String>{
 
 	StopInfoTable stopInfoTable;
-	Context context;
 	HttpSender hs;
 	Operator operator;
 	String stop;
-	boolean needsAuth;
 	
-	public GetThread(Context context, Operator operator, String stop, Boolean needsAuth){
-		this.context = context;
+	public GetStopInfoThread(Operator operator, String stop){
 		hs = new HttpSender();
 		this.operator = operator;
 		this.stop =stop;
-		this.needsAuth = needsAuth;
 	}
 	
 	protected String doInBackground(StopInfoTable... arg0) {
 		stopInfoTable = arg0[0]; 
-		//return hs.sendGetRequest("http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid="+stop+"&operator=bac&format=json", true);
-		return hs.sendGetRequest(operator.generateUrlString(stop), needsAuth);
+		return hs.sendGetRequest(operator.generateRealtimeInfoUrlString(stop), operator.needsAuth());
 	}
 	
 	protected void onPostExecute(String result) {

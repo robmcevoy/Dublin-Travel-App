@@ -69,7 +69,9 @@ public class XMLParser implements Parser {
 		    for(int i=0; (i<list.size()); i++){
 		    	Element node = (Element)list.get(i);
 		    	stopId = node.getChildText("StationCode", namespace);
-		    	name = node.getChildText("StationDesc", namespace);
+		    	name = node.getChildText("StationAlias", namespace);
+		    	if(name.equals(""))
+		    		name = node.getChildText("StationDesc", namespace);
 		    	stop = new Stop(stopId, name);
 		    	stops.add(stop);
 		    }

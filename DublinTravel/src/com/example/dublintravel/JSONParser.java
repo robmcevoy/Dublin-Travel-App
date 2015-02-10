@@ -65,6 +65,7 @@ public class JSONParser implements Parser {
 		String errorMessage;
 		int resultsLength;
 		String name;
+		String roadName;
 		String stopId;
 		Stop stop;
 		try {
@@ -77,6 +78,10 @@ public class JSONParser implements Parser {
 				for(int i=0; i<resultsLength; i++){
 					JSONObject resultItem = result.getJSONObject(i);
 					name = removeLUAS(resultItem.getString("fullname"));
+					roadName = resultItem.getString("shortname");
+					if(!roadName.equals("")){
+						name = name + ", " + roadName;
+					}
 					stopId = resultItem.getString("stopid");
 					stop = new Stop(stopId, name);
 					stopArray.add(stop);
@@ -123,5 +128,4 @@ public class JSONParser implements Parser {
 		}
 		return s;
 	}
-
 }

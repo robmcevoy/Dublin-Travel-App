@@ -9,25 +9,28 @@ public class RtpiController {
 	
 	private StopInfoTable stopInfoTable;
 	private Context context;
-	private String currentStop;
+	private Stop currentStop;
 	private Operator operator;
 	private ImageView activeImageView;
 	private final int DARK_GREY = Color.argb(255, 51, 51, 51);
 	private final int ORANGE = Color.argb(255, 255, 153, 0);
+	private TextView stopView;
 	
-	RtpiController(Context context, StopInfoTable stopInfoTable){
+	RtpiController(Context context, StopInfoTable stopInfoTable, TextView stopView){
 		this.context = context;
-		currentStop="";
 		this.stopInfoTable =  stopInfoTable;
+		this.stopView = stopView;
 	}
 	
-	public void changeStop(String newStop){
+	public void changeStop(Stop newStop){
 		currentStop = newStop;
-		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop);
+		setStopView();
+		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop.getID());
 		si.execute(stopInfoTable);
 	}
 	
 	public void changeOperator(Operator operator, ImageView imageView){
+		wipeStopView();
 		stopInfoTable.wipeTable();
 		this.operator = operator;
 		changeImageViewBorder(imageView);
@@ -46,6 +49,14 @@ public class RtpiController {
 	
 	public Operator getCurrentOperator(){
 		return operator;
+	}
+	
+	private void wipeStopView(){
+		stopView.setText(context.getResources().getString(R.string.stop_id_hint));
+	}
+	
+	private void setStopView(){
+		stopView.setText(currentStop.toString());
 	}
 	
 }

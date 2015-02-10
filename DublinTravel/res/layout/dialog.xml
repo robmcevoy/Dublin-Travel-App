@@ -23,7 +23,9 @@
         android:layout_width="match_parent"
         android:paddingBottom="5dip"
         android:layout_height="0dp"
-        android:layout_weight="0.85" >
+        android:layout_weight="0.85"
+        android:divider="@color/orange"
+        android:dividerHeight="2px" >
     </ListView>
 
 </LinearLayout>

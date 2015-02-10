@@ -1,24 +1,26 @@
 package com.example.dublintravel;
 
 import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class RtpiDashboard extends Activity {
 
@@ -44,7 +46,7 @@ public class RtpiDashboard extends Activity {
 	        }});
 	    /***************************************************************/
 	    final Context context = this;
-	    final TextView stop = (TextView) findViewById(R.id.stop);
+	    final TextView stopTextView = (TextView) findViewById(R.id.stop);
 	    final TextView routeId1 = (TextView) findViewById(R.id.routeId1);
 	    final TextView routeId2 = (TextView) findViewById(R.id.routeId2);
 	    final TextView routeId3 = (TextView) findViewById(R.id.routeId3);
@@ -72,7 +74,7 @@ public class RtpiDashboard extends Activity {
 	    final LuasOperator luasOperator = new LuasOperator();
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    
-	    final RtpiController rtpiController = new RtpiController(this,stopInfoTable);
+	    final RtpiController rtpiController = new RtpiController(this,stopInfoTable, stopTextView);
 	    
 	    final Bundle EXTRAS = getIntent().getExtras();
 		String  selected;
@@ -90,7 +92,7 @@ public class RtpiDashboard extends Activity {
 		
 
 		
-		stop.setOnClickListener(new View.OnClickListener()
+		stopTextView.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -99,11 +101,20 @@ public class RtpiDashboard extends Activity {
     			dialog.setContentView(R.layout.dialog);
     			ListView listview = (ListView) dialog.findViewById(R.id.stopsListView);
     			ArrayList<Stop> stopsArray = new ArrayList<Stop>();
-    			ArrayAdapter<Stop> adapter = new ArrayAdapter<Stop>(context, android.R.layout.simple_list_item_1, stopsArray);
+    			final ArrayAdapter<Stop> adapter = new ArrayAdapter<Stop>(context, android.R.layout.simple_list_item_1, stopsArray);
     			listview.setAdapter(adapter);
     			dialog.show();
     			GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), adapter);
     			thread.execute(listview);
+    			listview.setOnItemClickListener(new OnItemClickListener() {
+
+    				public void onItemClick(AdapterView<?> arg0, View view,
+    						int position, long id) {
+    					Stop stop =adapter.getItem(position);
+    					rtpiController.changeStop(stop);
+    					dialog.dismiss();
+    				}
+    	        });
             }
         });
        

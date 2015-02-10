@@ -6,11 +6,15 @@ public class Stop {
 	private String name;
 	
 	Stop(String stopId, String name){
-		this.stopID = stopID;
+		this.stopID = stopId;
 		this.name = name;
 	}
 	
 	public String toString() { 
 	    return name;
 	} 
+	
+	public String getID(){
+		return stopID;
+	}
 }

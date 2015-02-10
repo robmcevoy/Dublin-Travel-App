@@ -37,7 +37,7 @@ public class JSONParser implements Parser {
 				for(int i=0; ((i<resultsLength) && (i<MAX_NUM_RESULTS)); i++){
 					JSONObject resultItem = result.getJSONObject(i);
 					duetime = convertToTimeFormat(resultItem.getString("duetime"));
-					destination = resultItem.getString("destination");
+					destination = removeLUAS(resultItem.getString("destination"));
 					route = resultItem.getString("route");
 					stopInfo = new StopInfo(route, destination, duetime);
 					stopInfoArray.add(stopInfo);
@@ -76,7 +76,7 @@ public class JSONParser implements Parser {
 				resultsLength = result.length();
 				for(int i=0; i<resultsLength; i++){
 					JSONObject resultItem = result.getJSONObject(i);
-					name = convertToTimeFormat(resultItem.getString("fullname"));
+					name = removeLUAS(resultItem.getString("fullname"));
 					stopId = resultItem.getString("stopid");
 					stop = new Stop(stopId, name);
 					stopArray.add(stop);
@@ -112,6 +112,16 @@ public class JSONParser implements Parser {
 			}
 			return Long.toString(difference);
 		}
+	}
+	
+	private String removeLUAS(String s){
+		final String LUAS = "LUAS";
+		int index;
+		if(s.contains(LUAS)){
+			index = s.indexOf(LUAS);
+			return s.substring(index+LUAS.length());
+		}
+		return s;
 	}
 
 }

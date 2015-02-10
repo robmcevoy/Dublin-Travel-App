@@ -3,6 +3,7 @@ package com.example.dublintravel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import org.json.JSONArray;
@@ -86,6 +87,7 @@ public class JSONParser implements Parser {
 					stop = new Stop(stopId, name);
 					stopArray.add(stop);
 				}
+				Collections.sort(stopArray);
 			}
 			else{
 			}

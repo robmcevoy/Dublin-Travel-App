@@ -74,6 +74,7 @@ public class XMLParser implements Parser {
 		    		name = node.getChildText("StationDesc", namespace);
 		    	stop = new Stop(stopId, name);
 		    	stops.add(stop);
+		    	Collections.sort(stops);
 		    }
 		}
 		catch (Exception e) {

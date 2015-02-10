@@ -1,6 +1,6 @@
 package com.example.dublintravel;
 
-public class Stop {
+public class Stop implements Comparable<Stop>{
 
 	private String stopID;
 	private String name;
@@ -16,5 +16,13 @@ public class Stop {
 	
 	public String getID(){
 		return stopID;
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public int compareTo(Stop other){
+		return name.compareToIgnoreCase(other.getName());
 	}
 }

@@ -37,13 +37,15 @@ public class RtpiController {
 	}
 	
 	private void changeImageViewBorder(ImageView imageView){
-		int color;
+		//int color;
 		if(activeImageView != null){
-			color = DARK_GREY;
-			activeImageView.setBackgroundColor(color);
+			//color = DARK_GREY;
+			//activeImageView.setBackgroundColor(color);
+			activeImageView.setBackground(context.getResources().getDrawable(R.drawable.rounded_corner_dark_grey));
 		}
-		color = ORANGE;
-		imageView.setBackgroundColor(color);
+		//color = ORANGE;
+		//imageView.setBackgroundColor(color);
+		imageView.setBackground(context.getResources().getDrawable(R.drawable.rounded_corner_orange));
 		activeImageView = imageView;
 	}
 	

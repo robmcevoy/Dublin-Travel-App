@@ -8,6 +8,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -96,25 +98,8 @@ public class RtpiDashboard extends Activity {
         {
             public void onClick(View v)
             {
-            	final Dialog dialog = new Dialog(context);
-            	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-    			dialog.setContentView(R.layout.dialog);
-    			ListView listview = (ListView) dialog.findViewById(R.id.stopsListView);
-    			ArrayList<Stop> stopsArray = new ArrayList<Stop>();
-    			final ArrayAdapter<Stop> adapter = new ArrayAdapter<Stop>(context, android.R.layout.simple_list_item_1, stopsArray);
-    			listview.setAdapter(adapter);
-    			dialog.show();
-    			GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), adapter);
-    			thread.execute(listview);
-    			listview.setOnItemClickListener(new OnItemClickListener() {
-
-    				public void onItemClick(AdapterView<?> arg0, View view,
-    						int position, long id) {
-    					Stop stop =adapter.getItem(position);
-    					rtpiController.changeStop(stop);
-    					dialog.dismiss();
-    				}
-    	        });
+            	StopListDialog stopListDialog = new StopListDialog(context, rtpiController);
+            	stopListDialog.open();
             }
         });
        

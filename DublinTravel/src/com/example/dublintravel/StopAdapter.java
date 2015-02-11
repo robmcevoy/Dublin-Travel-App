@@ -20,28 +20,25 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 		this.context = context;
 	}
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View v = convertView;
-			if (v == null) {
-				LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				v = vi.inflate(R.layout.stop_list_item, null);
-			}
 
-			Stop stop = stops.get(position);
-			if (stop != null) {
-				TextView stopName = (TextView) v.findViewById(R.id.stopNameTextView);
-				TextView stopId = (TextView) v.findViewById(R.id.stopIdTextView);
-
-				if (stopName != null) {
-					stopName.setText(stop.getName());
-				}
-
-				if(stopId != null) {
-					stopId.setText(stop.getID() );
-				}
-			}
-			return v;
+	public View getView(int position, View convertView, ViewGroup parent) {
+		View v = convertView;
+		if (v == null) {
+			LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			v = vi.inflate(R.layout.stop_list_item, null);
 		}
+		Stop stop = stops.get(position);
+		if (stop != null) {
+			TextView stopName = (TextView) v.findViewById(R.id.stopNameTextView);
+			TextView stopId = (TextView) v.findViewById(R.id.stopIdTextView);
+			if (stopName != null) {
+				stopName.setText(stop.getName());
+			}
+			if(stopId != null) {
+				stopId.setText(stop.getID() );
+			}
+		}
+		return v;
+	}
 
 }

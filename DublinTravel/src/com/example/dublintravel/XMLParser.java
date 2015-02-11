@@ -19,8 +19,6 @@ public class XMLParser implements Parser {
 		String destination = "";
 		String route="";
 		SAXBuilder saxBuilder = new SAXBuilder();
-		final int MAX_NUM_RESULTS=5;
-		
 		ArrayList<StopInfo> allStops = new ArrayList<StopInfo>();
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
 		int count=0;
@@ -49,7 +47,7 @@ public class XMLParser implements Parser {
 			stopInfoArray.add(stopInfo);
 		}
 		Collections.sort(allStops);
-		for(int i=0; ((i< MAX_NUM_RESULTS) && i<count); i++){
+		for(int i=0; (i<count); i++){
 			stopInfoArray.add(allStops.get(i));
 		}
 		return stopInfoArray;

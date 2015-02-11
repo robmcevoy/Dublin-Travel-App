@@ -49,24 +49,10 @@ public class RtpiDashboard extends Activity {
 	    /***************************************************************/
 	    final Context context = this;
 	    final TextView stopTextView = (TextView) findViewById(R.id.stop);
-	    final TextView routeId1 = (TextView) findViewById(R.id.routeId1);
-	    final TextView routeId2 = (TextView) findViewById(R.id.routeId2);
-	    final TextView routeId3 = (TextView) findViewById(R.id.routeId3);
-	    final TextView routeId4 = (TextView) findViewById(R.id.routeId4);
-	    final TextView routeId5 = (TextView) findViewById(R.id.routeId5);
-	    final TextView dest1 = (TextView) findViewById(R.id.destination1);
-	    final TextView dest2 = (TextView) findViewById(R.id.destination2);
-	    final TextView dest3 = (TextView) findViewById(R.id.destination3);
-	    final TextView dest4 = (TextView) findViewById(R.id.destination4);
-	    final TextView dest5 = (TextView) findViewById(R.id.destination5);
-	    final TextView dueTime1 = (TextView) findViewById(R.id.dueTime1);
-	    final TextView dueTime2 = (TextView) findViewById(R.id.dueTime2);
-	    final TextView dueTime3 = (TextView) findViewById(R.id.dueTime3);
-	    final TextView dueTime4 = (TextView) findViewById(R.id.dueTime4);
-	    final TextView dueTime5 = (TextView) findViewById(R.id.dueTime5);
-	    final StopInfoTable stopInfoTable = new StopInfoTable(routeId1, routeId2, routeId3, routeId4, routeId5,
-	    													dest1, dest2, dest3, dest4, dest5,
-	    													dueTime1, dueTime2, dueTime3, dueTime4, dueTime5);
+	    ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
+	    StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(this, android.R.layout.simple_list_item_1,stopInfoArray );
+	    final ListView stopInfoListView = (ListView) findViewById(R.id.stopInfoListView);
+	    stopInfoListView.setAdapter(stopInfoAdapter);
 	    final ImageView dublinBusImageView = (ImageView) findViewById(R.id.dublinBusLogo);
 	    final DublinBusOperator dublinBusOperator = new DublinBusOperator();
 	    final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
@@ -75,8 +61,7 @@ public class RtpiDashboard extends Activity {
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
 	    final LuasOperator luasOperator = new LuasOperator();
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
-	    
-	    final RtpiController rtpiController = new RtpiController(this,stopInfoTable, stopTextView);
+	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoAdapter);
 	    
 	    final Bundle EXTRAS = getIntent().getExtras();
 		String  selected;

@@ -3,14 +3,16 @@ package com.example.dublintravel;
 import java.util.ArrayList;
 
 import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class GetStopInfoThread extends AsyncTask<StopInfoTable, Void, String>{
+public class GetStopInfoThread extends AsyncTask<ArrayAdapter<StopInfo>, Void, String>{
 
-	StopInfoTable stopInfoTable;
+	//StopInfoTable stopInfoTable;
 	HttpSender hs;
 	Operator operator;
 	String stop;
+	ArrayAdapter<StopInfo> adapter;
 	
 	public GetStopInfoThread(Operator operator, String stop){
 		hs = new HttpSender();
@@ -18,11 +20,26 @@ public class GetStopInfoThread extends AsyncTask<StopInfoTable, Void, String>{
 		this.stop =stop;
 	}
 	
+	protected String doInBackground(ArrayAdapter<StopInfo>... arg0) {
+		adapter = arg0[0];
+		return hs.sendGetRequest(operator.generateRealtimeInfoUrlString(stop), operator.needsAuth());
+	}
+	
+	protected void onPostExecute(String result) {
+		adapter.clear();
+		ArrayList<StopInfo> stopInfoArray = operator.getParser().getStopInfo(result);
+		for(StopInfo stopInfo: stopInfoArray){
+			adapter.add(stopInfo);
+		}
+	}
+	
+	/*
 	protected String doInBackground(StopInfoTable... arg0) {
 		stopInfoTable = arg0[0]; 
 		return hs.sendGetRequest(operator.generateRealtimeInfoUrlString(stop), operator.needsAuth());
 	}
-	
+	*/
+	/*
 	protected void onPostExecute(String result) {
 
 		wipe();
@@ -41,7 +58,9 @@ public class GetStopInfoThread extends AsyncTask<StopInfoTable, Void, String>{
 			index = index+3;
 		}
     }
+    */
 	
+	/*
 	public void wipe(){
 		TextView textView;
 		for(int i=0; i<stopInfoTable.getTableSize(); i++){
@@ -49,5 +68,6 @@ public class GetStopInfoThread extends AsyncTask<StopInfoTable, Void, String>{
 			textView.setText("");
 		}
 	}
+	*/
 
 }

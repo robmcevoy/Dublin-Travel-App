@@ -26,7 +26,6 @@
         android:minWidth="200dp"
         android:layout_height="0dp"
         android:layout_weight="0.10"
-        android:hint="Search.."
         style="@style/search_bar"
         android:layout_marginBottom="5dp"
         >

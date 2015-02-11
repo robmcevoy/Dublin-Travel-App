@@ -14,5 +14,6 @@
     <string name="route_header">Route</string>
     <string name="destination_header">Destination</string>
     <string name="duetime_header">Due (mins)</string>
+    <string name="search">Search..</string>
 
 </resources>

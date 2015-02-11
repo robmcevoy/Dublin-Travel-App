@@ -40,46 +40,33 @@ public final class R {
         public static final int rounded_corner_orange=0x7f020009;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0021;
+        public static final int action_settings=0x7f0a0013;
         public static final int busEireannLogo=0x7f0a0004;
         public static final int carsLogo=0x7f0a0006;
-        public static final int destination1=0x7f0a000f;
-        public static final int destination2=0x7f0a0012;
-        public static final int destination3=0x7f0a0015;
-        public static final int destination4=0x7f0a0018;
-        public static final int destination5=0x7f0a001b;
-        public static final int destinationHeader=0x7f0a000c;
         public static final int dialogTitle=0x7f0a0007;
         public static final int dublinBusLogo=0x7f0a0005;
-        public static final int dueTime1=0x7f0a0010;
-        public static final int dueTime2=0x7f0a0013;
-        public static final int dueTime3=0x7f0a0016;
-        public static final int dueTime4=0x7f0a0019;
-        public static final int dueTime5=0x7f0a001c;
-        public static final int dueTimeHeader=0x7f0a000d;
         public static final int homepageHeading=0x7f0a0000;
         public static final int homepageSubheading=0x7f0a0001;
         public static final int irishRailLogo=0x7f0a0003;
         public static final int luasLogo=0x7f0a0002;
-        public static final int routeId1=0x7f0a000e;
-        public static final int routeId2=0x7f0a0011;
-        public static final int routeId3=0x7f0a0014;
-        public static final int routeId4=0x7f0a0017;
-        public static final int routeId5=0x7f0a001a;
-        public static final int routeIdHeader=0x7f0a000b;
         public static final int searchBar=0x7f0a0008;
         public static final int stop=0x7f0a000a;
-        public static final int stopIdTextView=0x7f0a0020;
-        public static final int stopNameTextView=0x7f0a001f;
+        public static final int stopIdTextView=0x7f0a0012;
+        public static final int stopInfoDestination=0x7f0a000f;
+        public static final int stopInfoDueTime=0x7f0a0010;
+        public static final int stopInfoListView=0x7f0a000b;
+        public static final int stopInfoRoute=0x7f0a000e;
+        public static final int stopNameTextView=0x7f0a0011;
         public static final int stopsListView=0x7f0a0009;
-        public static final int twitter=0x7f0a001e;
-        public static final int webView1=0x7f0a001d;
+        public static final int twitter=0x7f0a000d;
+        public static final int webView1=0x7f0a000c;
     }
     public static final class layout {
         public static final int activity_homepage=0x7f030000;
         public static final int dialog=0x7f030001;
         public static final int rtpi_dashboard=0x7f030002;
-        public static final int stop_list_item=0x7f030003;
+        public static final int stop_info_list_item=0x7f030003;
+        public static final int stop_list_item=0x7f030004;
     }
     public static final class menu {
         public static final int homepage=0x7f090000;
@@ -98,6 +85,7 @@ public final class R {
         public static final int irish_rail_cd=0x7f080007;
         public static final int luas_cd=0x7f080005;
         public static final int route_header=0x7f08000a;
+        public static final int search=0x7f08000d;
         public static final int stop_id_hint=0x7f080009;
     }
     public static final class style {
@@ -122,17 +110,18 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f040005;
+        public static final int AppBaseTheme=0x7f040006;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f040006;
+        public static final int AppTheme=0x7f040007;
         public static final int background=0x7f040000;
         public static final int homepage_heading=0x7f040001;
         public static final int homepage_subheading=0x7f040002;
-        public static final int search_bar=0x7f040003;
-        public static final int stopTextView=0x7f040004;
-        public static final int table_element=0x7f040007;
-        public static final int table_header=0x7f040008;
+        public static final int list_view_heading=0x7f040003;
+        public static final int search_bar=0x7f040004;
+        public static final int stopTextView=0x7f040005;
+        public static final int table_element=0x7f040008;
+        public static final int table_header=0x7f040009;
     }
 }

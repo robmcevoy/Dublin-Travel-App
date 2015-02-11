@@ -24,7 +24,6 @@ public class JSONParser implements Parser {
 		String errorCode="";
 		String errorMessage="";
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
-		final int MAX_NUM_RESULTS=5;
 		final String NO_ERROR_CODE="0";
 		int resultsLength;
 		StopInfo stopInfo;
@@ -35,7 +34,7 @@ public class JSONParser implements Parser {
 			if(errorCode.equals(NO_ERROR_CODE)){
 				JSONArray result = json.getJSONArray("results");
 				resultsLength = result.length();
-				for(int i=0; ((i<resultsLength) && (i<MAX_NUM_RESULTS)); i++){
+				for(int i=0; i<resultsLength; i++){
 					JSONObject resultItem = result.getJSONObject(i);
 					duetime = convertToTimeFormat(resultItem.getString("duetime"));
 					destination = removeLUAS(resultItem.getString("destination"));
@@ -43,6 +42,7 @@ public class JSONParser implements Parser {
 					stopInfo = new StopInfo(route, destination, duetime);
 					stopInfoArray.add(stopInfo);
 				}
+				Collections.sort(stopInfoArray);
 			}
 			else{
 				stopInfo = new StopInfo();

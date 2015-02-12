@@ -22,7 +22,7 @@ public class JSONParser implements Parser {
 		String destination="";
 		String route="";
 		String errorCode="";
-		String errorMessage="";
+		String errorMessage="Something has gone wrong";
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
 		final String NO_ERROR_CODE="0";
 		int resultsLength;
@@ -51,7 +51,7 @@ public class JSONParser implements Parser {
 			}
 			return stopInfoArray;
 			
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			errorMessage = "caught exception " + e.toString();
 			stopInfo = new StopInfo();
 			stopInfo.setErrorMessage(errorMessage);

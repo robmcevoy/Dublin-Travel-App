@@ -29,6 +29,7 @@ public class RtpiController {
 	
 	public void changeOperator(Operator operator, ImageView imageView){
 		wipeStopView();
+		wipeStopInfoView();
 		this.operator = operator;
 		changeImageViewBorder(imageView);
 	}
@@ -47,6 +48,10 @@ public class RtpiController {
 	
 	private void wipeStopView(){
 		stopView.setText(context.getResources().getString(R.string.stop_id_hint));
+	}
+	
+	private void wipeStopInfoView(){
+		stopInfoAdapter.clear();
 	}
 	
 	private void setStopView(){

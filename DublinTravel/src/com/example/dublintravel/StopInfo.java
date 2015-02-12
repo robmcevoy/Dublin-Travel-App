@@ -20,7 +20,7 @@ public class StopInfo implements Comparable<StopInfo> {
 		if(!error)
 			return routeId;
 		else 
-			return null;
+			return "";
 	}
 	
 	String getDestination(){
@@ -34,7 +34,7 @@ public class StopInfo implements Comparable<StopInfo> {
 		if(!error)
 			return dueTime;
 		else
-			return null;
+			return "";
 	}
 	
 	void setErrorMessage(String message){
@@ -43,14 +43,30 @@ public class StopInfo implements Comparable<StopInfo> {
 	}
 
 	public int compareTo(StopInfo another) {
-		if(Integer.parseInt(dueTime) < Integer.parseInt(another.getDueTime())){
+		String tempDueTime = dueTime;
+		String anotherTempDueTime = another.getDueTime();
+		
+		// if duetime value is "due", give it a value of zero mins
+		if(isDue(tempDueTime))	
+			tempDueTime="0";
+		if(isDue(anotherTempDueTime))
+			anotherTempDueTime="0";
+		
+		if(Integer.parseInt(tempDueTime) < Integer.parseInt(anotherTempDueTime)){
 			return -1;
 		}
-		else if(dueTime.equals(another.getDueTime())){
+		else if(tempDueTime.equals(anotherTempDueTime)){
 			return 0;
 		}
 		else{
 			return 1;
 		}
+	}
+	
+	public boolean isDue(String duetime){
+		if(duetime.toLowerCase().equals("due")){
+			return true;
+		}
+		return false;
 	}
 }

@@ -1,8 +1,6 @@
 package com.example.dublintravel;
 
 import java.util.ArrayList;
-
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Adapter;
@@ -17,7 +15,7 @@ public class GetStopsThread extends AsyncTask<ListView, Void, String> {
 	private HttpSender hs;
 	private ArrayAdapter<Stop> adapter;
 	
-	public GetStopsThread(Context context, Operator operator, ArrayAdapter<Stop> adapter){
+	GetStopsThread(Context context, Operator operator, ArrayAdapter<Stop> adapter){
 		this.operator = operator;
 		this.context = context;
 		hs = new HttpSender();

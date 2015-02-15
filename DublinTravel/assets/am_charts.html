@@ -1,29 +1,15 @@
-var irish_rail_image = "img/irish_rail.png";
-var dublin_bus_image = "img/dublin_bus.png";
-var bus_eireann_image = "img/bus_eireann.png";
-var luas_image="img/luas.png";
-const DUBLIN_BUS_OPCODE = "bac";
-const IRISH_RAIL_OPCODE = "ir";
-const LUAS_OPCODE = "luas";
-var active_image;
-
-if(Android.getOperator() === DUBLIN_BUS_OPCODE){
-	active_image= dublin_bus_image;
-}
-
-else if(Android.getOperator() === IRISH_RAIL_OPCODE){
-	active_image= irish_rail_image;
-}
-
-else if(Android.getOperator() === LUAS_OPCODE){
-	active_image= luas_image;
-}
-
-else{
-
-	active_image= bus_eireann_image;
-}
-var chart = AmCharts.makeChart("chartdiv", {
+<html>
+  <head>
+  	<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+	<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+	<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+	<script type="text/javascript">
+		var irish_rail_image = "img/irish_rail.png";
+		var dublin_bus_image = "img/dublin_bus.png";
+		var bus_eireann_image = "img/bus_eireann.png";
+		var luas_image="img/luas.png";
+		var active_image= dublin_bus_image;
+		var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",    
     "dataProvider": [{
         "due": 1,
@@ -100,3 +86,9 @@ var chart = AmCharts.makeChart("chartdiv", {
         "color" : "#FF9900"
     }
 });
+	</script>
+  </head>
+  <body style="margin:0;padding:0">
+     <div id="chartdiv" style="width:100%;height: 100%; background: #333333; margin: 0px; padding: 0px"></div>
+  </body>
+</html>

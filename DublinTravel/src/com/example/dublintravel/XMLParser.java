@@ -13,7 +13,6 @@ import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 
-
 // used as a helper to parse XML format web service responses
 public class XMLParser implements Parser {
 

@@ -1,18 +1,28 @@
 package com.example.dublintravel;
 
 import java.util.ArrayList;
-
-import com.example.dublintravel.R;
-
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class RtpiDashboard extends Activity {
 
@@ -38,7 +48,7 @@ public class RtpiDashboard extends Activity {
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoAdapter);
 	    WebView chartVis = (WebView) findViewById(R.id.webView1);
-		ChartWebView webview = new ChartWebView(chartVis, stopInfoAdapter, rtpiController);
+		ChartWebView webview = new ChartWebView(chartVis, stopInfoAdapter);
 		webview.start();
 	    
 	    final Bundle EXTRAS = getIntent().getExtras();

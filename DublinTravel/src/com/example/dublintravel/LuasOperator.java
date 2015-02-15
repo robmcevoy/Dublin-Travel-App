@@ -2,7 +2,7 @@ package com.example.dublintravel;
 
 public class LuasOperator extends RtpiJsonOperator {
 
-	public LuasOperator(){
+	LuasOperator(){
 		OPERATOR_CODE="luas";
 	}
 

@@ -5,7 +5,7 @@ public class Stop implements Comparable<Stop>{
 	private String stopID;
 	private String name;
 	
-	public Stop(String stopId, String name){
+	Stop(String stopId, String name){
 		this.stopID = stopId;
 		this.name = name;
 	}

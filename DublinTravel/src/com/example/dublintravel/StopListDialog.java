@@ -2,8 +2,6 @@ package com.example.dublintravel;
 
 import java.util.ArrayList;
 
-import com.example.dublintravel.R;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.text.Editable;
@@ -27,7 +25,7 @@ public class StopListDialog {
 	private boolean firstSearch;
 	private ArrayList<Stop> allStops;
 
-	public StopListDialog(Context context, RtpiController rtpiController){
+	StopListDialog(Context context, RtpiController rtpiController){
 		this.context = context;
 		this.rtpiController = rtpiController;
 		dialog = new Dialog(this.context);

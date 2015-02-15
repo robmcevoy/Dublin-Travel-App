@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-
 //used as a helper to parse JSON format web service responses
 public class JSONParser implements Parser {
 	

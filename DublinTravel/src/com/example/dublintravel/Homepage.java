@@ -1,7 +1,5 @@
 package com.example.dublintravel;
 
-import com.example.dublintravel.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

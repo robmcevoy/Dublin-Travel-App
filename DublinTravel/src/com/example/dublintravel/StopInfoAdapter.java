@@ -2,10 +2,6 @@ package com.example.dublintravel;
 
 import java.util.ArrayList;
 
-import com.example.dublintravel.R;
-import com.example.dublintravel.R.id;
-import com.example.dublintravel.R.layout;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

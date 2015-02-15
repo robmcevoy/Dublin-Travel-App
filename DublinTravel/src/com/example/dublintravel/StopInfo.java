@@ -7,34 +7,42 @@ public class StopInfo implements Comparable<StopInfo> {
 	private String dueTime;
 	private String errorMessage;
 	private boolean error; 
+	private String arrivalTime;
+	private String scheduledArrivalTime;
 	
-	StopInfo(String routeId, String destination, String dueTime){
+	StopInfo(String routeId, String destination, String dueTime, String arrivalTime, String scheduledArrivalTime){
 		this.routeId = routeId;
 		this.destination = destination;
 		this.dueTime = dueTime;
+		this.arrivalTime = arrivalTime;
+		this.scheduledArrivalTime = scheduledArrivalTime;
 	}
 	
 	StopInfo(){}
 	
-	String getRouteId(){
+	public String getRouteId(){
 		if(!error)
 			return routeId;
 		else 
 			return "";
 	}
 	
-	String getDestination(){
+	public String getDestination(){
 		if(!error)
 			return destination;
 		else
 			return errorMessage;
 	}
 	
-	String getDueTime(){
+	public String getDueTime(){
 		if(!error)
 			return dueTime;
 		else
 			return "";
+	}
+	
+	public String getArrivalTime(){
+		return arrivalTime;
 	}
 	
 	void setErrorMessage(String message){

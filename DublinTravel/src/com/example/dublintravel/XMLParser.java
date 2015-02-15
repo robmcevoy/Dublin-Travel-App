@@ -1,7 +1,11 @@
 package com.example.dublintravel;
 import java.io.StringReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.jdom2.Document;
@@ -18,6 +22,8 @@ public class XMLParser implements Parser {
 		String duetime = ""; 
 		String destination = "";
 		String route="";
+		String scheduledArrivalTime;
+		String arrivalTime;
 		SAXBuilder saxBuilder = new SAXBuilder();
 		ArrayList<StopInfo> allStops = new ArrayList<StopInfo>();
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
@@ -35,7 +41,12 @@ public class XMLParser implements Parser {
 		    	duetime = node.getChildText("Duein", namespace);
 		    	destination = node.getChildText("Destination", namespace);
 		    	route = node.getChildText("Direction", namespace);
-		    	stopInfo = new StopInfo(route, destination, duetime);
+		    	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		    	Date today = Calendar.getInstance().getTime();
+		    	String dateString = df.format(today);
+		    	arrivalTime = dateString + " " + node.getChildText("Exparrival", namespace) + ":00";
+		    	scheduledArrivalTime = dateString + " " + node.getChildText("Scharrival", namespace) + ":00";
+		    	stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime);
 		    	allStops.add(stopInfo);
 		    	count++;
 		    }

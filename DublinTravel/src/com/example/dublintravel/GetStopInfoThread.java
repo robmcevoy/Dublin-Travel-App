@@ -32,42 +32,4 @@ public class GetStopInfoThread extends AsyncTask<ArrayAdapter<StopInfo>, Void, S
 			adapter.add(stopInfo);
 		}
 	}
-	
-	/*
-	protected String doInBackground(StopInfoTable... arg0) {
-		stopInfoTable = arg0[0]; 
-		return hs.sendGetRequest(operator.generateRealtimeInfoUrlString(stop), operator.needsAuth());
-	}
-	*/
-	/*
-	protected void onPostExecute(String result) {
-
-		wipe();
-		ArrayList<StopInfo> stopInfoArray = operator.getParser().getStopInfo(result);
-		TextView route;
-		TextView dest;
-		TextView duetime;
-		int index = 0;
-		for(StopInfo stopInfo:stopInfoArray){
-			route = stopInfoTable.getTableElement(index);
-			dest = stopInfoTable.getTableElement(index+1);
-			duetime = stopInfoTable.getTableElement(index+2);
-			route.setText(stopInfo.getRouteId());
-			dest.setText(stopInfo.getDestination());
-			duetime.setText(stopInfo.getDueTime());
-			index = index+3;
-		}
-    }
-    */
-	
-	/*
-	public void wipe(){
-		TextView textView;
-		for(int i=0; i<stopInfoTable.getTableSize(); i++){
-			textView = stopInfoTable.getTableElement(i);
-			textView.setText("");
-		}
-	}
-	*/
-
 }

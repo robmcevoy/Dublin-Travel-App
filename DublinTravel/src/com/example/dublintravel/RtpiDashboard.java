@@ -31,22 +31,7 @@ public class RtpiDashboard extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rtpi_dashboard);
 		
-		/****************** TEMP STUFF *******************/
-		WebView myWebView = (WebView) findViewById(R.id.webView1);
-		myWebView.loadUrl("http://www.google.ie");
-		myWebView.setWebViewClient(new WebViewClient() {
-	        @Override
-	        public void onReceivedError(WebView view, int errorCode,
-	                String description, String failingUrl) {
-	            // Handle the error
-	        }
-
-	        @Override
-	        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-	            view.loadUrl(url);
-	            return true;
-	        }});
-	    /***************************************************************/
+		
 	    final Context context = this;
 	    final TextView stopTextView = (TextView) findViewById(R.id.stop);
 	    ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
@@ -62,6 +47,9 @@ public class RtpiDashboard extends Activity {
 	    final LuasOperator luasOperator = new LuasOperator();
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoAdapter);
+	    WebView chartVis = (WebView) findViewById(R.id.webView1);
+		ChartWebView webview = new ChartWebView(chartVis, stopInfoAdapter);
+		webview.start();
 	    
 	    final Bundle EXTRAS = getIntent().getExtras();
 		String  selected;

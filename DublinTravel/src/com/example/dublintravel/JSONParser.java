@@ -21,6 +21,8 @@ public class JSONParser implements Parser {
 		String duetime="";
 		String destination="";
 		String route="";
+		String arrivalTime;
+		String scheduledArrivalTime;
 		String errorCode="";
 		String errorMessage="Something has gone wrong";
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
@@ -39,7 +41,9 @@ public class JSONParser implements Parser {
 					duetime = convertToTimeFormat(resultItem.getString("duetime"));
 					destination = removeLUAS(resultItem.getString("destination"));
 					route = resultItem.getString("route");
-					stopInfo = new StopInfo(route, destination, duetime);
+					arrivalTime = resultItem.getString("arrivaldatetime");
+					scheduledArrivalTime = resultItem.getString("scheduledarrivaldatetime");
+					stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime);
 					stopInfoArray.add(stopInfo);
 				}
 				Collections.sort(stopInfoArray);

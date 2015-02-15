@@ -48,7 +48,7 @@ public class RtpiDashboard extends Activity {
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoAdapter);
 	    WebView chartVis = (WebView) findViewById(R.id.webView1);
-		ChartWebView webview = new ChartWebView(chartVis, stopInfoAdapter);
+		ChartWebView webview = new ChartWebView(chartVis, stopInfoAdapter, rtpiController);
 		webview.start();
 	    
 	    final Bundle EXTRAS = getIntent().getExtras();

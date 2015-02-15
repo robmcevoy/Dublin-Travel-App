@@ -1,7 +1,8 @@
 package com.example.dublintravel;
 
+import com.example.dublintravel.R;
+
 import android.content.Context;
-import android.graphics.Color;
 import android.widget.ImageView;
 import android.widget.TextView;
 

@@ -10,7 +10,7 @@ public class StopInfo implements Comparable<StopInfo> {
 	private String arrivalTime;
 	private String scheduledArrivalTime;
 	
-	StopInfo(String routeId, String destination, String dueTime, String arrivalTime, String scheduledArrivalTime){
+	public StopInfo(String routeId, String destination, String dueTime, String arrivalTime, String scheduledArrivalTime){
 		this.routeId = routeId;
 		this.destination = destination;
 		this.dueTime = dueTime;
@@ -18,7 +18,7 @@ public class StopInfo implements Comparable<StopInfo> {
 		this.scheduledArrivalTime = scheduledArrivalTime;
 	}
 	
-	StopInfo(){}
+	public StopInfo(){}
 	
 	public String getRouteId(){
 		if(!error)

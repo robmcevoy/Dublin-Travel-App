@@ -8,7 +8,7 @@ public class RtpiXmlOperator extends Operator{
 	private Parser parser;
 	private boolean NEEDS_AUTH=false;
 	
-	RtpiXmlOperator(){
+	public RtpiXmlOperator(){
 		parser = new XMLParser();
 	}
 	

@@ -22,32 +22,20 @@ public class RtpiDashboard extends Activity {
 	    final TextView stopTextView = (TextView) findViewById(R.id.stop);
 	    final ListView stopInfoListView = (ListView) findViewById(R.id.stopInfoListView);
 	    final ImageView dublinBusImageView = (ImageView) findViewById(R.id.dublinBusLogo);
-	    final DublinBusOperator dublinBusOperator = new DublinBusOperator();
 	    final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
-	    final RtpiXmlOperator irishRailOperator = new IrishRailOperator();
-	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
-	    final LuasOperator luasOperator = new LuasOperator();
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoListView );
+	    NavigationBar navbar = new NavigationBar(dublinBusImageView,luasImageView, 
+												irishRailImageView,busEireannImageView,
+												rtpiController);
+	    navbar.activate();
 	    WebView chartVis = (WebView) findViewById(R.id.webView1);
 		ChartWebView webview = new ChartWebView(chartVis,rtpiController);
 		webview.start();
 	    
 	    final Bundle EXTRAS = getIntent().getExtras();
-		String  selected;
-		if (EXTRAS != null) {
-			selected = (String) EXTRAS.get("operator");
-			if(selected.equals(dublinBusOperator.getOperatorCode()))
-				rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
-			else if(selected.equals(luasOperator.getOperatorCode()))
-				rtpiController.changeOperator(luasOperator, luasImageView);
-			else if(selected.equals(busEireannOperator.getOperatorCode()))
-				rtpiController.changeOperator(busEireannOperator, busEireannImageView);
-			else
-				rtpiController.changeOperator(irishRailOperator, irishRailImageView);
-		}
-		
+	    navbar.getOpFromHomepage(EXTRAS);
 
 		
 		stopTextView.setOnClickListener(new View.OnClickListener()
@@ -58,26 +46,9 @@ public class RtpiDashboard extends Activity {
             	stopListDialog.open();
             }
         });
-       
-        
-	    operatorClick(irishRailImageView,irishRailOperator, rtpiController );
-	    operatorClick(luasImageView,luasOperator, rtpiController );
-	    operatorClick(busEireannImageView,busEireannOperator, rtpiController );
-	    operatorClick(dublinBusImageView,dublinBusOperator, rtpiController );
 	    
 	    
 	}
-	
-	public void operatorClick(final ImageView imageview, final Operator operator, final RtpiController rtpiController ){
-		imageview.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-            	rtpiController.changeOperator(operator, imageview);
-            }
-        });
-	}
-
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

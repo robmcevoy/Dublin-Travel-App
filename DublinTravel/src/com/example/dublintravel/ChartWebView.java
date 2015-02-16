@@ -8,13 +8,11 @@ import android.widget.Adapter;
 
 public class ChartWebView {
 	
-	Adapter adapter;
 	WebView webview;
 	Context context;
 	RtpiController rtpiController;
 
-	ChartWebView(WebView webview, Adapter adapter, RtpiController rtpiController){
-		this.adapter = adapter;
+	ChartWebView(WebView webview, RtpiController rtpiController){
 		this.webview = webview;
 		this.rtpiController = rtpiController;
 	}

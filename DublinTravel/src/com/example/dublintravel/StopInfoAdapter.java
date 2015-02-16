@@ -46,5 +46,10 @@ public class StopInfoAdapter extends ArrayAdapter<StopInfo> {
 		}
 		return v;
 	}
+	
+	@Override
+    public boolean isEnabled(int position) {
+       return false;
+	}
 
 }

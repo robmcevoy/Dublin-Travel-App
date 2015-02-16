@@ -2,34 +2,37 @@ package com.example.dublintravel;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class GetStopInfoThread extends AsyncTask<ArrayAdapter<StopInfo>, Void, String>{
+public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 
-	//StopInfoTable stopInfoTable;
 	HttpSender hs;
 	Operator operator;
 	String stop;
-	ArrayAdapter<StopInfo> adapter;
+	ListView listview;
+	Context context;
 	
-	public GetStopInfoThread(Operator operator, String stop){
+	public GetStopInfoThread(Operator operator, String stop, Context context){
 		hs = new HttpSender();
 		this.operator = operator;
 		this.stop =stop;
+		this.context = context;
 	}
 	
-	protected String doInBackground(ArrayAdapter<StopInfo>... arg0) {
-		adapter = arg0[0];
+	protected String doInBackground(ListView... arg0) {
+		listview = arg0[0];
 		return hs.sendGetRequest(operator.generateRealtimeInfoUrlString(stop), operator.needsAuth());
 	}
-	
+
 	protected void onPostExecute(String result) {
-		adapter.clear();
+
 		ArrayList<StopInfo> stopInfoArray = operator.getParser().getStopInfo(result);
-		for(StopInfo stopInfo: stopInfoArray){
-			adapter.add(stopInfo);
-		}
+		StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(context, android.R.layout.simple_list_item_1,stopInfoArray );
+		listview.setAdapter(stopInfoAdapter);
 	}
+	
 }

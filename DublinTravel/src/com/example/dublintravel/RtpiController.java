@@ -3,6 +3,7 @@ package com.example.dublintravel;
 import android.content.Context;
 import android.graphics.Color;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class RtpiController {
@@ -12,19 +13,19 @@ public class RtpiController {
 	private Operator operator;
 	private ImageView activeImageView;
 	private TextView stopView;
-	private StopInfoAdapter stopInfoAdapter;
-
-	RtpiController(Context context, TextView stopView, StopInfoAdapter stopInfoAdapter){
+	private ListView stopInfoListView;
+	
+	RtpiController(Context context, TextView stopView, ListView stopInfoListView){		
 		this.context = context;
 		this.stopView = stopView;
-		this.stopInfoAdapter = stopInfoAdapter;
+		this.stopInfoListView = stopInfoListView;
 	}
 	
 	public void changeStop(Stop newStop){
 		currentStop = newStop;
 		setStopView();
-		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop.getID());
-		si.execute(stopInfoAdapter);
+		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop.getID(), context);
+		si.execute(stopInfoListView);
 	}
 	
 	public void changeOperator(Operator operator, ImageView imageView){
@@ -51,7 +52,7 @@ public class RtpiController {
 	}
 	
 	private void wipeStopInfoView(){
-		stopInfoAdapter.clear();
+		stopInfoListView.setAdapter(null);
 	}
 	
 	private void setStopView(){

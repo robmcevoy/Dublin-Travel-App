@@ -15,14 +15,12 @@ public class GetStopsThread extends AsyncTask<ListView, Integer, String> {
 	private ListView listview;
 	private Context context;
 	private HttpSender hs;
-	private ArrayAdapter<Stop> adapter;
 	private ProgressBar progressbar;
 	
-	GetStopsThread(Context context, Operator operator, ArrayAdapter<Stop> adapter, ProgressBar progressbar){
+	GetStopsThread(Context context, Operator operator, ProgressBar progressbar){
 		this.operator = operator;
 		this.context = context;
 		hs = new HttpSender();
-		this.adapter = adapter;
 		this.progressbar = progressbar;
 	}
 	
@@ -44,9 +42,8 @@ public class GetStopsThread extends AsyncTask<ListView, Integer, String> {
 
 	protected void onPostExecute(String result) {
 		ArrayList<Stop> stops = operator.getParser().getStops(result);
-		for(Stop s: stops){
-			adapter.add(s);
-		}
+		StopAdapter stopAdapter = new StopAdapter(context, android.R.layout.simple_list_item_1, stops  );
+		listview.setAdapter(stopAdapter);
 		progressbar.setVisibility(View.GONE);
 	}
 }

@@ -21,8 +21,6 @@ public class StopListDialog {
 	private ListView listview;
 	private EditText searchBar;
 	private ProgressBar progressBar;
-	private ArrayList<Stop> stopsArray;
-	private StopAdapter adapter;
 	private RtpiController rtpiController;
 	private boolean firstSearch;
 	private ArrayList<Stop> allStops;
@@ -36,16 +34,13 @@ public class StopListDialog {
 		listview = (ListView) dialog.findViewById(R.id.stopsListView);
 		searchBar = (EditText) dialog.findViewById(R.id.searchBar);
 		progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
-		stopsArray = new ArrayList<Stop>();
-		adapter = new StopAdapter(context, android.R.layout.simple_list_item_1, stopsArray);
 		firstSearch = true;
 		allStops = new ArrayList<Stop>();
 	}
 	
 	public void open(){
-		listview.setAdapter(adapter);
 		dialog.show();
-		GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), adapter, progressBar);
+		GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), progressBar);
 		thread.execute(listview);
 		setOnItemClickListener();
 		setSearchBarListener();
@@ -56,7 +51,7 @@ public class StopListDialog {
 
 			public void onItemClick(AdapterView<?> arg0, View view,
 					int position, long id) {
-				Stop stop = adapter.getItem(position);
+				Stop stop = (Stop) listview.getAdapter().getItem(position);
 				rtpiController.changeStop(stop);
 				dialog.dismiss();
 			}
@@ -73,9 +68,9 @@ public class StopListDialog {
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			
 			if(firstSearch){
-				
-				for(int i=0; i<adapter.getCount(); i++ ){
-					allStops.add(adapter.getItem(i));
+				StopAdapter tmpAdapter = (StopAdapter) listview.getAdapter();
+				for(int i=0; i<tmpAdapter.getCount(); i++ ){
+					allStops.add(tmpAdapter.getItem(i));
 				}
 				firstSearch = false;
 				
@@ -89,10 +84,9 @@ public class StopListDialog {
 						subset.add(tempStop);
 				}
 			}
-			adapter.clear();
-			for(Stop tempStop: subset){
-				adapter.add(tempStop);
-			}
+
+			StopAdapter stopAdapter = new StopAdapter(context, android.R.layout.simple_list_item_1,subset );
+			listview.setAdapter(stopAdapter);
 			
 		}});
 	}

@@ -5,7 +5,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
         <item name="android:text">@string/stop_id_hint</item>  
-        <item name="android:textColor">@color/orange</item> 
+        <item name="android:textColor">@color/light_grey</item> 
         <item name="android:background">@drawable/rounded_corner_orange</item>
         
     </style>

@@ -15,6 +15,7 @@ public final class R {
     }
     public static final class color {
         public static final int dark_grey=0x7f050001;
+        public static final int light_grey=0x7f050002;
         public static final int orange=0x7f050000;
     }
     public static final class dimen {
@@ -40,10 +41,11 @@ public final class R {
         public static final int rounded_corner_orange=0x7f020009;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0014;
+        public static final int action_settings=0x7f0a0015;
         public static final int busEireannLogo=0x7f0a0004;
         public static final int carsLogo=0x7f0a0006;
         public static final int dialogTitle=0x7f0a0008;
+        public static final int digitalClock1=0x7f0a000b;
         public static final int dublinBusLogo=0x7f0a0005;
         public static final int homepageHeading=0x7f0a0000;
         public static final int homepageSubheading=0x7f0a0001;
@@ -51,16 +53,16 @@ public final class R {
         public static final int luasLogo=0x7f0a0002;
         public static final int progressBar=0x7f0a0007;
         public static final int searchBar=0x7f0a0009;
-        public static final int stop=0x7f0a000b;
-        public static final int stopIdTextView=0x7f0a0013;
-        public static final int stopInfoDestination=0x7f0a0010;
-        public static final int stopInfoDueTime=0x7f0a0011;
-        public static final int stopInfoListView=0x7f0a000c;
-        public static final int stopInfoRoute=0x7f0a000f;
-        public static final int stopNameTextView=0x7f0a0012;
+        public static final int stop=0x7f0a000c;
+        public static final int stopIdTextView=0x7f0a0014;
+        public static final int stopInfoDestination=0x7f0a0011;
+        public static final int stopInfoDueTime=0x7f0a0012;
+        public static final int stopInfoListView=0x7f0a000d;
+        public static final int stopInfoRoute=0x7f0a0010;
+        public static final int stopNameTextView=0x7f0a0013;
         public static final int stopsListView=0x7f0a000a;
-        public static final int twitter=0x7f0a000e;
-        public static final int webView1=0x7f0a000d;
+        public static final int twitter=0x7f0a000f;
+        public static final int webView1=0x7f0a000e;
     }
     public static final class layout {
         public static final int activity_homepage=0x7f030000;

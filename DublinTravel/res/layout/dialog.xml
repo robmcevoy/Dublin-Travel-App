@@ -48,6 +48,7 @@
         android:divider="@color/orange"
         android:dividerHeight="1dp"
         android:fastScrollEnabled="true"
+        android:textColor="@color/light_grey"
         android:background="@drawable/rounded_corner_orange" >
     </ListView>
 

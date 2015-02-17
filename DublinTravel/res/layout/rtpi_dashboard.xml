@@ -74,19 +74,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal" 
-                android:layout_weight="0.5"
+                android:layout_weight="0.45"
                 android:gravity="center"
                 android:focusable="true"
                 android:focusableInTouchMode="true" >
 
-                <TextView
-                    android:id="@+id/stop"
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:minHeight="45dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:layout_weight="0.3"
-                   	style="@style/stopTextView"
-                   	android:layout_marginRight="5dp"/>
+                    android:gravity="center_horizontal" >
+
+                    <DigitalClock
+                        android:id="@+id/digitalClock1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="40dp"
+                        style="@style/stopTextView"
+                        android:minHeight="45dp"
+                        android:textColor="@color/orange" />
+
+                    <TextView
+                        android:id="@+id/stop"
+                        style="@style/stopTextView"
+                        android:layout_width= "match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:minHeight="45dp"
+                        android:padding="5dp" />
+
+                </LinearLayout>
                 
                 <LinearLayout
                     android:layout_width="0dp"

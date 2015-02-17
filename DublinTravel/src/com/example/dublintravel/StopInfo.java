@@ -1,5 +1,9 @@
 package com.example.dublintravel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class StopInfo implements Comparable<StopInfo> {
 
 	private String routeId;
@@ -41,8 +45,19 @@ public class StopInfo implements Comparable<StopInfo> {
 			return "";
 	}
 	
+	public int getDueTimeAsInt(){
+		if(dueTime.toLowerCase().equals("due")){
+			return 0;
+		}
+		else
+			return Integer.parseInt(dueTime);
+	}
 	public String getArrivalTime(){
 		return arrivalTime;
+	}
+	
+	public String getScheduledArrivalTime(){
+		return scheduledArrivalTime;
 	}
 	
 	void setErrorMessage(String message){
@@ -76,5 +91,20 @@ public class StopInfo implements Comparable<StopInfo> {
 			return true;
 		}
 		return false;
+	}
+	
+	public int getDiffInMins(){
+		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		Date actual;
+		Date scheduled;
+		try {
+			actual = format.parse(arrivalTime);
+			scheduled = format.parse(scheduledArrivalTime);
+		} catch (ParseException e) {
+			return 0;
+		}
+		long diff = actual.getTime() - scheduled.getTime();
+		long diffMinutes = diff / (60 * 1000) % 60;
+		return (int) diffMinutes;
 	}
 }

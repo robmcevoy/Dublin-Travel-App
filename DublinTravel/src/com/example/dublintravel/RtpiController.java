@@ -1,5 +1,7 @@
 package com.example.dublintravel;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.webkit.WebView;
@@ -28,7 +30,7 @@ public class RtpiController {
 	public void changeStop(Stop newStop){
 		currentStop = newStop;
 		setStopView();
-		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop.getID(), context);
+		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop.getID(), context, chartVis);
 		si.execute(stopInfoListView);
 	}
 	
@@ -62,6 +64,19 @@ public class RtpiController {
 	
 	private void setStopView(){
 		stopView.setText(currentStop.toString());
+	}
+	
+	public ArrayList<StopInfo> getStopInfos(){
+		StopInfoAdapter tmpAdapter = (StopInfoAdapter) stopInfoListView.getAdapter();
+		if(tmpAdapter != null){
+			ArrayList<StopInfo> array = new ArrayList<StopInfo>();
+			for(int i=0; i<tmpAdapter.getCount(); i++){
+				array.add(tmpAdapter.getItem(i));
+			}
+			return array;
+		}
+		else
+			return null;
 	}
 	
 }

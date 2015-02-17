@@ -24,80 +24,61 @@ else{
 
 	active_image= bus_eireann_image;
 }
+
+function getData(){
+	var chartData = [];
+	for(var i=0; i<Android.getStopInfoCount(); i++){
+		chartData.push({
+			due: Android.getDueTime(i),
+			difference: Android.getDifference(i),
+			customBullet: active_image
+		});
+	}
+	return chartData;
+}
+
 var chart = AmCharts.makeChart("chartdiv", {
-    "type": "serial",    
-    "dataProvider": [{
-        "due": 1,
-        "value": 1,
-        "customBullet": active_image
-    }, {
-        "due": 3,
-        "value": 3,
-        "customBullet": active_image
-    }, {
-        "due": 8,
-        "value": 8,
-        "customBullet": active_image
-    }, {
-        "due": 10,
-        "value": 4,
-        "customBullet": active_image
-    }, {
-        "due": 15,
-        "value": 0,
-        "customBullet": active_image
-    }, {
-        "due": 18,
-        "value": -3,
-        "customBullet": active_image
-    }, {
-        "due": 23,
-        "value": -5,
-        "customBullet": active_image
-    }, {
-        "due": 25,
-        "value": -7,
-        "customBullet": active_image
-    }, {
-        "due": 27,
-        "value": -10,
-        "customBullet": active_image
-    }, {
-        "due": 28,
-        "value": -3,
-        "customBullet": active_image
-    }, {
-        "due": 33,
-        "value": -1,
-        "customBullet": active_image
-    }, {
-        "due": 40,
-        "value": 0,
-        "customBullet": active_image
-    }],
+    "type": "serial", 
+    "dataProvider": getData(),
     "valueAxes": [{
         "dashLength": 4,
         "position": "left",
         "axisColor": "#FF9900",
         "axisThickness" : 3,
         "gridColor" : "#FF9900",
-        "color" : "#FF9900"
+        "color" : "#FF9900",
+        "title": "Differeence to Schedule (mins)",
+        "titleColor": "#FF9900"
     }],
+    "pathToImages": "http://www.amcharts.com/lib/3/images/",
     "graphs": [{
         "bulletSize": 50,
         "customBulletField": "customBullet",
-        "valueField": "value",
+        "valueField": "difference",
         "lineColor": "#69BF00",
         "negativeLineColor": "#FF0303",
         "lineThickness": 3,
     }],
-    "chartCursor": {graphBulletSize:1.5},
-    "autoMargins": true,
+
+    "chartScrollbar": {
+        "autoGridCount": "true",
+        "backgroundColor": "#333333",
+        "selectedBackgroundColor": "#FF9900"
+    },
     "categoryField": "due",
     "categoryAxis": {
         "axisColor": "#FF9900",
         "axisThickness" : 3,
         "gridColor" : "#FF9900",
-        "color" : "#FF9900"
+        "color" : "#FF9900",
+        "title": "Due (mins)",
+        "titleColor": "#FF9900"
     }
 });
+chart.addListener("rendered", zoom);
+zoom();
+
+function zoom(){
+	//only maximum of 5
+	chart.zoomToIndexes(0, 5);
+}

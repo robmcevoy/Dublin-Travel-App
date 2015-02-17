@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ProgressBar;
 
 public class StopListDialog {
 	
@@ -19,6 +20,7 @@ public class StopListDialog {
 	private Context context;
 	private ListView listview;
 	private EditText searchBar;
+	private ProgressBar progressBar;
 	private ArrayList<Stop> stopsArray;
 	private StopAdapter adapter;
 	private RtpiController rtpiController;
@@ -33,6 +35,7 @@ public class StopListDialog {
 		dialog.setContentView(R.layout.dialog);
 		listview = (ListView) dialog.findViewById(R.id.stopsListView);
 		searchBar = (EditText) dialog.findViewById(R.id.searchBar);
+		progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
 		stopsArray = new ArrayList<Stop>();
 		adapter = new StopAdapter(context, android.R.layout.simple_list_item_1, stopsArray);
 		firstSearch = true;
@@ -42,7 +45,7 @@ public class StopListDialog {
 	public void open(){
 		listview.setAdapter(adapter);
 		dialog.show();
-		GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), adapter);
+		GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), adapter, progressBar);
 		thread.execute(listview);
 		setOnItemClickListener();
 		setSearchBarListener();

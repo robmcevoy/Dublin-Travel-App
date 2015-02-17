@@ -2,6 +2,7 @@ package com.example.dublintravel;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,11 +15,14 @@ public class RtpiController {
 	private ImageView activeImageView;
 	private TextView stopView;
 	private ListView stopInfoListView;
+	private ChartWebView chartVis;
 	
-	RtpiController(Context context, TextView stopView, ListView stopInfoListView){		
+	RtpiController(Context context, TextView stopView, ListView stopInfoListView, WebView chartVis){		
 		this.context = context;
 		this.stopView = stopView;
 		this.stopInfoListView = stopInfoListView;
+		this.chartVis = new ChartWebView(chartVis,this);
+		this.chartVis.start();
 	}
 	
 	public void changeStop(Stop newStop){
@@ -33,6 +37,7 @@ public class RtpiController {
 		wipeStopInfoView();
 		this.operator = operator;
 		changeImageViewBorder(imageView);
+		chartVis.reload();
 	}
 	
 	private void changeImageViewBorder(ImageView imageView){

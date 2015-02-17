@@ -35,6 +35,10 @@ public class ChartWebView {
 	    }});
 	}
 	
+	public void reload(){
+		webview.reload();
+	}
+	
 	public class WebAppInterface {
 
 	     @JavascriptInterface

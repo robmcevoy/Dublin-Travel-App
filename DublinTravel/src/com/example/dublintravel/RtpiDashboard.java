@@ -25,14 +25,12 @@ public class RtpiDashboard extends Activity {
 	    final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
-	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoListView );
+	    WebView chartVis = (WebView) findViewById(R.id.webView1);
+	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoListView, chartVis );
 	    NavigationBar navbar = new NavigationBar(dublinBusImageView,luasImageView, 
 												irishRailImageView,busEireannImageView,
 												rtpiController);
 	    navbar.activate();
-	    WebView chartVis = (WebView) findViewById(R.id.webView1);
-		ChartWebView webview = new ChartWebView(chartVis,rtpiController);
-		webview.start();
 	    
 	    final Bundle EXTRAS = getIntent().getExtras();
 	    navbar.getOpFromHomepage(EXTRAS);
@@ -46,8 +44,6 @@ public class RtpiDashboard extends Activity {
             	stopListDialog.open();
             }
         });
-	    
-	    
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -59,7 +59,6 @@ var chart = AmCharts.makeChart("chartdiv", {
         "negativeLineColor": "#FF0303",
         "lineThickness": 3,
     }],
-
     "chartScrollbar": {
         "autoGridCount": "true",
         "backgroundColor": "#333333",

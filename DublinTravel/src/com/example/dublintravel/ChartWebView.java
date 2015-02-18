@@ -14,10 +14,14 @@ public class ChartWebView {
 	WebView webview;
 	Context context;
 	RtpiController rtpiController;
+	ArrayList<StopInfo> stopInfoArray;
+	boolean firstCall;
 
 	ChartWebView(WebView webview, RtpiController rtpiController){
 		this.webview = webview;
 		this.rtpiController = rtpiController;
+		this.stopInfoArray = new ArrayList<StopInfo>();
+		this.firstCall = true;
 	}
 	
 	public void start(){
@@ -40,6 +44,7 @@ public class ChartWebView {
 	
 	public void reload(){
 		webview.reload();
+		firstCall = true;
 	}
 	
 	public class WebAppInterface {
@@ -50,10 +55,12 @@ public class ChartWebView {
 	     }
 	     @JavascriptInterface 
 	     public int getStopInfoCount(){
-	    	 ArrayList<StopInfo> tmp;
-	    	 tmp = rtpiController.getStopInfos();
-	    	 if(tmp != null){
-	    		 return tmp.size();
+	    	 if(firstCall){
+	    		 stopInfoArray = rtpiController.getStopInfos();
+	    		 firstCall = false;
+	    	 }
+	    	 if(stopInfoArray != null){
+	    		 return stopInfoArray.size();
 	    	 }
 	    	 else{
 	    		 return 0;
@@ -61,10 +68,8 @@ public class ChartWebView {
 	     }
 	     @JavascriptInterface
 	     public int getDueTime(int index){	
-	    	 ArrayList<StopInfo> tmp;
-	    	 tmp = rtpiController.getStopInfos();
-	    	 if(tmp != null){
-	    		 return tmp.get(index).getDueTimeAsInt();
+	    	 if(stopInfoArray != null){
+	    		 return stopInfoArray.get(index).getDueTimeAsInt();
 	    	 }
 	    	 else{
 	    		 return 0;

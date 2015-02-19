@@ -26,7 +26,8 @@ public class RtpiDashboard extends Activity {
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    WebView chartVis = (WebView) findViewById(R.id.webView1);
-	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoListView, chartVis );
+	    WebView twitterFeed = (WebView) findViewById(R.id.twitterFeed);
+	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoListView, chartVis, twitterFeed);
 	    NavigationBar navbar = new NavigationBar(dublinBusImageView,luasImageView, 
 												irishRailImageView,busEireannImageView,
 												rtpiController);

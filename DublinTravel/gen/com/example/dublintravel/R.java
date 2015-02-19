@@ -61,7 +61,7 @@ public final class R {
         public static final int stopInfoRoute=0x7f0a0010;
         public static final int stopNameTextView=0x7f0a0013;
         public static final int stopsListView=0x7f0a000a;
-        public static final int twitter=0x7f0a000f;
+        public static final int twitterFeed=0x7f0a000f;
         public static final int webView1=0x7f0a000e;
     }
     public static final class layout {

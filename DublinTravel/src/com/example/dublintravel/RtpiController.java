@@ -18,13 +18,16 @@ public class RtpiController {
 	private TextView stopView;
 	private ListView stopInfoListView;
 	private ChartWebView chartVis;
+	private TwitterFeed twitterFeed;
 	
-	RtpiController(Context context, TextView stopView, ListView stopInfoListView, WebView chartVis){		
+	RtpiController(Context context, TextView stopView, ListView stopInfoListView, WebView chartVis, WebView twitterWebview){		
 		this.context = context;
 		this.stopView = stopView;
 		this.stopInfoListView = stopInfoListView;
 		this.chartVis = new ChartWebView(chartVis,this);
+		this.twitterFeed = new TwitterFeed(twitterWebview, this);
 		this.chartVis.start();
+		this.twitterFeed.start();
 	}
 	
 	public void changeStop(Stop newStop){

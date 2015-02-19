@@ -12,7 +12,6 @@ import android.widget.Adapter;
 public class ChartWebView {
 	
 	WebView webview;
-	Context context;
 	RtpiController rtpiController;
 	ArrayList<StopInfo> stopInfoArray;
 	boolean firstCall;
@@ -27,7 +26,7 @@ public class ChartWebView {
 	public void start(){
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.addJavascriptInterface(new WebAppInterface(), "Android");
-		webview.loadUrl("file:///android_asset/am_charts.html");
+		webview.loadUrl("file:///android_asset/chart/am_charts.html");
 		webview.setWebViewClient(new WebViewClient() {
 
 	        public void onReceivedError(WebView view, int errorCode,

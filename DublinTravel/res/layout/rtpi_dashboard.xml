@@ -68,7 +68,8 @@
         	android:layout_width="wrap_content"
         	android:layout_height="match_parent"
         	android:layout_weight="0.35"
-        	android:orientation="vertical" >
+        	android:orientation="vertical"
+        	android:layout_marginRight="5dp" >
         
             <LinearLayout
                 android:layout_width="match_parent"
@@ -171,13 +172,18 @@
             	android:layout_weight="0.55" />
         
     	</LinearLayout>
-
-    	<ListView
-        	android:id="@+id/twitter"
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:layout_weight="0.65" >
-    	</ListView>
+    	
+    	<LinearLayout
+    	    android:background="@drawable/rounded_corner_orange"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="match_parent"
+    	    android:layout_weight="0.65"
+    	    android:padding="4dp">
+    		<WebView
+    	   		android:id="@+id/twitterFeed"
+    	    	android:layout_width="match_parent"
+    	    	android:layout_height="match_parent"/>
+    	</LinearLayout>
 
 	</LinearLayout>
 

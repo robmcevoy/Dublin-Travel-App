@@ -40,7 +40,7 @@ public class StopListDialog {
 	
 	public void open(){
 		dialog.show();
-		GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), progressBar);
+		GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), progressBar, searchBar);
 		thread.execute(listview);
 		setOnItemClickListener();
 		setSearchBarListener();

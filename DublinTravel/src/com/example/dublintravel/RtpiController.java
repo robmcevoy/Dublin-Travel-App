@@ -43,6 +43,7 @@ public class RtpiController {
 		this.operator = operator;
 		changeImageViewBorder(imageView);
 		chartVis.reload();
+		twitterFeed.reload();
 	}
 	
 	private void changeImageViewBorder(ImageView imageView){

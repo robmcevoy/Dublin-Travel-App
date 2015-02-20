@@ -11,7 +11,7 @@ public class EmbeddedBrowser {
 	private WebviewInterface webviewInterface;
 	protected String url = "file:///android_asset/twitter_feed/twitter_feed.html";
 	
-	EmbeddedBrowser(WebView webview, RtpiController rtpiController){
+	public EmbeddedBrowser(WebView webview, RtpiController rtpiController){
 		this.webview = webview;
 		this.rtpiController = rtpiController;
 		this.webviewInterface = new WebviewInterface(this.rtpiController);

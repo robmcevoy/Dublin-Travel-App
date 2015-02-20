@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class Homepage extends Activity {
+	
+	private final String OPERATOR = "operator";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class Homepage extends Activity {
             public void onClick(View v)
             {
             	Intent i = new Intent(getApplicationContext(), RtpiDashboard.class);
-            	i.putExtra("operator", operator.getOperatorCode());
+            	i.putExtra(OPERATOR, operator.getOperatorCode());
             	startActivity(i);
             }
         });

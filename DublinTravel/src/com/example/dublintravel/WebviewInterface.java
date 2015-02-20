@@ -11,7 +11,7 @@ public class WebviewInterface {
 	private ArrayList<StopInfo> stopInfoArray;
 	private final String INTERFACE_NAME = "Android";
 	
-	WebviewInterface(RtpiController rtpiController){
+	public WebviewInterface(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
 		this.firstCall = true;
 		this.stopInfoArray = new ArrayList<StopInfo>();

@@ -25,7 +25,7 @@ public class StopListDialog {
 	private boolean firstSearch;
 	private ArrayList<Stop> allStops;
 
-	StopListDialog(Context context, RtpiController rtpiController){
+	public StopListDialog(Context context, RtpiController rtpiController){
 		this.context = context;
 		this.rtpiController = rtpiController;
 		dialog = new Dialog(this.context);

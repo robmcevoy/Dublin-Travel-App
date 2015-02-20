@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -19,7 +17,7 @@ public class GetStopsThread extends AsyncTask<ListView, Integer, String> {
 	private ProgressBar progressbar;
 	private EditText searchBar;
 	
-	GetStopsThread(Context context, Operator operator, ProgressBar progressbar, EditText searchBar){
+	public GetStopsThread(Context context, Operator operator, ProgressBar progressbar, EditText searchBar){
 		this.operator = operator;
 		this.context = context;
 		hs = new HttpSender();

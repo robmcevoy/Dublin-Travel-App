@@ -15,6 +15,7 @@ public class NavigationBar {
     private LuasOperator luasOperator;
     private DublinBusOperator dublinBusOperator;
     private RtpiController rtpiController;
+    private final String OPERATOR = "operator";
 
 	
 	public NavigationBar(	ImageView dublinBusImageView, ImageView luasImageView, 
@@ -41,7 +42,7 @@ public class NavigationBar {
 	public void getOpFromHomepage(Bundle extras){
 		String  selected;
 		if (extras != null) {
-			selected = (String) extras.get("operator");
+			selected = (String) extras.get(OPERATOR);
 			if(selected.equals(dublinBusOperator.getOperatorCode()))
 				rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
 			else if(selected.equals(luasOperator.getOperatorCode()))

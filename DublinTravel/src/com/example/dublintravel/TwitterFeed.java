@@ -6,7 +6,7 @@ public class TwitterFeed extends EmbeddedBrowser {
 	
 	private final String URL = "file:///android_asset/twitter_feed/twitter_feed.html";
 
-	TwitterFeed(WebView webview, RtpiController rtpiController){
+	public TwitterFeed(WebView webview, RtpiController rtpiController){
 		super(webview, rtpiController);
 		this.url = URL;
 	}

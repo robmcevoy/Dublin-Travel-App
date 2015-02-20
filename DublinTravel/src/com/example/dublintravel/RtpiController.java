@@ -3,7 +3,6 @@ package com.example.dublintravel;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -67,7 +66,7 @@ public class RtpiController {
 	}
 	
 	private void setStopView(){
-		stopView.setText(currentStop.toString());
+		stopView.setText(currentStop.getName());
 	}
 	
 	public ArrayList<StopInfo> getStopInfos(){

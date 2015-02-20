@@ -4,18 +4,16 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 
-	HttpSender hs;
-	Operator operator;
-	String stop;
-	ListView listview;
-	Context context;
-	ChartWebView chartVis;
+	private HttpSender hs;
+	private Operator operator;
+	private String stop;
+	private ListView listview;
+	private Context context;
+	private ChartWebView chartVis;
 	
 	public GetStopInfoThread(Operator operator, String stop, Context context, ChartWebView chartVis){
 		hs = new HttpSender();

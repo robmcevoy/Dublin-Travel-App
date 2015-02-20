@@ -4,22 +4,34 @@ public class Stop implements Comparable<Stop>{
 
 	private String stopID;
 	private String name;
+	private boolean error;
+	private String errorMessage;
 	
-	Stop(String stopId, String name){
+	public Stop(){}
+	
+	public Stop(String stopId, String name){
 		this.stopID = stopId;
 		this.name = name;
+		this.error = false;
 	}
 	
-	public String toString() { 
-	    return name;
+	public void setErrorMessage(String message){
+		this.errorMessage = message;
+		this.error = true;
 	} 
 	
 	public String getID(){
-		return stopID;
+		if(!error)
+			return stopID;
+		else
+			return "";
 	}
 	
 	public String getName(){
-		return name;
+		if(!error)
+			return name;
+		else
+			return errorMessage;
 	}
 	
 	public int compareTo(Stop other){

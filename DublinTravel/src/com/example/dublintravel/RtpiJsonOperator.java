@@ -10,7 +10,7 @@ public class RtpiJsonOperator extends Operator{
 	private boolean NEEDS_AUTH=true;
 	private Parser parser;
 	
-	RtpiJsonOperator(){
+	protected RtpiJsonOperator(){
 		parser = new JSONParser();
 	}
 	

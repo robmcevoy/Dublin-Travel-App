@@ -13,16 +13,19 @@ public class StopInfo implements Comparable<StopInfo> {
 	private boolean error; 
 	private String arrivalTime;
 	private String scheduledArrivalTime;
+	private final String DUE = "due";
+	private final String DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
 	
-	StopInfo(String routeId, String destination, String dueTime, String arrivalTime, String scheduledArrivalTime){
+	public StopInfo(String routeId, String destination, String dueTime, String arrivalTime, String scheduledArrivalTime){
 		this.routeId = routeId;
 		this.destination = destination;
 		this.dueTime = dueTime;
 		this.arrivalTime = arrivalTime;
 		this.scheduledArrivalTime = scheduledArrivalTime;
+		this.error = false;
 	}
 	
-	StopInfo(){}
+	public StopInfo(){}
 	
 	public String getRouteId(){
 		if(!error)
@@ -46,7 +49,7 @@ public class StopInfo implements Comparable<StopInfo> {
 	}
 	
 	public int getDueTimeAsInt(){
-		if(dueTime.toLowerCase().equals("due")){
+		if(dueTime.toLowerCase().equals(DUE)){
 			return 0;
 		}
 		else
@@ -94,7 +97,7 @@ public class StopInfo implements Comparable<StopInfo> {
 	}
 	
 	public int getDiffInMins(){
-		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
 		Date actual;
 		Date scheduled;
 		try {
@@ -104,7 +107,7 @@ public class StopInfo implements Comparable<StopInfo> {
 			return 0;
 		}
 		long diff = actual.getTime() - scheduled.getTime();
-		long diffMinutes = diff / (60 * 1000) % 60;
+		long diffMinutes = diff / (60 * 1000);
 		return (int) diffMinutes;
 	}
 }

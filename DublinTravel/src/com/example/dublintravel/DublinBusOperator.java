@@ -2,7 +2,7 @@ package com.example.dublintravel;
 
 public class DublinBusOperator extends RtpiJsonOperator {
 
-	DublinBusOperator(){
+	public DublinBusOperator(){
 		OPERATOR_CODE="bac";
 	}
 

@@ -29,12 +29,34 @@ function getData(){
 	var chartData = [];
 	for(var i=0; i<Android.getStopInfoCount(); i++){
 		chartData.push({
-			due: Android.getDueTime(i),
+			due: stringParser(Android.getDueDate(i)),
 			difference: Android.getDifference(i),
 			customBullet: active_image
 		});
 	}
 	return chartData;
+}
+
+function stringParser(date_string){
+	// format of input "20/02/2015 15:20:12"
+	
+	var year = date_string.substring(6,10);
+	var month = date_string.substring(3,5);
+	var monthInt = parseInt(month);
+	monthInt = monthInt -1;
+	month = monthInt.toString();
+	var day = date_string.substring(0,2);
+	var hour = date_string.substring(11,13);
+	var min = date_string.substring(14,16);
+	var sec = date_string.substring(17,19);
+	console.log("input: " + date_string);
+	console.log("year: " + year);
+	console.log("month: " + month);
+	console.log("day: " + day);
+	console.log("hour: " + hour);
+	console.log("min: " + min);
+	console.log("sec: " + sec);
+	return new Date(year, month, day, hour, min, sec);
 }
 
 var chart = AmCharts.makeChart("chartdiv", {
@@ -71,7 +93,9 @@ var chart = AmCharts.makeChart("chartdiv", {
         "gridColor" : "#FF9900",
         "color" : "#FF9900",
         "title": "Due (mins)",
-        "titleColor": "#FF9900"
+        "titleColor": "#FF9900",
+        "parseDates": true,
+        "minPeriod": "mm"
     }
 });
 chart.addListener("rendered", zoom);

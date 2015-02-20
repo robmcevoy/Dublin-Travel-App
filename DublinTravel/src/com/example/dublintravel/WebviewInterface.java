@@ -39,12 +39,12 @@ public class WebviewInterface {
     	 }
      }
      @JavascriptInterface
-     public int getDueTime(int index){	
+     public String getDueDate(int index){	
     	 if(stopInfoArray != null){
-    		 return stopInfoArray.get(index).getDueTimeAsInt();
+    		 return stopInfoArray.get(index).getArrivalTime();
     	 }
     	 else{
-    		 return 0;
+    		 return "";
     	 }
      }
      

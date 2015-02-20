@@ -38,7 +38,7 @@ public class StopInfoAdapter extends ArrayAdapter<StopInfo> {
 			}
 			if(destination != null){
 				destination.setText(stopInfo.getDestination());
-				//destination.setText(stopInfo.getArrivalTime() + "---" + stopInfo.getScheduledArrivalTime());
+				//destination.setText(stopInfo.getArrivalTime());
 			}
 			if(duetime != null){
 				duetime.setText(stopInfo.getDueTime());

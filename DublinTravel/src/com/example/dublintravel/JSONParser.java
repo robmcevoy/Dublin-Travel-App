@@ -117,7 +117,7 @@ public class JSONParser implements Parser {
 				tmp = format.format(now);
 				now = format.parse(tmp);
 				difference = d1.getTime() - now.getTime();
-				difference = difference / (60 * 1000) % 60;
+				difference = difference / (60 * 1000);
 				
 			} catch (ParseException e) {
 			}

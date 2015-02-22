@@ -1,7 +1,6 @@
 package com.example.dublintravel;
 
 import java.util.ArrayList;
-
 import android.content.Context;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -18,6 +17,9 @@ public class RtpiController {
 	private ListView stopInfoListView;
 	private ChartWebView chartVis;
 	private TwitterFeed twitterFeed;
+	private boolean firstSelection;
+	private boolean queryStarted;
+	private Queryer queryer;
 	
 	RtpiController(Context context, TextView stopView, ListView stopInfoListView, WebView chartVis, WebView twitterWebview){		
 		this.context = context;
@@ -27,22 +29,36 @@ public class RtpiController {
 		this.twitterFeed = new TwitterFeed(twitterWebview, this);
 		this.chartVis.start();
 		this.twitterFeed.start();
+		this.firstSelection = true;
+		this.queryStarted = false;
+		this.queryer = new Queryer(this, context);
 	}
 	
-	public void changeStop(Stop newStop){
+	public synchronized void changeStop(Stop newStop){
 		currentStop = newStop;
 		setStopView();
-		GetStopInfoThread si = new GetStopInfoThread(operator, currentStop.getID(), context, chartVis);
-		si.execute(stopInfoListView);
+		chartVis.reload();
+		if(firstSelection){
+			queryer.start();
+			firstSelection = false;
+			queryStarted = true;
+		}
+		else{
+			queryer.interrupt();
+		}
 	}
 	
-	public void changeOperator(Operator operator, ImageView imageView){
+	public synchronized void changeOperator(Operator operator, ImageView imageView){
 		wipeStopView();
 		wipeStopInfoView();
 		this.operator = operator;
+		this.currentStop = null;
 		changeImageViewBorder(imageView);
 		chartVis.reload();
 		twitterFeed.reload();
+		if(queryStarted){
+			queryer.interrupt();
+		}
 	}
 	
 	private void changeImageViewBorder(ImageView imageView){
@@ -53,15 +69,27 @@ public class RtpiController {
 		activeImageView = imageView;
 	}
 	
-	public Operator getCurrentOperator(){
+	public synchronized Operator getCurrentOperator(){
 		return operator;
+	}
+	
+	public synchronized Stop getCurrentStop(){
+		return currentStop;
+	}
+	
+	public synchronized ChartWebView getChartWebView(){
+		return chartVis;
+	}
+	
+	public synchronized ListView getStopInfoListView(){
+		return stopInfoListView;
 	}
 	
 	private void wipeStopView(){
 		stopView.setText(context.getResources().getString(R.string.stop_id_hint));
 	}
 	
-	private void wipeStopInfoView(){
+	private synchronized void wipeStopInfoView(){
 		stopInfoListView.setAdapter(null);
 	}
 	
@@ -69,7 +97,7 @@ public class RtpiController {
 		stopView.setText(currentStop.getName());
 	}
 	
-	public ArrayList<StopInfo> getStopInfos(){
+	public synchronized ArrayList<StopInfo> getStopInfos(){
 		StopInfoAdapter tmpAdapter = (StopInfoAdapter) stopInfoListView.getAdapter();
 		if(tmpAdapter != null){
 			ArrayList<StopInfo> array = new ArrayList<StopInfo>();
@@ -81,5 +109,4 @@ public class RtpiController {
 		else
 			return null;
 	}
-	
 }

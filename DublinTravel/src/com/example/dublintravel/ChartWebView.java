@@ -10,5 +10,5 @@ public class ChartWebView extends EmbeddedBrowser {
 		super(webview, rtpiController);
 		this.url = URL;
 	}
-	
+
 }

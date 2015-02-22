@@ -6,14 +6,12 @@ import android.webkit.JavascriptInterface;
 
 public class WebviewInterface {
 	
-	private boolean firstCall;
 	private RtpiController rtpiController;
 	private ArrayList<StopInfo> stopInfoArray;
 	private final String INTERFACE_NAME = "Android";
 	
 	public WebviewInterface(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
-		this.firstCall = true;
 		this.stopInfoArray = new ArrayList<StopInfo>();
 	}
 	
@@ -27,19 +25,16 @@ public class WebviewInterface {
      }
      @JavascriptInterface 
      public int getStopInfoCount(){
-    	 if(firstCall){
-    		 stopInfoArray = rtpiController.getStopInfos();
-    		 firstCall = false;
-    	 }
+    	 stopInfoArray = rtpiController.getStopInfos();
     	 if(stopInfoArray != null){
     		 return stopInfoArray.size();
     	 }
-    	 else{
-    		 return 0;
-    	 }
+    	 return 0;
+
      }
      @JavascriptInterface
      public String getDueDate(int index){	
+    	 stopInfoArray = rtpiController.getStopInfos();
     	 if(stopInfoArray != null){
     		 return stopInfoArray.get(index).getArrivalTime();
     	 }
@@ -61,7 +56,6 @@ public class WebviewInterface {
      }
      
      public void reload(){
-    	 firstCall=true;
      }
 
 }

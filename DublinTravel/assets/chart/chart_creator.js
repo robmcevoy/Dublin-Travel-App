@@ -27,7 +27,7 @@ else{
 
 function getData(){
 	var chartData = [];
-	for(var i=0; i<Android.getStopInfoCount(); i++){
+	for(var i=0; (i<Android.getStopInfoCount() && i<Android.getMaxOnChart()); i++){
 		chartData.push({
 			due: stringParser(Android.getDueDate(i)),
 			difference: Android.getDifference(i),
@@ -81,10 +81,6 @@ var chart = AmCharts.makeChart("chartdiv", {
         "negativeLineColor": "#FF0303",
         "lineThickness": 3,
     }],
-    "chartScrollbar": {
-        "backgroundColor": "#333333",
-        "selectedBackgroundColor": "#FF9900"
-    },
     "categoryField": "due",
     "categoryAxis": {
         "axisColor": "#FF9900",

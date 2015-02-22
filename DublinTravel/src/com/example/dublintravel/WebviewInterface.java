@@ -9,6 +9,7 @@ public class WebviewInterface {
 	private RtpiController rtpiController;
 	private ArrayList<StopInfo> stopInfoArray;
 	private final String INTERFACE_NAME = "Android";
+	private final int MAX_NUM_ON_CHART = 5;
 	
 	public WebviewInterface(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
@@ -53,6 +54,11 @@ public class WebviewInterface {
     	 else{
     		 return 0;
     	 }
+     }
+     
+     @JavascriptInterface
+	 public int getMaxOnChart(){
+    	 return MAX_NUM_ON_CHART;
      }
      
      public void reload(){

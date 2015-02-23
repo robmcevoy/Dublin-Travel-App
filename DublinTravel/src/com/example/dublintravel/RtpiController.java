@@ -31,7 +31,7 @@ public class RtpiController {
 		this.twitterFeed.start();
 		this.firstSelection = true;
 		this.queryStarted = false;
-		this.queryer = new Queryer(this, context);
+		this.queryer = new Queryer(this);
 	}
 	
 	public synchronized void changeStop(Stop newStop){
@@ -110,7 +110,7 @@ public class RtpiController {
 			return null;
 	}
 	
-	public Context getCurrentContext(){
+	public synchronized Context getCurrentContext(){
 		return context;
 	}
 }

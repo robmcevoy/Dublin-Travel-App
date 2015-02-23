@@ -1,8 +1,6 @@
 package com.example.dublintravel;
 
 import java.util.ArrayList;
-
-import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ListView;
@@ -13,14 +11,14 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 	private Operator operator;
 	private String stop;
 	private ListView listview;
-	private Context context;
+	private RtpiController rtpiController;
 	private ChartWebView chartVis;
 	
-	public GetStopInfoThread(Operator operator, String stop, Context context, ChartWebView chartVis){
+	public GetStopInfoThread(Operator operator, String stop, RtpiController rtpiController, ChartWebView chartVis){
 		hs = new HttpSender();
 		this.operator = operator;
-		this.stop =stop;
-		this.context = context;
+		this.stop = stop;
+		this.rtpiController = rtpiController;
 		this.chartVis = chartVis;
 	}
 	
@@ -36,7 +34,7 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 		int topOffset = (v == null) ? 0 : v.getTop();
 		
 		ArrayList<StopInfo> stopInfoArray = operator.getParser().getStopInfo(result);
-		StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(context, android.R.layout.simple_list_item_1,stopInfoArray );
+		StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(rtpiController, android.R.layout.simple_list_item_1,stopInfoArray );
 		listview.setAdapter(stopInfoAdapter);
 		listview.setSelectionFromTop(lastViewedPosition, topOffset);
 		chartVis.reload();

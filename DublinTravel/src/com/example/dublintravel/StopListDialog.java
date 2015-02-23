@@ -3,7 +3,6 @@ package com.example.dublintravel;
 import java.util.ArrayList;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.ProgressBar;
 public class StopListDialog {
 	
 	private Dialog dialog;
-	private Context context;
 	private ListView listview;
 	private EditText searchBar;
 	private ProgressBar progressBar;
@@ -25,10 +23,9 @@ public class StopListDialog {
 	private boolean firstSearch;
 	private ArrayList<Stop> allStops;
 
-	public StopListDialog(Context context, RtpiController rtpiController){
-		this.context = context;
+	public StopListDialog(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
-		dialog = new Dialog(this.context);
+		dialog = new Dialog(rtpiController.getCurrentContext());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog);
 		listview = (ListView) dialog.findViewById(R.id.stopsListView);
@@ -40,7 +37,7 @@ public class StopListDialog {
 	
 	public void open(){
 		dialog.show();
-		GetStopsThread thread = new GetStopsThread(context,rtpiController.getCurrentOperator(), progressBar, searchBar);
+		GetStopsThread thread = new GetStopsThread(rtpiController, rtpiController.getCurrentOperator(), progressBar, searchBar);
 		thread.execute(listview);
 		setOnItemClickListener();
 		setSearchBarListener();
@@ -85,7 +82,7 @@ public class StopListDialog {
 				}
 			}
 
-			StopAdapter stopAdapter = new StopAdapter(context, android.R.layout.simple_list_item_1,subset );
+			StopAdapter stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1,subset );
 			listview.setAdapter(stopAdapter);
 			
 		}});

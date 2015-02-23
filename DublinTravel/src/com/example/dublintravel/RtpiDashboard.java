@@ -27,7 +27,7 @@ public class RtpiDashboard extends Activity {
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    WebView chartVis = (WebView) findViewById(R.id.webView1);
 	    WebView twitterFeed = (WebView) findViewById(R.id.twitterFeed);
-	    final RtpiController rtpiController = new RtpiController(this,stopTextView, stopInfoListView, chartVis, twitterFeed);
+	    final RtpiController rtpiController = new RtpiController(context,stopTextView, stopInfoListView, chartVis, twitterFeed);
 	    NavigationBar navbar = new NavigationBar(dublinBusImageView,luasImageView, 
 												irishRailImageView,busEireannImageView,
 												rtpiController);
@@ -41,7 +41,7 @@ public class RtpiDashboard extends Activity {
         {
             public void onClick(View v)
             {
-            	StopListDialog stopListDialog = new StopListDialog(context, rtpiController);
+            	StopListDialog stopListDialog = new StopListDialog(rtpiController);
             	stopListDialog.open();
             }
         });

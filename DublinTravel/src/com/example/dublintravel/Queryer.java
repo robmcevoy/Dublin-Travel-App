@@ -1,17 +1,14 @@
 package com.example.dublintravel;
 
-import android.content.Context;
 import android.widget.ListView;
 
 public class Queryer extends Thread {
 	
 	private RtpiController rtpiController;
 	private final int queryRate = 5000;
-	private Context context;
 	
-	public Queryer (RtpiController rtpiController, Context context){
+	public Queryer (RtpiController rtpiController){
 		this.rtpiController = rtpiController;
-		this.context = context;
 	}
 	
 	public void run(){
@@ -21,7 +18,7 @@ public class Queryer extends Thread {
 			ChartWebView chartVis = rtpiController.getChartWebView();
 			ListView stopInfoListView = rtpiController.getStopInfoListView();
 			if(stop != null){
-				GetStopInfoThread si = new GetStopInfoThread(operator, stop.getID(), context, chartVis);
+				GetStopInfoThread si = new GetStopInfoThread(operator, stop.getID(), rtpiController, chartVis);
 				si.execute(stopInfoListView);
 			}
 			try {

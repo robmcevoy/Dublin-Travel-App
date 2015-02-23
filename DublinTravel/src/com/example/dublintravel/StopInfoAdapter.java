@@ -12,19 +12,19 @@ import android.widget.TextView;
 public class StopInfoAdapter extends ArrayAdapter<StopInfo> {
 
 	private ArrayList<StopInfo> stopInfos;
-	private Context context;
+	private RtpiController rtpiController;
 	
-	public StopInfoAdapter(Context context, int textViewResourceId, ArrayList<StopInfo> stopInfos) {
-		super(context, textViewResourceId, stopInfos);
+	public StopInfoAdapter(RtpiController rtpiController, int textViewResourceId, ArrayList<StopInfo> stopInfos) {
+		super(rtpiController.getCurrentContext(), textViewResourceId, stopInfos);
 		this.stopInfos = stopInfos;
-		this.context = context;
+		this.rtpiController = rtpiController;
 	}
 
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		if (v == null) {
-			LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater vi = (LayoutInflater)rtpiController.getCurrentContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.stop_info_list_item, null);
 		}
 		StopInfo stopInfo = stopInfos.get(position);

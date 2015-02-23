@@ -35,7 +35,6 @@ public class WebviewInterface {
      }
      @JavascriptInterface
      public String getDueDate(int index){	
-    	 stopInfoArray = rtpiController.getStopInfos();
     	 if(stopInfoArray != null){
     		 return stopInfoArray.get(index).getArrivalTime();
     	 }
@@ -46,10 +45,8 @@ public class WebviewInterface {
      
      @JavascriptInterface
      public int getDifference(int index){	
-    	 ArrayList<StopInfo> tmp;
-    	 tmp = rtpiController.getStopInfos();
-    	 if(tmp != null){
-    		return  tmp.get(index).getDiffInMins();
+    	 if(stopInfoArray != null){
+    		return  stopInfoArray.get(index).getDiffInMins();
     	 }
     	 else{
     		 return 0;
@@ -61,7 +58,16 @@ public class WebviewInterface {
     	 return MAX_NUM_ON_CHART;
      }
      
-     public void reload(){
+     @JavascriptInterface
+     public String getBackgroundColor(){
+    	 String tmp =rtpiController.getCurrentContext().getResources().getString(R.color.dark_grey);
+    	 return "#" + tmp.substring(3);
+     }
+     
+     @JavascriptInterface
+     public String getSecondaryColor(){
+    	 String tmp = rtpiController.getCurrentContext().getResources().getString(R.color.orange);
+    	 return "#" + tmp.substring(3);
      }
 
 }

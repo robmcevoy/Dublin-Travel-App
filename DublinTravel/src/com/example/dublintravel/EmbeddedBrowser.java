@@ -37,7 +37,6 @@ public class EmbeddedBrowser {
 	
 	public void reload(){
 		webview.reload();
-		webviewInterface.reload();
 	}
 
 }

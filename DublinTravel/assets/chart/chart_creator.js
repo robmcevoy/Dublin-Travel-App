@@ -1,12 +1,26 @@
-var irish_rail_image = "img/irish_rail.png";
-var dublin_bus_image = "img/dublin_bus.png";
-var bus_eireann_image = "img/bus_eireann.png";
-var luas_image="img/luas.png";
+const irish_rail_image = "img/irish_rail.png";
+const dublin_bus_image = "img/dublin_bus.png";
+const bus_eireann_image = "img/bus_eireann.png";
+const luas_image="img/luas.png";
 const DUBLIN_BUS_OPCODE = "bac";
 const IRISH_RAIL_OPCODE = "ir";
 const LUAS_OPCODE = "luas";
 var active_image;
+const CAT_TITLE = "Due Time";
+const VALUE_TITLE = "Difference to Schedule (mins)";
+const BACKGROUND_COLOR = Android.getBackgroundColor();
+const SECONDARY_COLOR = Android.getSecondaryColor();
+const GREEN_COLOR = "#69BF00";
+const RED_COLOR = "#FF0303";
+const DASH_LENGTH = 4;
+const BULLET_SIZE = 50;
+const LINE_THICKNESS = 3;
+const AXIS_THICKNESS = 3;
+const MIN_PERIOD = "mm";
 
+window.onload = function () {
+	document.body.style.backgroundColor = BACKGROUND_COLOR;
+}
 
 if(Android.getOperator() === DUBLIN_BUS_OPCODE){
 	active_image= dublin_bus_image;
@@ -49,13 +63,6 @@ function stringParser(date_string){
 	var hour = date_string.substring(11,13);
 	var min = date_string.substring(14,16);
 	var sec = date_string.substring(17,19);
-	console.log("input: " + date_string);
-	console.log("year: " + year);
-	console.log("month: " + month);
-	console.log("day: " + day);
-	console.log("hour: " + hour);
-	console.log("min: " + min);
-	console.log("sec: " + sec);
 	return new Date(year, month, day, hour, min, sec);
 }
 
@@ -63,40 +70,33 @@ var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial", 
     "dataProvider": getData(),
     "valueAxes": [{
-        "dashLength": 4,
+        "dashLength": DASH_LENGTH,
         "position": "left",
-        "axisColor": "#FF9900",
-        "axisThickness" : 3,
-        "gridColor" : "#FF9900",
-        "color" : "#FF9900",
-        "title": "Differeence to Schedule (mins)",
-        "titleColor": "#FF9900"
+        "axisColor": SECONDARY_COLOR,
+        "axisThickness" : AXIS_THICKNESS,
+        "gridColor" : SECONDARY_COLOR,
+        "color" : SECONDARY_COLOR,
+        "title": VALUE_TITLE,
+        "titleColor": SECONDARY_COLOR
     }],
     "pathToImages": "http://www.amcharts.com/lib/3/images/",
     "graphs": [{
-        "bulletSize": 50,
+        "bulletSize": BULLET_SIZE,
         "customBulletField": "customBullet",
         "valueField": "difference",
-        "lineColor": "#69BF00",
-        "negativeLineColor": "#FF0303",
-        "lineThickness": 3,
+        "lineColor": GREEN_COLOR,
+        "negativeLineColor": RED_COLOR,
+        "lineThickness": LINE_THICKNESS,
     }],
     "categoryField": "due",
     "categoryAxis": {
-        "axisColor": "#FF9900",
-        "axisThickness" : 3,
-        "gridColor" : "#FF9900",
-        "color" : "#FF9900",
-        "title": "Due (mins)",
-        "titleColor": "#FF9900",
+        "axisColor": SECONDARY_COLOR,
+        "axisThickness" : AXIS_THICKNESS,
+        "gridColor" : SECONDARY_COLOR,
+        "color" : SECONDARY_COLOR,
+        "title": CAT_TITLE,
+        "titleColor": SECONDARY_COLOR,
         "parseDates": true,
-        "minPeriod": "mm"
+        "minPeriod": MIN_PERIOD
     }
 });
-chart.addListener("rendered", zoom);
-zoom();
-
-function zoom(){
-	//only maximum of 5
-	chart.zoomToIndexes(0, 5);
-}

@@ -109,4 +109,8 @@ public class RtpiController {
 		else
 			return null;
 	}
+	
+	public Context getCurrentContext(){
+		return context;
+	}
 }

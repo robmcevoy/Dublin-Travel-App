@@ -5,16 +5,16 @@
     android:orientation="vertical" >
     
 	<LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
 	    android:gravity="center_horizontal"
-	    android:paddingBottom="5dp" >
+	    android:layout_weight="0.15" >
 
 	    <ImageView
 	        android:id="@+id/busEireannLogo"
-	        android:layout_width="105dp"
-	        android:layout_height="90dp"
-	        android:layout_weight="0.00"
+	        android:layout_width="10dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="10"
 	        android:contentDescription="@string/bus_eireann_cd"
 	        android:paddingRight="5dp"
 	        android:paddingLeft="5dp"
@@ -24,8 +24,9 @@
 
 	    <ImageView
 	        android:id="@+id/luasLogo"
-	        android:layout_width="91dp"
-	        android:layout_height="89dp"
+	        android:layout_width="10dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="10"
 	        android:contentDescription="@string/luas_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/luas"
@@ -33,8 +34,9 @@
 
 	    <ImageView
 	        android:id="@+id/carsLogo"
-	        android:layout_width="105dp"
+	        android:layout_width="10dp"
 	        android:layout_height="match_parent"
+	        android:layout_weight="10"
 	        android:contentDescription="@string/app_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/cars"
@@ -42,8 +44,9 @@
 
 	    <ImageView
 	        android:id="@+id/irishRailLogo"
-	        android:layout_width="97dp"
+	        android:layout_width="10dp"
 	        android:layout_height="match_parent"
+	        android:layout_weight="10"
 	        android:contentDescription="@string/irish_rail_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/irish_rail"
@@ -51,8 +54,9 @@
 
 	    <ImageView
 	        android:id="@+id/dublinBusLogo"
-	        android:layout_width="97dp"
-	        android:layout_height="90dp"
+	        android:layout_width="10dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="10"
 	        android:contentDescription="@string/dublin_bus_cd"
 	        android:padding="1dp"
 	        android:src="@drawable/dublin_bus" 
@@ -61,8 +65,9 @@
 
 	<LinearLayout
     	android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-   		android:baselineAligned="false"  >
+    	android:layout_height="0dp"
+   		android:baselineAligned="false" 
+   		android:layout_weight="0.85" >
 
     	<LinearLayout
         	android:layout_width="wrap_content"
@@ -85,27 +90,14 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_weight="0.3"
-                    android:gravity="center_horizontal" >
-
-                    <DigitalClock
-                        android:id="@+id/digitalClock1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginBottom="40dp"
-                        style="@style/stopTextView"
-                        android:minHeight="45dp"
-                        android:textColor="@color/orange" />
+                    android:gravity="center_horizontal"
+                    android:layout_marginRight="5dp" >
 
                     <TextView
                         android:id="@+id/stop"
                         style="@style/stopTextView"
                         android:layout_width= "match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:minHeight="45dp"
-                        android:padding="5dp" />
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
                 

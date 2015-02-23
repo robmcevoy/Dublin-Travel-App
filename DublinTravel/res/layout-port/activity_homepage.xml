@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    style="@style/background"
+    android:orientation="vertical"
+    android:gravity="center_horizontal" >
+
+    <TextView
+        android:id="@+id/homepageHeading"
+        style="@style/homepage_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/homepageSubheading"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        style="@style/homepage_subheading"
+     />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:gravity="center_vertical"
+        android:paddingBottom="50dp" 
+        android:paddingLeft="50dp" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" >
+                
+                <ImageView
+                    android:id="@+id/luasLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:src="@drawable/luas"
+                    android:contentDescription="@string/luas_cd" />
+                
+                <ImageView
+                    android:id="@+id/busEireannLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:contentDescription="@string/bus_eireann_cd"
+                    android:src="@drawable/bus_eireann" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" >
+
+                <ImageView
+                    android:id="@+id/irishRailLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:contentDescription="@string/irish_rail_cd"
+                    android:src="@drawable/irish_rail" />
+                
+                <ImageView
+                    android:id="@+id/dublinBusLogo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:contentDescription="@string/dublin_bus_cd"
+                    android:src="@drawable/dublin_bus" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/carsLogo"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:layout_weight="0.4"
+            android:contentDescription="@string/app_cd"
+            android:src="@drawable/cars" />
+
+    </LinearLayout>
+    
+</LinearLayout>

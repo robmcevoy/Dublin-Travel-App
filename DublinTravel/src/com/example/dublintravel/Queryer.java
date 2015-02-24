@@ -12,18 +12,22 @@ public class Queryer extends Thread {
 	}
 	
 	public void run(){
-		while(true){
+		while(true){			
+			GetStopInfoThread si = null;
 			Operator operator = rtpiController.getCurrentOperator();
 			Stop stop = rtpiController.getCurrentStop();
 			ChartWebView chartVis = rtpiController.getChartWebView();
 			ListView stopInfoListView = rtpiController.getStopInfoListView();
 			if(stop != null){
-				GetStopInfoThread si = new GetStopInfoThread(operator, stop.getID(), rtpiController, chartVis);
+				si = new GetStopInfoThread(operator, stop.getID(), rtpiController, chartVis);
 				si.execute(stopInfoListView);
 			}
 			try {
 				Thread.sleep(queryRate);
 			} catch (InterruptedException e) {
+				if(si != null){
+					si.cancel(true);
+				}
 			}
 		}
 	}

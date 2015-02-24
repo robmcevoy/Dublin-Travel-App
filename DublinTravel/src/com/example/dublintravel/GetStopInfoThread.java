@@ -23,21 +23,26 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 	}
 	
 	protected String doInBackground(ListView... arg0) {
-		listview = arg0[0];
-		return hs.sendGetRequest(operator.generateRealtimeInfoUrlString(stop), operator.needsAuth());
+		if(!isCancelled()){
+			listview = arg0[0];
+			return hs.sendGetRequest(operator.generateRealtimeInfoUrlString(stop), operator.needsAuth());
+		}
+		else return "";
 	}
 
 	protected void onPostExecute(String result) {
 
-		int lastViewedPosition = listview.getFirstVisiblePosition();
-		View v = listview.getChildAt(0);
-		int topOffset = (v == null) ? 0 : v.getTop();
+		if(!isCancelled()){
+			int lastViewedPosition = listview.getFirstVisiblePosition();
+			View v = listview.getChildAt(0);
+			int topOffset = (v == null) ? 0 : v.getTop();
 		
-		ArrayList<StopInfo> stopInfoArray = operator.getParser().getStopInfo(result);
-		StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(rtpiController, android.R.layout.simple_list_item_1,stopInfoArray );
-		listview.setAdapter(stopInfoAdapter);
-		listview.setSelectionFromTop(lastViewedPosition, topOffset);
-		chartVis.reload();
+			ArrayList<StopInfo> stopInfoArray = operator.getParser().getStopInfo(result);
+			StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(rtpiController, android.R.layout.simple_list_item_1,stopInfoArray );
+			listview.setAdapter(stopInfoAdapter);
+			listview.setSelectionFromTop(lastViewedPosition, topOffset);
+			chartVis.reload();
+		}
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.example.dublintravel;
 
 import java.util.ArrayList;
 import android.content.Context;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -20,10 +21,11 @@ public class RtpiController {
 	private boolean firstSelection;
 	private boolean queryStarted;
 	private Queryer queryer;
-	
-	RtpiController(Context context, TextView stopView, ListView stopInfoListView, WebView chartVis, WebView twitterWebview){		
+	private NavigationBar navbar;
+	RtpiController(Context context, NavigationBar navbar, TextView stopView, ListView stopInfoListView, WebView chartVis, WebView twitterWebview){		
 		this.context = context;
 		this.stopView = stopView;
+		this.navbar = navbar;
 		this.stopInfoListView = stopInfoListView;
 		this.chartVis = new ChartWebView(chartVis,this);
 		this.twitterFeed = new TwitterFeed(twitterWebview, this);
@@ -32,6 +34,8 @@ public class RtpiController {
 		this.firstSelection = true;
 		this.queryStarted = false;
 		this.queryer = new Queryer(this);
+		setStopListener();
+		this.navbar.activate(this);
 	}
 	
 	public synchronized void changeStop(Stop newStop){
@@ -112,5 +116,17 @@ public class RtpiController {
 	
 	public synchronized Context getCurrentContext(){
 		return context;
+	}
+	
+	private void setStopListener(){
+		final RtpiController tmp  = this; 
+		stopView.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	StopListDialog stopListDialog = new StopListDialog( tmp);
+            	stopListDialog.open();
+            }
+        });
 	}
 }

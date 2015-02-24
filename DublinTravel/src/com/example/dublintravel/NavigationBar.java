@@ -19,8 +19,7 @@ public class NavigationBar {
 
 	
 	public NavigationBar(	ImageView dublinBusImageView, ImageView luasImageView, 
-							ImageView irishRailImageView, ImageView busEireannImageView,
-							RtpiController rtpiController){
+							ImageView irishRailImageView, ImageView busEireannImageView){
 		this.dublinBusImageView = dublinBusImageView;
 		this.luasImageView = luasImageView;
 		this.irishRailImageView = irishRailImageView;
@@ -29,10 +28,10 @@ public class NavigationBar {
 		irishRailOperator = new IrishRailOperator();
 		busEireannOperator = new BusEireannOperator();
 		luasOperator = new LuasOperator();
-		this.rtpiController = rtpiController;
 	}
 	
-	public void activate(){
+	public void activate(RtpiController rtpiController){
+		this.rtpiController = rtpiController;
 		operatorClick(irishRailImageView,irishRailOperator, rtpiController );
 	    operatorClick(luasImageView,luasOperator, rtpiController );
 	    operatorClick(busEireannImageView,busEireannOperator, rtpiController );

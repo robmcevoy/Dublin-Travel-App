@@ -1,5 +1,6 @@
 package com.example.dublintravel;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.webkit.WebView;
 
@@ -17,6 +18,8 @@ public class EmbeddedBrowser {
 	}
 	
 	public void start(){
+		// Fixes flash of white bug 
+		webview.setBackgroundColor(Color.argb(1, 0, 0, 0));
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.getSettings().setSupportMultipleWindows(true);
 		webview.addJavascriptInterface(webviewInterface, webviewInterface.getInterfaceName());

@@ -43,6 +43,13 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 			listview.setSelectionFromTop(lastViewedPosition, topOffset);
 			chartVis.reload();
 		}
+		if(isCancelled()){
+			listview.setAdapter(null);
+		}
 	}
+	
+	 protected void onCancelled(){
+		 listview.setAdapter(null);
+	 }
 	
 }

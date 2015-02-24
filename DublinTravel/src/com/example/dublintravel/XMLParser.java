@@ -25,10 +25,13 @@ public class XMLParser extends Parser {
 	private final String DATE_FORMAT= "dd/MM/yyyy";
 	private final String EXP_ARRIVAL= "Exparrival";
 	private final String SCH_ARRIVAL= "Scharrival";
+	private final String EXP_DEPART= "Expdepart";
+	private final String SCH_DEPART= "Schdepart";
 	private final String SECONDS_CONCAT=":00";
 	private final String STATION_CODE="StationCode";
 	private final String STATION_ALIAS="StationAlias";
 	private final String STATION_DESC="StationDesc";
+	private final String INVALID = "00:00";
 
 	// returns a String representing the time until the next public transporter arrives at the stop provided
 	public ArrayList<StopInfo> getStopInfo(String data){
@@ -54,8 +57,18 @@ public class XMLParser extends Parser {
 		    	DateFormat df = new SimpleDateFormat(DATE_FORMAT);
 		    	Date today = Calendar.getInstance().getTime();
 		    	String dateString = df.format(today);
-		    	arrivalTime = dateString + " " + node.getChildText(EXP_ARRIVAL, namespace) + SECONDS_CONCAT;
-		    	scheduledArrivalTime = dateString + " " + node.getChildText(SCH_ARRIVAL, namespace) + SECONDS_CONCAT;
+		    	arrivalTime = dateString + " " + node.getChildText(EXP_ARRIVAL, namespace);
+		    	scheduledArrivalTime = dateString + " " + node.getChildText(SCH_ARRIVAL, namespace);
+		    	/* if the exp and sch arrival times are both 00:00 then the train has not left yet
+		    	 * take the exp and sch departure times instead
+		    	 */
+		    	if(arrivalTime.equals(dateString + " " +INVALID) && scheduledArrivalTime.equals(dateString + " " +INVALID)){
+		    		arrivalTime = dateString + " " + node.getChildText(EXP_DEPART, namespace);
+		    		scheduledArrivalTime = dateString + " " + node.getChildText(SCH_DEPART, namespace);
+		    	}
+		    	arrivalTime = arrivalTime + SECONDS_CONCAT;
+		    	scheduledArrivalTime = scheduledArrivalTime + SECONDS_CONCAT;
+		    	
 		    	stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime);
 		    	allStops.add(stopInfo);
 		    	count++;

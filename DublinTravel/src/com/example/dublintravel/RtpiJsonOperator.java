@@ -2,6 +2,7 @@ package com.example.dublintravel;
 
 public class RtpiJsonOperator extends Operator{
 	
+	private static final long serialVersionUID = 7458768194716917137L;
 	protected String OPERATOR_CODE="";
 	private final String URL_START = "http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
 	private final String URL_MIDDLE = "&operator=";

@@ -53,5 +53,4 @@ public class Homepage extends Activity {
             }
         });
 	}
-
 }

@@ -1,7 +1,10 @@
 package com.example.dublintravel;
 
-public class Stop implements Comparable<Stop>{
+import java.io.Serializable;
 
+public class Stop implements Comparable<Stop>, Serializable{
+
+	private static final long serialVersionUID = -4720166227379166665L;
 	private String stopID;
 	private String name;
 	private boolean error;

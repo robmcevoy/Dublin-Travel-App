@@ -2,6 +2,7 @@ package com.example.dublintravel;
 
 public class RtpiXmlOperator extends Operator{
 
+	private static final long serialVersionUID = -5629661535826801033L;
 	protected String OPERATOR_CODE="";
 	private final String URL_START = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=";
 	private final String STOPS_URL="http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML ";

@@ -39,18 +39,10 @@ public class NavigationBar {
 	}
 	
 	public void getOpFromHomepage(Bundle extras){
-		String selected;
-		if (extras != null) {
-			
-			selected =  extras.getString(OPERATOR);
-			if(selected.equals(dublinBusOperator.getOperatorCode()))
-				rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
-			else if(selected.equals(luasOperator.getOperatorCode()))
-				rtpiController.changeOperator(luasOperator, luasImageView);
-			else if(selected.equals(busEireannOperator.getOperatorCode()))
-				rtpiController.changeOperator(busEireannOperator, busEireannImageView);
-			else
-				rtpiController.changeOperator(irishRailOperator, irishRailImageView);
+		Operator selected;
+		if(extras != null){
+			selected = (Operator) extras.getSerializable(OPERATOR);
+			onOperatorChange(selected);
 		}
 	}
 	
@@ -64,7 +56,7 @@ public class NavigationBar {
         });
 	}
 	
-	public void getOperatorOnOrientationChange(Operator operator){
+	public void onOperatorChange(Operator operator){
 		if(operator.equals(dublinBusOperator))
 			rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
 		else if(operator.equals(luasOperator))

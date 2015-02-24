@@ -1,8 +1,11 @@
 package com.example.dublintravel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Parser {
+public abstract class Parser implements Serializable {
+
+	private static final long serialVersionUID = -7454288656434101180L;
 
 	public abstract ArrayList<StopInfo> getStopInfo(String data);
 	

@@ -37,7 +37,6 @@ public class Homepage extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.homepage, menu);
 		return true;
 	}
@@ -48,7 +47,7 @@ public class Homepage extends Activity {
             public void onClick(View v)
             {
             	Intent i = new Intent(getApplicationContext(), RtpiDashboard.class);
-            	i.putExtra(OPERATOR, operator.getOperatorCode());
+            	i.putExtra(OPERATOR, operator);
             	startActivity(i);
             }
         });

@@ -8,6 +8,7 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RtpiDashboard extends Activity {
 
@@ -52,10 +53,11 @@ public class RtpiDashboard extends Activity {
 		if(rtpiController != null && navbar != null){
 			Stop tmpStop = rtpiController.getCurrentStop();
 			Operator tmpOperator = rtpiController.getCurrentOperator();
+			savedInstanceState.putSerializable(OPERATOR_KEY, tmpOperator);
 			if(tmpStop != null){
 				savedInstanceState.putSerializable(STOP_KEY, tmpStop);
-				savedInstanceState.putSerializable(OPERATOR_KEY, tmpOperator);
 			}
+			
 		}
 	}
 	
@@ -65,7 +67,7 @@ public class RtpiDashboard extends Activity {
 		Operator tmpOperator = (Operator) savedInstanceState.getSerializable(OPERATOR_KEY);
 		Stop tmp = (Stop) savedInstanceState.getSerializable(STOP_KEY);
 		if((tmpOperator != null) && (navbar !=null)){
-			navbar.getOperatorOnOrientationChange(tmpOperator);
+			navbar.onOperatorChange(tmpOperator);
 		}
 		if(tmp != null){
 			rtpiController.changeStop(tmp);

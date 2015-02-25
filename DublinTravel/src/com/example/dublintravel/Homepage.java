@@ -20,7 +20,7 @@ public class Homepage extends Activity {
 		final ImageView dublinBusImageView = (ImageView) findViewById(R.id.dublinBusLogo);
 	    final DublinBusOperator dublinBusOperator = new DublinBusOperator();
 	    final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
-	    final RtpiXmlOperator irishRailOperator = new RtpiXmlOperator();
+	    final IrishRailOperator irishRailOperator = new IrishRailOperator();
 	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
 	    final LuasOperator luasOperator = new LuasOperator();

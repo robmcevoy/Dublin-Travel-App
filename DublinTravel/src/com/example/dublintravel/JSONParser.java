@@ -13,7 +13,6 @@ public class JSONParser extends Parser {
 	
 	private static final long serialVersionUID = 4861814382930415890L;
 	private final String NO_ERROR_CODE="0";
-	private final String DEFAULT_ERROR_MESSAGE="Something has gone wrong";
 	private final String ERROR_CODE="errorcode";
 	private final String ERROR_MESSAGE="errormessage";
 	private final String RESULTS="results";
@@ -52,14 +51,14 @@ public class JSONParser extends Parser {
 					stopInfoArray.add(stopInfo);
 				}
 				Collections.sort(stopInfoArray);
-				return stopInfoArray;
 			}
 			else{
-				return createStopInfoError(errorMessage);
+				stopInfoArray = createStopInfoError(errorMessage);
 			}
 		} catch (Exception e) {
-			return createStopInfoError(errorMessage);
+			stopInfoArray = createStopInfoError(errorMessage);
 		}
+		return stopInfoArray;
 	}
 	
 	public ArrayList<Stop> getStops(String data){

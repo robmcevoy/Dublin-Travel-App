@@ -17,7 +17,6 @@ import org.jdom2.input.SAXBuilder;
 public class XMLParser extends Parser {
 	
 	private static final long serialVersionUID = 2011543856038658256L;
-	private final String DEFAULT_ERROR_MESSAGE="Something has gone wrong";
 	private final String OBJ_STATION_DATA = "objStationData";
 	private final String OBJ_STATION = "objStation";
 	private final String DUE_IN = "Duein";
@@ -50,37 +49,41 @@ public class XMLParser extends Parser {
 			Element rootNode = doc.getRootElement();
 			Namespace namespace = rootNode.getNamespace();
 		    List list = rootNode.getChildren(OBJ_STATION_DATA, namespace);
-		    for(int i=0; (i<list.size()); i++){
-		    	Element node = (Element)list.get(i);
-		    	duetime = node.getChildText(DUE_IN, namespace);
-		    	destination = node.getChildText(DESTINATION, namespace);
-		    	route = node.getChildText(DIRECTION, namespace);
-		    	DateFormat df = new SimpleDateFormat(DATE_FORMAT);
-		    	Date today = Calendar.getInstance().getTime();
-		    	String dateString = df.format(today);
-		    	arrivalTime = dateString + " " + node.getChildText(EXP_ARRIVAL, namespace);
-		    	scheduledArrivalTime = dateString + " " + node.getChildText(SCH_ARRIVAL, namespace);
-		    	/* if the exp and sch arrival times are both 00:00 then the train has not left yet
-		    	 * take the exp and sch departure times instead
-		    	 */
-		    	if(arrivalTime.equals(dateString + " " +INVALID) && scheduledArrivalTime.equals(dateString + " " +INVALID)){
-		    		arrivalTime = dateString + " " + node.getChildText(EXP_DEPART, namespace);
-		    		scheduledArrivalTime = dateString + " " + node.getChildText(SCH_DEPART, namespace);
-		    	}
-		    	arrivalTime = arrivalTime + SECONDS_CONCAT;
-		    	scheduledArrivalTime = scheduledArrivalTime + SECONDS_CONCAT;
+		    if(list.size() > 0){
+		    	for(int i=0; (i<list.size()); i++){
+		    		Element node = (Element)list.get(i);
+		    		duetime = node.getChildText(DUE_IN, namespace);
+		    		destination = node.getChildText(DESTINATION, namespace);
+		    		route = node.getChildText(DIRECTION, namespace);
+		    		DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+		    		Date today = Calendar.getInstance().getTime();
+		    		String dateString = df.format(today);
+		    		arrivalTime = dateString + " " + node.getChildText(EXP_ARRIVAL, namespace);
+		    		scheduledArrivalTime = dateString + " " + node.getChildText(SCH_ARRIVAL, namespace);
+		    		/* if the exp and sch arrival times are both 00:00 then the train has not left yet
+		    		 * take the exp and sch departure times instead
+		    		 */
+		    		if(arrivalTime.equals(dateString + " " +INVALID) && scheduledArrivalTime.equals(dateString + " " +INVALID)){
+		    			arrivalTime = dateString + " " + node.getChildText(EXP_DEPART, namespace);
+		    			scheduledArrivalTime = dateString + " " + node.getChildText(SCH_DEPART, namespace);
+		    		}
+		    		arrivalTime = arrivalTime + SECONDS_CONCAT;
+		    		scheduledArrivalTime = scheduledArrivalTime + SECONDS_CONCAT;
 		    	
-		    	stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime);
-		    	allStops.add(stopInfo);
-		    	count++;
+		    		stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime);
+		    		allStops.add(stopInfo);
+		    		count++;
+		    	}
+		    	Collections.sort(allStops);
+				for(int i=0; (i<count); i++){
+					stopInfoArray.add(allStops.get(i));
+				}
 		    }
- 
+		    else{
+		    	stopInfoArray = createStopInfoError(errorMessage);
+		    }
 		} catch (Exception e) {
-			return createStopInfoError(errorMessage);
-		}
-		Collections.sort(allStops);
-		for(int i=0; (i<count); i++){
-			stopInfoArray.add(allStops.get(i));
+			stopInfoArray = createStopInfoError(errorMessage);
 		}
 		return stopInfoArray;
 	}

@@ -22,6 +22,7 @@ public class RtpiController {
 	private boolean queryStarted;
 	private Queryer queryer;
 	private NavigationBar navbar;
+
 	RtpiController(Context context, NavigationBar navbar, TextView stopView, ListView stopInfoListView, WebView chartVis, WebView twitterWebview){		
 		this.context = context;
 		this.stopView = stopView;
@@ -40,6 +41,7 @@ public class RtpiController {
 	
 	public synchronized void changeStop(Stop newStop){
 		currentStop = newStop;
+		operator.setPreviousStop(currentStop);
 		setStopView();
 		chartVis.reload();
 		if(firstSelection){
@@ -52,11 +54,16 @@ public class RtpiController {
 		}
 	}
 	
-	public synchronized void changeOperator(Operator operator, ImageView imageView){
+	public synchronized void changeActiveOperator(Operator operator, ImageView imageView){
 		wipeStopView();
 		wipeStopInfoView();
 		this.operator = operator;
-		this.currentStop = null;
+		if(this.operator.hasPreviousStop()){
+			this.currentStop = this.operator.getPreviousStop();
+			setStopView();
+		}
+		else
+			this.currentStop = null;
 		changeImageViewBorder(imageView);
 		chartVis.reload();
 		twitterFeed.reload();

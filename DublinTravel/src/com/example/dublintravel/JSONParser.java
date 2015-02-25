@@ -11,6 +11,7 @@ import org.json.JSONObject;
 //used as a helper to parse JSON format web service responses
 public class JSONParser extends Parser {
 	
+	private static final long serialVersionUID = 4861814382930415890L;
 	private final String NO_ERROR_CODE="0";
 	private final String DEFAULT_ERROR_MESSAGE="Something has gone wrong";
 	private final String ERROR_CODE="errorcode";

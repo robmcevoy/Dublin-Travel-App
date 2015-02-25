@@ -8,14 +8,13 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class RtpiDashboard extends Activity {
 
 	RtpiController rtpiController;
 	NavigationBar navbar;
 	private final String STOP_KEY="stop";
-	private final String OPERATOR_KEY="operator";
+	private final String OPERATOR_KEY="active_operator";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -10,14 +10,13 @@ public class NavigationBar {
     private ImageView irishRailImageView;
     private ImageView busEireannImageView;
     private ImageView luasImageView;
-    private RtpiXmlOperator irishRailOperator;
+    private IrishRailOperator irishRailOperator;
     private BusEireannOperator busEireannOperator;
     private LuasOperator luasOperator;
     private DublinBusOperator dublinBusOperator;
     private RtpiController rtpiController;
-    private final String OPERATOR = "operator";
-
-	
+    private final String OPERATOR = "active_operator";
+  
 	public NavigationBar(	ImageView dublinBusImageView, ImageView luasImageView, 
 							ImageView irishRailImageView, ImageView busEireannImageView){
 		this.dublinBusImageView = dublinBusImageView;
@@ -29,6 +28,7 @@ public class NavigationBar {
 		busEireannOperator = new BusEireannOperator();
 		luasOperator = new LuasOperator();
 	}
+
 	
 	public void activate(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
@@ -51,19 +51,20 @@ public class NavigationBar {
         {
             public void onClick(View v)
             {
-            	rtpiController.changeOperator(operator, imageview);
+            	rtpiController.changeActiveOperator(operator, imageview);
             }
         });
 	}
 	
 	public void onOperatorChange(Operator operator){
 		if(operator.equals(dublinBusOperator))
-			rtpiController.changeOperator(dublinBusOperator, dublinBusImageView);
+			rtpiController.changeActiveOperator(dublinBusOperator, dublinBusImageView);
 		else if(operator.equals(luasOperator))
-			rtpiController.changeOperator(luasOperator, luasImageView);
+			rtpiController.changeActiveOperator(luasOperator, luasImageView);
 		else if(operator.equals(busEireannOperator))
-			rtpiController.changeOperator(busEireannOperator, busEireannImageView);
+			rtpiController.changeActiveOperator(busEireannOperator, busEireannImageView);
 		else
-			rtpiController.changeOperator(irishRailOperator, irishRailImageView);
+			rtpiController.changeActiveOperator(irishRailOperator, irishRailImageView);
 	}
+	
 }

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 public class Homepage extends Activity {
 	
-	private final String OPERATOR = "operator";
+	private final String OPERATOR = "active_operator";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

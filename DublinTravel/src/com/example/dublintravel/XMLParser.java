@@ -16,6 +16,7 @@ import org.jdom2.input.SAXBuilder;
 // used as a helper to parse XML format web service responses
 public class XMLParser extends Parser {
 	
+	private static final long serialVersionUID = 2011543856038658256L;
 	private final String DEFAULT_ERROR_MESSAGE="Something has gone wrong";
 	private final String OBJ_STATION_DATA = "objStationData";
 	private final String OBJ_STATION = "objStation";

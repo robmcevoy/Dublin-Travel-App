@@ -3,7 +3,6 @@ package com.example.dublintravel;
 public class RtpiJsonOperator extends Operator{
 	
 	private static final long serialVersionUID = 7458768194716917137L;
-	protected String OPERATOR_CODE="";
 	private final String URL_START = "http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
 	private final String URL_MIDDLE = "&operator=";
 	private final String URL_END = "&format=json";
@@ -20,19 +19,15 @@ public class RtpiJsonOperator extends Operator{
 	}
 	
 	public String generateRealtimeInfoUrlString(String stop) {
-		return URL_START + stop + URL_MIDDLE + OPERATOR_CODE + URL_END;
+		return URL_START + stop + URL_MIDDLE + op_code + URL_END;
 	}
 	
 	public String generateStopsUrl(){
-		return URL_GET_STOPS_START + OPERATOR_CODE + URL_END;
+		return URL_GET_STOPS_START + op_code + URL_END;
 	}
 	
 	public boolean needsAuth(){
 		return NEEDS_AUTH;
-	}
-	
-	public String getOperatorCode(){
-		return OPERATOR_CODE;
 	}
 
 }

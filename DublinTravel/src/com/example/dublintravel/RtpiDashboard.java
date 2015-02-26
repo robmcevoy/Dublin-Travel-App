@@ -1,5 +1,7 @@
 package com.example.dublintravel;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -46,6 +48,7 @@ public class RtpiDashboard extends Activity {
 		return true;
 	}
 	
+	
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
@@ -53,10 +56,13 @@ public class RtpiDashboard extends Activity {
 			Stop tmpStop = rtpiController.getCurrentStop();
 			Operator tmpOperator = rtpiController.getCurrentOperator();
 			savedInstanceState.putSerializable(OPERATOR_KEY, tmpOperator);
+			ArrayList<Operator> operators = navbar.getOperators();
+			for(Operator tmp: operators){
+				savedInstanceState.putSerializable(tmp.getOperatorCode(), tmp);
+			}
 			if(tmpStop != null){
 				savedInstanceState.putSerializable(STOP_KEY, tmpStop);
 			}
-			
 		}
 	}
 	
@@ -65,12 +71,27 @@ public class RtpiDashboard extends Activity {
 		super.onRestoreInstanceState(savedInstanceState);
 		Operator tmpOperator = (Operator) savedInstanceState.getSerializable(OPERATOR_KEY);
 		Stop tmp = (Stop) savedInstanceState.getSerializable(STOP_KEY);
+		ArrayList<Operator> operators = new ArrayList<Operator>();
+		IrishRailOperator savedIrishRailOperator = new IrishRailOperator();
+		savedIrishRailOperator = (IrishRailOperator) savedInstanceState.getSerializable(savedIrishRailOperator.getOperatorCode());
+		operators.add(savedIrishRailOperator);
+	    BusEireannOperator savedBusEireannOperator = new BusEireannOperator();
+	    savedBusEireannOperator = (BusEireannOperator) savedInstanceState.getSerializable(savedBusEireannOperator.getOperatorCode());
+	    operators.add(savedBusEireannOperator);
+	    LuasOperator savedLuasOperator = new LuasOperator();
+	    savedLuasOperator = (LuasOperator) savedInstanceState.getSerializable(savedLuasOperator.getOperatorCode());
+	    operators.add(savedLuasOperator);
+	    DublinBusOperator savedDublinBusOperator = new DublinBusOperator();
+	    savedDublinBusOperator = (DublinBusOperator) savedInstanceState.getSerializable(savedDublinBusOperator.getOperatorCode());
+	    operators.add(savedDublinBusOperator);
+	    
 		if((tmpOperator != null) && (navbar !=null)){
 			navbar.onOperatorChange(tmpOperator);
+			navbar.resetOperators(operators);
 		}
 		if(tmp != null){
 			rtpiController.changeStop(tmp);
 		}
 	}
-
+	
 }

@@ -1,5 +1,6 @@
 package com.example.dublintravel;
 
+
 public class RtpiJsonOperator extends Operator{
 	
 	private static final long serialVersionUID = 7458768194716917137L;

@@ -13,6 +13,7 @@ public abstract class Operator implements Serializable{
 	public abstract String generateStopsUrl();
 	public abstract boolean needsAuth();
 	
+	
 	public boolean equals(Operator operator){
 		if(getOperatorCode().equals(operator.getOperatorCode())){
 			return true;
@@ -35,4 +36,5 @@ public abstract class Operator implements Serializable{
 	public String getOperatorCode(){
 		return op_code;
 	}	
+	
 }

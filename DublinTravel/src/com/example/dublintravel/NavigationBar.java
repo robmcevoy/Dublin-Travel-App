@@ -1,5 +1,7 @@
 package com.example.dublintravel;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,6 +34,10 @@ public class NavigationBar {
 	
 	public void activate(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
+		setOperatorClicks();
+	}
+	
+	public void setOperatorClicks(){
 		operatorClick(irishRailImageView,irishRailOperator, rtpiController );
 	    operatorClick(luasImageView,luasOperator, rtpiController );
 	    operatorClick(busEireannImageView,busEireannOperator, rtpiController );
@@ -65,6 +71,33 @@ public class NavigationBar {
 			rtpiController.changeActiveOperator(busEireannOperator, busEireannImageView);
 		else
 			rtpiController.changeActiveOperator(irishRailOperator, irishRailImageView);
+	}
+	
+	public void resetOperators(ArrayList<Operator> array){
+		for(Operator tmp: array){
+			if(tmp.equals(dublinBusOperator)){
+				dublinBusOperator =  (DublinBusOperator) tmp;
+			}
+			else if(tmp.equals(busEireannOperator)){
+				busEireannOperator = (BusEireannOperator) tmp;
+			}
+			else if(tmp.equals(irishRailOperator)){
+				irishRailOperator = (IrishRailOperator) tmp;
+			}
+			else if(tmp.equals(luasOperator)){
+				luasOperator = (LuasOperator) tmp;
+			}
+		}
+		setOperatorClicks();
+	}
+	
+	public ArrayList<Operator> getOperators(){
+		ArrayList<Operator> array = new ArrayList<Operator>();
+		array.add(dublinBusOperator);
+		array.add(busEireannOperator);
+		array.add(luasOperator);
+		array.add(irishRailOperator);
+		return array;
 	}
 	
 }

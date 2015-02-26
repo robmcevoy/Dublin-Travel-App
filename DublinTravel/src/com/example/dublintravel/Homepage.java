@@ -21,10 +21,10 @@ public class Homepage extends Activity {
 	    final DublinBusOperator dublinBusOperator = new DublinBusOperator();
 	    final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
 	    final IrishRailOperator irishRailOperator = new IrishRailOperator();
-	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
-	    final LuasOperator luasOperator = new LuasOperator();
+	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
+	    final LuasOperator luasOperator = new LuasOperator();
 	    final ImageView carsImageView = (ImageView) findViewById(R.id.carsLogo);
 	    
 

@@ -25,10 +25,11 @@ public class JSONParser extends Parser {
 	private final String SHORT_NAME="shortname";
 	private final String STOP_ID="stopid";
 	private final String NAME_JOIN=", ";
+	private final String TIME_STAMP="timestamp";
 	
 	public ArrayList<StopInfo> getStopInfo(String data){
 		
-		String duetime, destination, route, arrivalTime, scheduledArrivalTime, errorCode;
+		String duetime, destination, route, arrivalTime, scheduledArrivalTime, errorCode, serverTime;
 		String errorMessage=DEFAULT_ERROR_MESSAGE;
 		ArrayList<StopInfo> stopInfoArray = new ArrayList<StopInfo>();
 		int resultsLength;
@@ -37,6 +38,7 @@ public class JSONParser extends Parser {
 			JSONObject json = new JSONObject(data);
 			errorCode = json.getString(ERROR_CODE);
 			errorMessage = json.getString(ERROR_MESSAGE);
+			serverTime = json.getString(TIME_STAMP);
 			if(errorCode.equals(NO_ERROR_CODE)){
 				JSONArray result = json.getJSONArray(RESULTS);
 				resultsLength = result.length();
@@ -47,7 +49,7 @@ public class JSONParser extends Parser {
 					route = resultItem.getString(ROUTE);
 					arrivalTime = resultItem.getString(ARRIVAL_TIME);
 					scheduledArrivalTime = resultItem.getString(SCHEDULED_ARRIVAL_TIME);
-					stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime);
+					stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime, serverTime );
 					stopInfoArray.add(stopInfo);
 				}
 				Collections.sort(stopInfoArray);

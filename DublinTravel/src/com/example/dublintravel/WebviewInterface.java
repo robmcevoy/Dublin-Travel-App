@@ -1,8 +1,8 @@
 package com.example.dublintravel;
 
 import java.util.ArrayList;
-
 import android.webkit.JavascriptInterface;
+
 
 public class WebviewInterface {
 	
@@ -68,6 +68,11 @@ public class WebviewInterface {
      public String getSecondaryColor(){
     	 String tmp = rtpiController.getCurrentContext().getResources().getString(R.color.orange);
     	 return "#" + tmp.substring(3);
+     }
+     
+     @JavascriptInterface
+     public String getServerTime(){
+    	 return rtpiController.getServerTime();
      }
 
 }

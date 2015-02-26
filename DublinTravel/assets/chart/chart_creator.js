@@ -1,6 +1,7 @@
 const irish_rail_image = "img/irish_rail.png";
 const dublin_bus_image = "img/dublin_bus.png";
 const bus_eireann_image = "img/bus_eireann.png";
+const pole_image = "img/pole.png"
 const luas_image="img/luas.png";
 const DUBLIN_BUS_OPCODE = "bac";
 const IRISH_RAIL_OPCODE = "ir";
@@ -8,6 +9,7 @@ const LUAS_OPCODE = "luas";
 var active_image;
 const CAT_TITLE = "Due Time";
 const VALUE_TITLE = "Difference to Schedule (mins)";
+const GUIDE_TITLE = "On Time";
 const BACKGROUND_COLOR = Android.getBackgroundColor();
 const SECONDARY_COLOR = Android.getSecondaryColor();
 const GREEN_COLOR = "#69BF00";
@@ -41,6 +43,15 @@ else{
 
 function getData(){
 	var chartData = [];
+	var serverTime = Android.getServerTime();
+	if(active_image != irish_rail_image){
+		serverTime = stringParser(serverTime)
+	}
+	chartData.push({
+		due: serverTime,
+		difference: "0",
+		customBullet: pole_image
+	});
 	for(var i=0; (i<Android.getStopInfoCount() && i<Android.getMaxOnChart()); i++){
 		chartData.push({
 			due: stringParser(Android.getDueDate(i)),
@@ -70,7 +81,6 @@ var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial", 
     "dataProvider": getData(),
     "valueAxes": [{
-        "dashLength": DASH_LENGTH,
         "position": "left",
         "axisColor": SECONDARY_COLOR,
         "axisThickness" : AXIS_THICKNESS,
@@ -86,7 +96,7 @@ var chart = AmCharts.makeChart("chartdiv", {
         "valueField": "difference",
         "lineColor": GREEN_COLOR,
         "negativeLineColor": RED_COLOR,
-        "lineThickness": LINE_THICKNESS,
+        "lineThickness": LINE_THICKNESS
     }],
     "categoryField": "due",
     "categoryAxis": {

@@ -135,5 +135,15 @@ public class RtpiController {
             	stopListDialog.open();
             }
         });
-	}	
+	}
+	
+	public synchronized String getServerTime(){
+		ArrayList<StopInfo> array = getStopInfos();
+		if(array != null){
+			return array.get(0).getServerTime();
+		}
+		else{
+			return "";
+		}
+	}
 }

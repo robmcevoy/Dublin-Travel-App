@@ -32,11 +32,12 @@ public class XMLParser extends Parser {
 	private final String STATION_ALIAS="StationAlias";
 	private final String STATION_DESC="StationDesc";
 	private final String INVALID = "00:00";
+	private final String SERVER_TIME="Servertime";
 
 	// returns a String representing the time until the next public transporter arrives at the stop provided
 	public ArrayList<StopInfo> getStopInfo(String data){
 
-		String duetime, destination, route, scheduledArrivalTime, arrivalTime;
+		String duetime, destination, route, scheduledArrivalTime, arrivalTime, serverTime;
 		String errorMessage=DEFAULT_ERROR_MESSAGE;
 		SAXBuilder saxBuilder = new SAXBuilder();
 		ArrayList<StopInfo> allStops = new ArrayList<StopInfo>();
@@ -69,8 +70,8 @@ public class XMLParser extends Parser {
 		    		}
 		    		arrivalTime = arrivalTime + SECONDS_CONCAT;
 		    		scheduledArrivalTime = scheduledArrivalTime + SECONDS_CONCAT;
-		    	
-		    		stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime);
+		    		serverTime = node.getChildText(SERVER_TIME, namespace);
+		    		stopInfo = new StopInfo(route, destination, duetime, arrivalTime, scheduledArrivalTime, serverTime);
 		    		allStops.add(stopInfo);
 		    		count++;
 		    	}

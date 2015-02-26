@@ -12,17 +12,19 @@ public class StopInfo implements Comparable<StopInfo> {
 	private String errorMessage;
 	private boolean error; 
 	private String arrivalTime;
+	private String serverTime;
 	private String scheduledArrivalTime;
 	private final String DUE = "due";
 	private final String DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
 	
-	public StopInfo(String routeId, String destination, String dueTime, String arrivalTime, String scheduledArrivalTime){
+	public StopInfo(String routeId, String destination, String dueTime, String arrivalTime, String scheduledArrivalTime, String serverTime){
 		this.routeId = routeId;
 		this.destination = destination;
 		this.dueTime = dueTime;
 		this.arrivalTime = arrivalTime;
 		this.scheduledArrivalTime = scheduledArrivalTime;
 		this.error = false;
+		this.serverTime = serverTime;
 	}
 	
 	public StopInfo(){}
@@ -109,5 +111,9 @@ public class StopInfo implements Comparable<StopInfo> {
 		long diff = actual.getTime() - scheduled.getTime();
 		long diffMinutes = diff / (60 * 1000);
 		return (int) diffMinutes;
+	}
+	
+	public String getServerTime(){
+		return serverTime;
 	}
 }

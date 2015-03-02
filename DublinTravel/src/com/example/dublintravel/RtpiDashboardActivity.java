@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class RtpiDashboard extends Activity {
+public class RtpiDashboardActivity extends Activity {
 
 	RtpiController rtpiController;
 	NavigationBar navbar;
@@ -30,10 +30,11 @@ public class RtpiDashboard extends Activity {
         final ImageView irishRailImageView = (ImageView) findViewById(R.id.irishRailLogo);
         final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
         final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
+        final ImageView liveMapImageView = (ImageView) findViewById(R.id.liveMapLogo);
         WebView chartVis = (WebView) findViewById(R.id.webView1);
         WebView twitterFeed = (WebView) findViewById(R.id.twitterFeed);
         navbar = new NavigationBar(dublinBusImageView,luasImageView, 
-		irishRailImageView,busEireannImageView);
+		irishRailImageView,busEireannImageView, liveMapImageView);
         rtpiController = new RtpiController(context, navbar, stopTextView, stopInfoListView, chartVis, twitterFeed);
 	    
         final Bundle EXTRAS = getIntent().getExtras();

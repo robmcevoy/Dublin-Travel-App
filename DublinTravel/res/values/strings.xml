@@ -15,5 +15,6 @@
     <string name="destination_header">Destination</string>
     <string name="duetime_header">Due (mins)</string>
     <string name="search">Search..</string>
+    <string name="title_activity_live_map">LiveMap</string>
 
 </resources>

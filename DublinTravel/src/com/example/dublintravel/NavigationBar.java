@@ -20,7 +20,8 @@ public class NavigationBar {
     private final String OPERATOR = "active_operator";
   
 	public NavigationBar(	ImageView dublinBusImageView, ImageView luasImageView, 
-							ImageView irishRailImageView, ImageView busEireannImageView){
+							ImageView irishRailImageView, ImageView busEireannImageView,
+							ImageView liveMapImageView){
 		this.dublinBusImageView = dublinBusImageView;
 		this.luasImageView = luasImageView;
 		this.irishRailImageView = irishRailImageView;
@@ -44,6 +45,7 @@ public class NavigationBar {
 	    operatorClick(dublinBusImageView,dublinBusOperator, rtpiController );
 	}
 	
+
 	public void getOpFromHomepage(Bundle extras){
 		Operator selected;
 		if(extras != null){
@@ -69,7 +71,7 @@ public class NavigationBar {
 			rtpiController.changeActiveOperator(luasOperator, luasImageView);
 		else if(operator.equals(busEireannOperator))
 			rtpiController.changeActiveOperator(busEireannOperator, busEireannImageView);
-		else
+		else if(operator.equals(irishRailOperator))
 			rtpiController.changeActiveOperator(irishRailOperator, irishRailImageView);
 	}
 	

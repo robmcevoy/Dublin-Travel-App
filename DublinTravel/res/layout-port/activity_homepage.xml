@@ -83,7 +83,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/carsLogo"
+            android:id="@+id/liveMapLogo"
             android:layout_width="0dp"
             android:layout_height="240dp"
             android:layout_weight="0.4"

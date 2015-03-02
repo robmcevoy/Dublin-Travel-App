@@ -41,38 +41,42 @@ public final class R {
         public static final int rounded_corner_orange=0x7f020009;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0014;
+        public static final int action_settings=0x7f0a0015;
         public static final int busEireannLogo=0x7f0a0004;
-        public static final int carsLogo=0x7f0a0006;
-        public static final int dialogTitle=0x7f0a0008;
+        public static final int dialogTitle=0x7f0a000a;
         public static final int dublinBusLogo=0x7f0a0005;
         public static final int homepageHeading=0x7f0a0000;
         public static final int homepageSubheading=0x7f0a0001;
         public static final int irishRailLogo=0x7f0a0003;
+        public static final int liveMapLogo=0x7f0a0006;
         public static final int luasLogo=0x7f0a0002;
-        public static final int progressBar=0x7f0a0007;
-        public static final int searchBar=0x7f0a0009;
-        public static final int stop=0x7f0a000b;
-        public static final int stopIdTextView=0x7f0a0013;
-        public static final int stopInfoDestination=0x7f0a0010;
-        public static final int stopInfoDueTime=0x7f0a0011;
-        public static final int stopInfoListView=0x7f0a000c;
-        public static final int stopInfoRoute=0x7f0a000f;
-        public static final int stopNameTextView=0x7f0a0012;
-        public static final int stopsListView=0x7f0a000a;
-        public static final int twitterFeed=0x7f0a000e;
-        public static final int webView1=0x7f0a000d;
+        public static final int map=0x7f0a0007;
+        public static final int progressBar=0x7f0a0009;
+        public static final int searchBar=0x7f0a000b;
+        public static final int stop=0x7f0a000d;
+        public static final int stopIdTextView=0x7f0a0014;
+        public static final int stopInfoDestination=0x7f0a0011;
+        public static final int stopInfoDueTime=0x7f0a0012;
+        public static final int stopInfoListView=0x7f0a000e;
+        public static final int stopInfoRoute=0x7f0a0010;
+        public static final int stopNameTextView=0x7f0a0013;
+        public static final int stopsListView=0x7f0a000c;
+        public static final int twitterFeed=0x7f0a0008;
+        public static final int webView1=0x7f0a000f;
     }
     public static final class layout {
         public static final int activity_homepage=0x7f030000;
-        public static final int dialog=0x7f030001;
-        public static final int rtpi_dashboard=0x7f030002;
-        public static final int stop_info_list_item=0x7f030003;
-        public static final int stop_list_item=0x7f030004;
+        public static final int activity_live_map=0x7f030001;
+        public static final int dialog=0x7f030002;
+        public static final int navigation_bar=0x7f030003;
+        public static final int rtpi_dashboard=0x7f030004;
+        public static final int stop_info_list_item=0x7f030005;
+        public static final int stop_list_item=0x7f030006;
     }
     public static final class menu {
         public static final int homepage=0x7f090000;
-        public static final int main=0x7f090001;
+        public static final int live_map=0x7f090001;
+        public static final int main=0x7f090002;
     }
     public static final class string {
         public static final int action_settings=0x7f080001;
@@ -89,6 +93,7 @@ public final class R {
         public static final int route_header=0x7f08000a;
         public static final int search=0x7f08000d;
         public static final int stop_id_hint=0x7f080009;
+        public static final int title_activity_live_map=0x7f08000e;
     }
     public static final class style {
         /** 

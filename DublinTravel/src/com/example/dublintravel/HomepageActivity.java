@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Homepage extends Activity {
+public class HomepageActivity extends Activity {
 	
 	private final String OPERATOR = "active_operator";
 
@@ -25,13 +25,14 @@ public class Homepage extends Activity {
 	    final BusEireannOperator busEireannOperator = new BusEireannOperator();
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    final LuasOperator luasOperator = new LuasOperator();
-	    final ImageView carsImageView = (ImageView) findViewById(R.id.carsLogo);
+	    final ImageView liveMapLogoImageView = (ImageView) findViewById(R.id.liveMapLogo);
 	    
 
 	    launchDashboardClick(dublinBusImageView, dublinBusOperator);
 	    launchDashboardClick(luasImageView, luasOperator);
 	    launchDashboardClick(irishRailImageView, irishRailOperator);
 	    launchDashboardClick( busEireannImageView, busEireannOperator);
+	    launchLiveMapClick(liveMapLogoImageView);
 
 	}
 
@@ -46,8 +47,19 @@ public class Homepage extends Activity {
         {
             public void onClick(View v)
             {
-            	Intent i = new Intent(getApplicationContext(), RtpiDashboard.class);
+            	Intent i = new Intent(getApplicationContext(), RtpiDashboardActivity.class);
             	i.putExtra(OPERATOR, operator);
+            	startActivity(i);
+            }
+        });
+	}
+	
+	public void launchLiveMapClick(ImageView imageView){
+		imageView.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	Intent i = new Intent(getApplicationContext(), LiveMapActvity.class);
             	startActivity(i);
             }
         });

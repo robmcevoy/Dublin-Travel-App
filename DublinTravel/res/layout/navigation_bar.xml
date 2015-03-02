@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:gravity="center_horizontal"
+	    android:layout_weight="0.15"
+	    android:layout_marginBottom="5dp"  >
+
+	    <ImageView
+	        android:id="@+id/busEireannLogo"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="0.10"
+	        android:contentDescription="@string/bus_eireann_cd"
+	        android:src="@drawable/bus_eireann" 
+			android:background="@drawable/rounded_corner_dark_grey" 
+	        />
+
+	    <ImageView
+	        android:id="@+id/luasLogo"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="0.10"
+	        android:contentDescription="@string/luas_cd"
+	        android:src="@drawable/luas"
+	        android:background="@color/dark_grey"  />
+
+	    <ImageView
+	        android:id="@+id/liveMapLogo"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="0.10"
+	        android:contentDescription="@string/app_cd"
+	        android:src="@drawable/cars"
+	        android:background="@color/dark_grey"  />
+
+	    <ImageView
+	        android:id="@+id/irishRailLogo"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="0.10"
+	        android:contentDescription="@string/irish_rail_cd"
+	        android:src="@drawable/irish_rail"
+	        android:background="@color/dark_grey" />
+
+	    <ImageView
+	        android:id="@+id/dublinBusLogo"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="0.10"
+	        android:contentDescription="@string/dublin_bus_cd"
+	        android:src="@drawable/dublin_bus" 
+	        android:background="@color/dark_grey" />
+</LinearLayout>

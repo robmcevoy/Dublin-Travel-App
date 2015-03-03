@@ -12,7 +12,7 @@ public class LiveMapActvity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_live_map);
 		WebView mapview = (WebView) findViewById(R.id.map);
-		LiveMap livemap = new LiveMap(mapview);
+		LiveMap livemap = new LiveMap(mapview, this);
 		livemap.start();
 	}
 

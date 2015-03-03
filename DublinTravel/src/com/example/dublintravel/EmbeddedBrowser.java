@@ -9,13 +9,6 @@ public abstract class EmbeddedBrowser {
 	private WebView webview;
 	protected String url = "";
 	
-	/*
-	public EmbeddedBrowser(WebView webview, RtpiController rtpiController){
-		this.webview = webview;
-		this.rtpiController = rtpiController;
-		this.webviewInterface = new WebviewInterface(this.rtpiController);
-	}
-	*/
 	public EmbeddedBrowser(WebView webview){
 		this.webview = webview;
 	}
@@ -40,6 +33,6 @@ public abstract class EmbeddedBrowser {
 	}
 	
 	public abstract boolean hasWebViewInterface();
-	public abstract WebviewInterface getWebviewInterface();
+	public abstract WebViewInterface getWebviewInterface();
 
 }

@@ -1,8 +1,8 @@
-const irish_rail_image = "img/irish_rail.png";
-const dublin_bus_image = "img/dublin_bus.png";
-const bus_eireann_image = "img/bus_eireann.png";
-const pole_image = "img/pole.png"
-const luas_image="img/luas.png";
+const irish_rail_image = "../img/irish_rail.png";
+const dublin_bus_image = "../img/dublin_bus.png";
+const bus_eireann_image = "../img/bus_eireann.png";
+const pole_image = "../img/pole.png"
+const luas_image="../img/luas.png";
 const DUBLIN_BUS_OPCODE = "bac";
 const IRISH_RAIL_OPCODE = "ir";
 const LUAS_OPCODE = "luas";

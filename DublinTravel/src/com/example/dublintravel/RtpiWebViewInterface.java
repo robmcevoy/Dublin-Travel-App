@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import android.webkit.JavascriptInterface;
 
 
-public class WebviewInterface {
+public class RtpiWebViewInterface extends WebViewInterface{
 	
 	private RtpiController rtpiController;
 	private ArrayList<StopInfo> stopInfoArray;
-	private final String INTERFACE_NAME = "Android";
 	private final int MAX_NUM_ON_CHART = 5;
 	
-	public WebviewInterface(RtpiController rtpiController){
+	public RtpiWebViewInterface(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
 		this.stopInfoArray = new ArrayList<StopInfo>();
-	}
-	
-	public String getInterfaceName(){
-		return INTERFACE_NAME;
 	}
 	
 	 @JavascriptInterface

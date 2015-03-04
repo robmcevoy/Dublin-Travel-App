@@ -8,12 +8,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class RtpiController {
+public class RtpiController extends Controller {
 	
-	private Context context;
 	private Stop currentStop;
 	private Operator operator;
-	private ImageView activeImageView;
 	private TextView stopView;
 	private ListView stopInfoListView;
 	private ChartWebView chartVis;
@@ -21,12 +19,11 @@ public class RtpiController {
 	private boolean firstSelection;
 	private boolean queryStarted;
 	private Queryer queryer;
-	private NavigationBar navbar;
+	private RtpiNavigationBar navbar;
 
-	RtpiController(Context context, NavigationBar navbar, TextView stopView, ListView stopInfoListView, WebView chartVis, WebView twitterWebview){		
-		this.context = context;
+	RtpiController(Context context, RtpiNavigationBar navbar, TextView stopView, ListView stopInfoListView, WebView chartVis, WebView twitterWebview){		
+		super(context);
 		this.stopView = stopView;
-		this.navbar = navbar;
 		this.stopInfoListView = stopInfoListView;
 		this.chartVis = new ChartWebView(chartVis,this);
 		this.twitterFeed = new TwitterFeed(twitterWebview, this);
@@ -36,6 +33,7 @@ public class RtpiController {
 		this.queryStarted = false;
 		this.queryer = new Queryer(this);
 		setStopListener();
+		this.navbar = navbar;
 		this.navbar.activate(this);
 	}
 	
@@ -70,14 +68,6 @@ public class RtpiController {
 		if(queryStarted){
 			queryer.interrupt();
 		}
-	}
-	
-	private void changeImageViewBorder(ImageView imageView){
-		if(activeImageView != null){
-			activeImageView.setBackground(context.getResources().getDrawable(R.drawable.rounded_corner_dark_grey));
-		}
-		imageView.setBackground(context.getResources().getDrawable(R.drawable.rounded_corner_orange));
-		activeImageView = imageView;
 	}
 	
 	public synchronized Operator getCurrentOperator(){
@@ -119,10 +109,6 @@ public class RtpiController {
 		}
 		else
 			return null;
-	}
-	
-	public synchronized Context getCurrentContext(){
-		return context;
 	}
 	
 	private void setStopListener(){

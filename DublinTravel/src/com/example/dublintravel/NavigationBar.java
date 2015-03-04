@@ -1,105 +1,63 @@
 package com.example.dublintravel;
 
-import java.util.ArrayList;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
-public class NavigationBar {
-	
-    private ImageView dublinBusImageView;
-    private ImageView irishRailImageView;
-    private ImageView busEireannImageView;
-    private ImageView luasImageView;
-    private IrishRailOperator irishRailOperator;
-    private BusEireannOperator busEireannOperator;
-    private LuasOperator luasOperator;
-    private DublinBusOperator dublinBusOperator;
-    private RtpiController rtpiController;
-    private final String OPERATOR = "active_operator";
+public abstract class NavigationBar {
+		
+	protected final int NUM_OPERATORS=4;
+	protected Operator[] operators;
+	protected ImageView[] imageviews;
+    protected ImageView mapImageView;
+
   
 	public NavigationBar(	ImageView dublinBusImageView, ImageView luasImageView, 
 							ImageView irishRailImageView, ImageView busEireannImageView,
-							ImageView liveMapImageView){
-		this.dublinBusImageView = dublinBusImageView;
-		this.luasImageView = luasImageView;
-		this.irishRailImageView = irishRailImageView;
-		this.busEireannImageView = busEireannImageView;
-		dublinBusOperator = new DublinBusOperator();
-		irishRailOperator = new IrishRailOperator();
-		busEireannOperator = new BusEireannOperator();
-		luasOperator = new LuasOperator();
+							ImageView mapImageView){
+		operators = new Operator[NUM_OPERATORS];
+		imageviews = new ImageView[NUM_OPERATORS];
+		DublinBusOperator dublinBusOperator = new DublinBusOperator();
+		operators[dublinBusOperator.getIndex()] = dublinBusOperator;
+		IrishRailOperator irishRailOperator = new IrishRailOperator();
+		operators[irishRailOperator.getIndex()] = irishRailOperator;
+		BusEireannOperator busEireannOperator = new BusEireannOperator();
+		operators[busEireannOperator.getIndex()] = busEireannOperator;
+		LuasOperator luasOperator = new LuasOperator();
+		operators[luasOperator.getIndex()] = luasOperator;
+		imageviews[dublinBusOperator.getIndex()] = dublinBusImageView;
+		imageviews[luasOperator.getIndex()] = luasImageView;
+		imageviews[irishRailOperator.getIndex()] =irishRailImageView;
+		imageviews[busEireannOperator.getIndex()] = busEireannImageView;
+		this.mapImageView = mapImageView;
 	}
-
 	
-	public void activate(RtpiController rtpiController){
-		this.rtpiController = rtpiController;
+	
+	protected void activate(){
 		setOperatorClicks();
+		setMapClick(mapImageView);
 	}
 	
 	public void setOperatorClicks(){
-		operatorClick(irishRailImageView,irishRailOperator, rtpiController );
-	    operatorClick(luasImageView,luasOperator, rtpiController );
-	    operatorClick(busEireannImageView,busEireannOperator, rtpiController );
-	    operatorClick(dublinBusImageView,dublinBusOperator, rtpiController );
+		for(int i=0; i<NUM_OPERATORS; i++){
+			operatorClick(imageviews[i], operators[i]);
+		}
 	}
 	
+	public abstract void operatorClick(final ImageView imageview, final Operator operator);
+	
+	public abstract void setMapClick(final ImageView imageview);
+	
+	public abstract void handleBundle(Bundle extras);
 
-	public void getOpFromHomepage(Bundle extras){
-		Operator selected;
-		if(extras != null){
-			selected = (Operator) extras.getSerializable(OPERATOR);
-			onOperatorChange(selected);
-		}
-	}
-	
-	public void operatorClick(final ImageView imageview, final Operator operator, final RtpiController rtpiController ){
-		imageview.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-            	rtpiController.changeActiveOperator(operator, imageview);
-            }
-        });
-	}
-	
-	public void onOperatorChange(Operator operator){
-		if(operator.equals(dublinBusOperator))
-			rtpiController.changeActiveOperator(dublinBusOperator, dublinBusImageView);
-		else if(operator.equals(luasOperator))
-			rtpiController.changeActiveOperator(luasOperator, luasImageView);
-		else if(operator.equals(busEireannOperator))
-			rtpiController.changeActiveOperator(busEireannOperator, busEireannImageView);
-		else if(operator.equals(irishRailOperator))
-			rtpiController.changeActiveOperator(irishRailOperator, irishRailImageView);
-	}
-	
-	public void resetOperators(ArrayList<Operator> array){
-		for(Operator tmp: array){
-			if(tmp.equals(dublinBusOperator)){
-				dublinBusOperator =  (DublinBusOperator) tmp;
-			}
-			else if(tmp.equals(busEireannOperator)){
-				busEireannOperator = (BusEireannOperator) tmp;
-			}
-			else if(tmp.equals(irishRailOperator)){
-				irishRailOperator = (IrishRailOperator) tmp;
-			}
-			else if(tmp.equals(luasOperator)){
-				luasOperator = (LuasOperator) tmp;
-			}
-		}
+	public void resetOperators(Operator[] newOperators){
+		operators = newOperators;
 		setOperatorClicks();
 	}
 	
-	public ArrayList<Operator> getOperators(){
-		ArrayList<Operator> array = new ArrayList<Operator>();
-		array.add(dublinBusOperator);
-		array.add(busEireannOperator);
-		array.add(luasOperator);
-		array.add(irishRailOperator);
-		return array;
+	public Operator[] getOperators(){
+		return operators;
 	}
+	
 	
 }

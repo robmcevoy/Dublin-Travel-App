@@ -1,7 +1,5 @@
 package com.example.dublintravel;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -14,15 +12,14 @@ import android.widget.TextView;
 public class RtpiDashboardActivity extends Activity {
 
 	RtpiController rtpiController;
-	NavigationBar navbar;
-	private final String STOP_KEY="stop";
-	private final String OPERATOR_KEY="active_operator";
+	RtpiNavigationBar navbar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rtpi_dashboard);
 		
+		// create objects
         final Context context = this;
         final TextView stopTextView = (TextView) findViewById(R.id.stop);
         final ListView stopInfoListView = (ListView) findViewById(R.id.stopInfoListView);
@@ -33,13 +30,13 @@ public class RtpiDashboardActivity extends Activity {
         final ImageView liveMapImageView = (ImageView) findViewById(R.id.liveMapLogo);
         WebView chartVis = (WebView) findViewById(R.id.webView1);
         WebView twitterFeed = (WebView) findViewById(R.id.twitterFeed);
-        navbar = new NavigationBar(dublinBusImageView,luasImageView, 
+        navbar = new RtpiNavigationBar(dublinBusImageView,luasImageView, 
 		irishRailImageView,busEireannImageView, liveMapImageView);
         rtpiController = new RtpiController(context, navbar, stopTextView, stopInfoListView, chartVis, twitterFeed);
 	    
+        // handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
-        navbar.getOpFromHomepage(EXTRAS);
-        
+        navbar.handleBundle(EXTRAS);   
 	}
 
 
@@ -55,14 +52,10 @@ public class RtpiDashboardActivity extends Activity {
 		super.onSaveInstanceState(savedInstanceState);
 		if(rtpiController != null && navbar != null){
 			Stop tmpStop = rtpiController.getCurrentStop();
-			Operator tmpOperator = rtpiController.getCurrentOperator();
-			savedInstanceState.putSerializable(OPERATOR_KEY, tmpOperator);
-			ArrayList<Operator> operators = navbar.getOperators();
-			for(Operator tmp: operators){
-				savedInstanceState.putSerializable(tmp.getOperatorCode(), tmp);
-			}
+			Operator[] operators = navbar.getOperators();
+			savedInstanceState.putSerializable(Globals.getOperatorsKey(), operators);
 			if(tmpStop != null){
-				savedInstanceState.putSerializable(STOP_KEY, tmpStop);
+				savedInstanceState.putSerializable(Globals.getStopKey(), tmpStop);
 			}
 		}
 	}
@@ -70,29 +63,15 @@ public class RtpiDashboardActivity extends Activity {
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		Operator tmpOperator = (Operator) savedInstanceState.getSerializable(OPERATOR_KEY);
-		Stop tmp = (Stop) savedInstanceState.getSerializable(STOP_KEY);
-		ArrayList<Operator> operators = new ArrayList<Operator>();
-		IrishRailOperator savedIrishRailOperator = new IrishRailOperator();
-		savedIrishRailOperator = (IrishRailOperator) savedInstanceState.getSerializable(savedIrishRailOperator.getOperatorCode());
-		operators.add(savedIrishRailOperator);
-	    BusEireannOperator savedBusEireannOperator = new BusEireannOperator();
-	    savedBusEireannOperator = (BusEireannOperator) savedInstanceState.getSerializable(savedBusEireannOperator.getOperatorCode());
-	    operators.add(savedBusEireannOperator);
-	    LuasOperator savedLuasOperator = new LuasOperator();
-	    savedLuasOperator = (LuasOperator) savedInstanceState.getSerializable(savedLuasOperator.getOperatorCode());
-	    operators.add(savedLuasOperator);
-	    DublinBusOperator savedDublinBusOperator = new DublinBusOperator();
-	    savedDublinBusOperator = (DublinBusOperator) savedInstanceState.getSerializable(savedDublinBusOperator.getOperatorCode());
-	    operators.add(savedDublinBusOperator);
-	    
-		if((tmpOperator != null) && (navbar !=null)){
-			navbar.onOperatorChange(tmpOperator);
+		Stop tmp = (Stop) savedInstanceState.getSerializable(Globals.getStopKey());
+		Operator[] operators =  (Operator[]) savedInstanceState.getSerializable(Globals.getOperatorsKey());
+		if(navbar !=null){
 			navbar.resetOperators(operators);
 		}
 		if(tmp != null){
 			rtpiController.changeStop(tmp);
 		}
+		
 	}
 	
 }

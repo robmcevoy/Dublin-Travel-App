@@ -49,7 +49,9 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 	}
 	
 	 protected void onCancelled(){
-		 listview.setAdapter(null);
+		 if(listview != null){
+			 listview.setAdapter(null);
+		 }
 	 }
 	
 }

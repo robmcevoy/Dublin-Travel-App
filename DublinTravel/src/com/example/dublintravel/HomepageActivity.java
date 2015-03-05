@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class HomepageActivity extends Activity {
+	
+	HomepageNavigationBar navbar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,7 @@ public class HomepageActivity extends Activity {
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    final ImageView liveMapLogoImageView = (ImageView) findViewById(R.id.liveMapLogo);
 	    
-	    HomepageNavigationBar navbar = new HomepageNavigationBar(dublinBusImageView, luasImageView, irishRailImageView, busEireannImageView, liveMapLogoImageView, this);
+	    navbar = new HomepageNavigationBar(dublinBusImageView, luasImageView, irishRailImageView, busEireannImageView, liveMapLogoImageView, this);
 	    navbar.activate();
 
 	}
@@ -31,5 +33,10 @@ public class HomepageActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.homepage, menu);
 		return true;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		navbar.onBackPressed();
 	}
 }

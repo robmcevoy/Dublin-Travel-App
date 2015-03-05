@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.dublintravel.LiveMapActvity"
+            android:name="com.example.dublintravel.LiveMapActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar"  >
         </activity>

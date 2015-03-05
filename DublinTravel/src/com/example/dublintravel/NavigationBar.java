@@ -49,6 +49,8 @@ public abstract class NavigationBar {
 	public abstract void setMapClick(final ImageView imageview);
 	
 	public abstract void handleBundle(Bundle extras);
+	
+	public abstract void onBackPressed();
 
 	public void resetOperators(Operator[] newOperators){
 		operators = newOperators;
@@ -57,6 +59,10 @@ public abstract class NavigationBar {
 	
 	public Operator[] getOperators(){
 		return operators;
+	}
+	
+	public int getNumOperators(){
+		return NUM_OPERATORS;
 	}
 	
 	

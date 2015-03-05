@@ -1,6 +1,7 @@
 package com.example.dublintravel;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,6 +48,13 @@ public class RtpiNavigationBar extends NavigationBar {
 				newOperators[i] = (Operator) objects[i];
 			}
 			resetOperators(newOperators);
+			try{
+				Stop activeStop = (Stop) extras.getSerializable(Globals.getStopKey());
+				if(activeStop != null){
+					controller.changeStop(activeStop);
+				}
+			}
+			catch(Exception e){}
 		}
 	}
 	
@@ -67,6 +75,27 @@ public class RtpiNavigationBar extends NavigationBar {
 	}
 
 	public void setMapClick(ImageView imageview) {
+		imageview.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+            	Intent i = new Intent(controller.getCurrentContext(), LiveMapActivity.class);
+            	i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            	i.putExtras(createBundle());
+            	controller.getCurrentContext().startActivity(i);
+            }
+        });
+	}
+	
+	public Bundle createBundle(){
+		Bundle bundle = new Bundle();  
+    	bundle.putSerializable(Globals.getOperatorsKey(), operators);
+    	bundle.putSerializable(Globals.getStopKey(), controller.getCurrentStop());
+    	return bundle;
+	}
 
+	public void onBackPressed() {
+		Intent i = new Intent(controller.getCurrentContext(), HomepageActivity.class);
+		controller.getCurrentContext().startActivity(i);	
 	}
 }

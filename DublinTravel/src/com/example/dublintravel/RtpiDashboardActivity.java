@@ -3,6 +3,7 @@ package com.example.dublintravel;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.Menu;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -50,28 +51,18 @@ public class RtpiDashboardActivity extends Activity {
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
-		if(rtpiController != null && navbar != null){
-			Stop tmpStop = rtpiController.getCurrentStop();
-			Operator[] operators = navbar.getOperators();
-			savedInstanceState.putSerializable(Globals.getOperatorsKey(), operators);
-			if(tmpStop != null){
-				savedInstanceState.putSerializable(Globals.getStopKey(), tmpStop);
-			}
-		}
+		savedInstanceState.putAll(navbar.createBundle());
 	}
 	
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-		Stop tmp = (Stop) savedInstanceState.getSerializable(Globals.getStopKey());
-		Operator[] operators =  (Operator[]) savedInstanceState.getSerializable(Globals.getOperatorsKey());
-		if(navbar !=null){
-			navbar.resetOperators(operators);
-		}
-		if(tmp != null){
-			rtpiController.changeStop(tmp);
-		}
+		navbar.handleBundle(savedInstanceState);
 		
+	}
+	
+	@Override
+	public void onBackPressed() {
+		navbar.onBackPressed();
 	}
 	
 }

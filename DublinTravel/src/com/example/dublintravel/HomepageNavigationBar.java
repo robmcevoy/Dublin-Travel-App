@@ -43,13 +43,19 @@ public class HomepageNavigationBar extends NavigationBar {
         {
             public void onClick(View v)
             {
-            	
+            	Intent i = new Intent(context, LiveMapActivity.class);
+            	context.startActivity(i);
             }
         });
 	}
 
 	public void handleBundle(Bundle extras) {
 		// homepage will never receive a bundle
+	}
+
+	@Override
+	public void onBackPressed() {
+		// do nothing
 	}
 
 

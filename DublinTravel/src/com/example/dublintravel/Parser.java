@@ -12,6 +12,8 @@ public abstract class Parser implements Serializable {
 	
 	public abstract ArrayList<Stop> getStops(String data);
 	
+	public abstract Location getStopLocation(String data);
+	
 	protected ArrayList<Stop> createStopError(String errorMessage){
 		ArrayList<Stop> errorArray = new ArrayList<Stop>();
 		Stop stop = new Stop();

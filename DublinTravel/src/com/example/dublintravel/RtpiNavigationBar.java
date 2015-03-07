@@ -1,8 +1,8 @@
 package com.example.dublintravel;
 
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,45 +16,22 @@ public class RtpiNavigationBar extends NavigationBar {
 		super(dublinBusImageView, luasImageView, irishRailImageView,busEireannImageView, mapImageView);
 	}
 	
+	@Override
+	public Context getContext() {
+		return controller.getCurrentContext();
+	}
+	
 	public void activate(RtpiController controller){
 		this.controller = controller;
 		super.activate();
-	}
-	
-	
-	public void onOperatorChange(Operator operator){
-		for(int i=0; i<NUM_OPERATORS; i++){
-			if(operator.equals(operators[i])){
-				controller.changeActiveOperator(operators[i], imageviews[i]);
-			}
-		}
 	}
 	
 	public void resetOperators(Operator[] newOperators){
 		super.resetOperators(newOperators);
 		for(int i=0; i<NUM_OPERATORS; i++){
 			if(operators[i].isActive()){
-				onOperatorChange(operators[i]);
+				controller.changeActiveOperator(operators[i], imageviews[i]);
 			}
-		}
-	}
-	
-	
-	public void handleBundle(Bundle extras){
-		if(extras != null){
-			Object[] objects = (Object[]) extras.getSerializable(Globals.getOperatorsKey());
-			Operator[] newOperators = new Operator[NUM_OPERATORS];
-			for(int i=0; i<objects.length; i++){
-				newOperators[i] = (Operator) objects[i];
-			}
-			resetOperators(newOperators);
-			try{
-				Stop activeStop = (Stop) extras.getSerializable(Globals.getStopKey());
-				if(activeStop != null){
-					controller.changeStop(activeStop);
-				}
-			}
-			catch(Exception e){}
 		}
 	}
 	
@@ -79,23 +56,11 @@ public class RtpiNavigationBar extends NavigationBar {
         {
             public void onClick(View v)
             {
-            	Intent i = new Intent(controller.getCurrentContext(), LiveMapActivity.class);
+            	Intent i = new Intent(getContext(), LiveMapActivity.class);
             	i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             	i.putExtras(createBundle());
-            	controller.getCurrentContext().startActivity(i);
+            	getContext().startActivity(i);
             }
         });
-	}
-	
-	public Bundle createBundle(){
-		Bundle bundle = new Bundle();  
-    	bundle.putSerializable(Globals.getOperatorsKey(), operators);
-    	bundle.putSerializable(Globals.getStopKey(), controller.getCurrentStop());
-    	return bundle;
-	}
-
-	public void onBackPressed() {
-		Intent i = new Intent(controller.getCurrentContext(), HomepageActivity.class);
-		controller.getCurrentContext().startActivity(i);	
 	}
 }

@@ -1,6 +1,8 @@
 package com.example.dublintravel;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -48,9 +50,7 @@ public abstract class NavigationBar {
 	
 	public abstract void setMapClick(final ImageView imageview);
 	
-	public abstract void handleBundle(Bundle extras);
-	
-	public abstract void onBackPressed();
+	public abstract Context getContext();
 
 	public void resetOperators(Operator[] newOperators){
 		operators = newOperators;
@@ -65,5 +65,27 @@ public abstract class NavigationBar {
 		return NUM_OPERATORS;
 	}
 	
+	public void handleBundle(Bundle extras) {
+		if(extras != null){
+			Object[] objects = (Object[]) extras.getSerializable(BundleKeys.getOperatorsKey());
+			Operator[] newOperators = new Operator[NUM_OPERATORS];
+			for(int i=0; i<objects.length; i++){
+				newOperators[i] = (Operator) objects[i];
+			}
+			resetOperators(newOperators);
+		}
+	}
+	
+	public Bundle createBundle(){
+		Bundle bundle = new Bundle();  
+    	bundle.putSerializable(BundleKeys.getOperatorsKey(), operators);
+    	return bundle;
+	}
+	
+	public void onBackPressed() {
+		Intent i = new Intent(getContext(), HomepageActivity.class);
+		i.putExtras(createBundle());
+		getContext().startActivity(i);	
+	}
 	
 }

@@ -12,7 +12,9 @@ public abstract class Operator implements Serializable{
 	public abstract Parser getParser();
 	public abstract String generateRealtimeInfoUrlString(String stop);
 	public abstract String generateStopsUrl();
+	public abstract String generateStopLocationUrl(String stop);
 	public abstract boolean needsAuth();
+	public abstract boolean requireAdditionalLocationRequest();
 	
 	protected Operator(){
 		isActive = false;

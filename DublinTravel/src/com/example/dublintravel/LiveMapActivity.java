@@ -2,7 +2,6 @@ package com.example.dublintravel;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -25,7 +24,7 @@ public class LiveMapActivity extends Activity {
 		irishRailImageView,busEireannImageView, liveMapImageView);
         controller = new LiveMapController(this, navbar);
 		WebView mapview = (WebView) findViewById(R.id.map);
-		LiveMap livemap = new LiveMap(mapview, this);
+		LiveMap livemap = new LiveMap(mapview, controller);
 		livemap.start();
 		
 		// handle bundle

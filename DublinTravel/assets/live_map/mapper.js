@@ -1,4 +1,6 @@
-const ZOOM = 13;
+//getLocations();
+var map;
+const ZOOM = 1;
 const STREET_VIEW_CONTROL = false;
 const DIV = 'map-canvas';
 const dublin_bus_image = "../img/map_dublin_bus_icon.gif";
@@ -6,7 +8,7 @@ const irish_rail_image = "../img/map_irish_rail_icon.gif";
 const bus_eireann_image = "../img/map_bus_eireann_icon.gif";
 const luas_image="../img/map_luas_icon.gif";
 const STYLE_TITLE = "Dark Theme";
-var BACKGROUND_COLOR="#333333";  //TODO get from interface
+var BACKGROUND_COLOR= Android.getBackgroundColor();
 var PRIMARY_ROAD_COLOR="#A8A8A8"; 
 var SECONDARY_ROAD_AND_LABEL_COLOR =  "#FAFAFA";  
 var LIGHTER_SECONDARY = "#E8E8E8";
@@ -49,11 +51,7 @@ var luasIcon = {
 };
 
 function initialize() {
-	var longitude = Android.getLongitude();
-	var latitude = Android.getLatitude();
-	var currentLocation = new google.maps.LatLng(latitude, longitude);
-	// Create an array of styles.
-	  var styles = [
+	var styles = [
 	                {
 	                    "featureType": "all",
 	                    "elementType": "labels.text.fill",
@@ -98,7 +96,7 @@ function initialize() {
 	                    "elementType": "geometry.fill",
 	                    "stylers": [
 	                        {
-	                            "color": PRIMARY_ROAD_COLOR
+	                            "color": BACKGROUND_COLOR
 	                        },
 	                        {
 	                            "lightness": 20
@@ -155,7 +153,7 @@ function initialize() {
 	                            "visibility": "simplified"
 	                        },
 	                        {
-	                            "color": "#797979"
+	                            "color": BACKGROUND_COLOR
 	                        }
 	                    ]
 	                },
@@ -164,7 +162,7 @@ function initialize() {
 	                    "elementType": "geometry",
 	                    "stylers": [
 	                        {
-	                            "color": SECONDARY_ROAD_AND_LABEL_COLOR
+	                            "color": BACKGROUND_COLOR
 	                        },
 	                        {
 	                            "lightness": 20
@@ -398,30 +396,6 @@ function initialize() {
 	                            "lightness": 19
 	                        }
 	                    ]
-	                },
-	                {
-	                    "featureType": "water",
-	                    "elementType": "geometry",
-	                    "stylers": [
-	                        {
-	                            "color": SECONDARY_ROAD_AND_LABEL_COLOR
-	                        },
-	                        {
-	                            "lightness": 17
-	                        },
-	                        {
-	                            "visibility": "on"
-	                        }
-	                    ]
-	                },
-	                {
-	                    "featureType": "water",
-	                    "elementType": "geometry.fill",
-	                    "stylers": [
-	                        {
-	                            "color": BACKGROUND_COLOR
-	                        }
-	                    ]
 	                }
 	            ];
 
@@ -429,14 +403,14 @@ function initialize() {
 	    {name: STYLE_TITLE});
 	  
 	var mapOptions = {
-			center: currentLocation,
 			zoom: ZOOM,
 			streetViewControl: STREET_VIEW_CONTROL,
 			mapTypeControlOptions: {
 			      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
 			}
 	};
-	var map = new google.maps.Map(document.getElementById(DIV),mapOptions);
+	map = new google.maps.Map(document.getElementById(DIV),mapOptions);
+	/*
 	var currentLocationMarker = new google.maps.Marker({
 	      position: currentLocation,
 	      map: map
@@ -464,14 +438,69 @@ function initialize() {
 		map: map,
 		icon: luasIcon
 	});
-	
-
+	*/
 	map.mapTypes.set('map_style', styledMap);
 	map.setMapTypeId('map_style')
 	  
 	
 	var trafficLayer = new google.maps.TrafficLayer();
 	trafficLayer.setMap(map);
-	
+	getLocations();
+	constantLoop();
  }
+
 google.maps.event.addDomListener(window, 'load', initialize);
+
+function getLocations(){
+	console.log("getLocations()");
+	Android.updateLocations();
+	var latlngbounds = new google.maps.LatLngBounds();
+	if(Android.hasCurrentLocation()){
+		var newLatLng = new google.maps.LatLng(Android.getCurrentLatitude(), Android.getCurrentLongitude());
+		var currentMarker = new google.maps.Marker({
+			map: map,
+			position: newLatLng
+		});
+		latlngbounds.extend(newLatLng);
+	}
+	if(Android.hasDublinBusLocation()){
+		var newLatLng = new google.maps.LatLng(Android.getDublinBusLatitude(), Android.getDublinBusLongitude());
+		var dublinBusStopMarker = new google.maps.Marker({
+			map: map,
+			position: newLatLng
+		});
+		latlngbounds.extend(newLatLng);
+	}
+	if(Android.hasIrishRailLocation()){
+		var newLatLng = new google.maps.LatLng(Android.getIrishRailLatitude(), Android.getIrishRailLongitude());
+		var irishRailStopMarker = new google.maps.Marker({
+			map: map,
+			position: newLatLng
+		});
+		latlngbounds.extend(newLatLng);
+	}
+	if(Android.hasLuasLocation()){
+		var newLatLng = new google.maps.LatLng(Android.getLuasLatitude(), Android.getLuasLongitude());
+		var luasStopMarker = new google.maps.Marker({
+			map: map,
+			position: newLatLng
+		});
+		latlngbounds.extend(newLatLng);
+	}
+	if(Android.hasBusEireannLocation()){
+		var newLatLng = new google.maps.LatLng(Android.getBusEireannLatitude(), Android.getBusEireannLongitude());
+		var busEireannMarker = new google.maps.Marker({
+			map: map,
+			position: newLatLng
+		});
+		latlngbounds.extend(newLatLng);
+	}
+	map.fitBounds(latlngbounds);
+}
+
+function constantLoop() {
+	console.log("here");
+	if(Android.isQuerying()){
+		getLocations();
+	}
+};

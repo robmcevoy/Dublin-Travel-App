@@ -6,11 +6,12 @@ import android.webkit.JavascriptInterface;
 
 public class RtpiWebViewInterface extends WebViewInterface{
 	
-	private RtpiController rtpiController;
 	private ArrayList<StopInfo> stopInfoArray;
 	private final int MAX_NUM_ON_CHART = 5;
+	private RtpiController rtpiController;
 	
 	public RtpiWebViewInterface(RtpiController rtpiController){
+		super(rtpiController);
 		this.rtpiController = rtpiController;
 		this.stopInfoArray = new ArrayList<StopInfo>();
 	}
@@ -51,18 +52,6 @@ public class RtpiWebViewInterface extends WebViewInterface{
      @JavascriptInterface
 	 public int getMaxOnChart(){
     	 return MAX_NUM_ON_CHART;
-     }
-     
-     @JavascriptInterface
-     public String getBackgroundColor(){
-    	 String tmp =rtpiController.getCurrentContext().getResources().getString(R.color.dark_grey);
-    	 return "#" + tmp.substring(3);
-     }
-     
-     @JavascriptInterface
-     public String getSecondaryColor(){
-    	 String tmp = rtpiController.getCurrentContext().getResources().getString(R.color.orange);
-    	 return "#" + tmp.substring(3);
      }
      
      @JavascriptInterface

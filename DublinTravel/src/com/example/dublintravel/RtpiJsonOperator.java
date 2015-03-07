@@ -8,6 +8,7 @@ public class RtpiJsonOperator extends Operator{
 	private final String URL_MIDDLE = "&operator=";
 	private final String URL_END = "&format=json";
 	private final String URL_GET_STOPS_START = "http://www.dublinked.ie/cgi-bin/rtpi/busstopinformation?operator=";
+	private final String URL_GET_STOP_LOCATION = "http://www.dublinked.ie/cgi-bin/rtpi/busstopinformation?stopid=";
 	private boolean NEEDS_AUTH=true;
 	private Parser parser;
 	
@@ -27,8 +28,15 @@ public class RtpiJsonOperator extends Operator{
 		return URL_GET_STOPS_START + op_code + URL_END;
 	}
 	
+	public boolean requireAdditionalLocationRequest() {
+		return true;
+	}
+	
+	public String generateStopLocationUrl(String stop) {
+		return URL_GET_STOP_LOCATION + stop;
+	}
+	
 	public boolean needsAuth(){
 		return NEEDS_AUTH;
-	}
-
+	}	
 }

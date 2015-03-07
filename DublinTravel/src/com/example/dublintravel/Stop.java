@@ -9,12 +9,20 @@ public class Stop implements Comparable<Stop>, Serializable{
 	private String name;
 	private boolean error;
 	private String errorMessage;
+	private Location location;
 	
 	public Stop(){}
 	
 	public Stop(String stopId, String name){
 		this.stopID = stopId;
 		this.name = name;
+		this.error = false;
+	}
+	
+	public Stop(String stopId, String name, Location location){
+		this.stopID = stopId;
+		this.name = name;
+		this.location = location;
 		this.error = false;
 	}
 	
@@ -39,5 +47,17 @@ public class Stop implements Comparable<Stop>, Serializable{
 	
 	public int compareTo(Stop other){
 		return name.compareToIgnoreCase(other.getName());
+	}
+	
+	public void setLocation(Location location){
+		this.location = location;
+	}
+	
+	public Location getLocation(){
+		return location;
+	}
+	
+	public boolean hasLocation(){
+		return location != null;
 	}
 }

@@ -56,18 +56,18 @@ public class RtpiController extends Controller {
 		wipeStopView();
 		wipeStopInfoView();
 		this.operator = operator;
-		if(this.operator.hasPreviousStop()){
-			this.currentStop = this.operator.getPreviousStop();
-			setStopView();
-		}
-		else
-			this.currentStop = null;
 		changeImageViewBorder(imageView);
 		chartVis.reload();
 		twitterFeed.reload();
 		if(queryStarted){
 			queryer.interrupt();
 		}
+		if(this.operator.hasPreviousStop()){
+			this.currentStop = this.operator.getPreviousStop();
+			changeStop(this.operator.getPreviousStop());
+		}
+		else
+			this.currentStop = null;
 	}
 	
 	public synchronized Operator getCurrentOperator(){

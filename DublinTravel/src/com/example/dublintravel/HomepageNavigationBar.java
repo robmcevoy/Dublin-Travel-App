@@ -3,7 +3,6 @@ package com.example.dublintravel;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -18,6 +17,11 @@ public class HomepageNavigationBar extends NavigationBar {
 				busEireannImageView, mapImageView);
 		this.context = context;
 	}
+	
+	@Override
+	public Context getContext() {
+		return context;
+	}
 
 	@Override
 	public void operatorClick(ImageView imageview, final Operator operator) {
@@ -25,12 +29,13 @@ public class HomepageNavigationBar extends NavigationBar {
         {
             public void onClick(View v)
             {
+            	for(int i=0; i<NUM_OPERATORS; i++){
+            		operators[i].deactivate();
+            	}
             	operator.activate();
-            	Bundle bundle = new Bundle();  
-            	bundle.putSerializable(Globals.getOperatorsKey(), operators);
-            	Intent i = new Intent(context, RtpiDashboardActivity.class);
-            	i.putExtras(bundle);
-            	context.startActivity(i);
+            	Intent i = new Intent(getContext(), RtpiDashboardActivity.class);
+            	i.putExtras(createBundle());
+            	getContext().startActivity(i);
             	operator.deactivate();
             }
         });
@@ -43,20 +48,11 @@ public class HomepageNavigationBar extends NavigationBar {
         {
             public void onClick(View v)
             {
-            	Intent i = new Intent(context, LiveMapActivity.class);
-            	context.startActivity(i);
+            	Intent i = new Intent(getContext(), LiveMapActivity.class);
+            	i.putExtras(createBundle());
+            	getContext().startActivity(i);
             }
         });
 	}
-
-	public void handleBundle(Bundle extras) {
-		// homepage will never receive a bundle
-	}
-
-	@Override
-	public void onBackPressed() {
-		// do nothing
-	}
-
 
 }

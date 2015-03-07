@@ -1,19 +1,18 @@
 package com.example.dublintravel;
 
-import android.content.Context;
 import android.webkit.WebView;
 
 public class LiveMap extends EmbeddedBrowser {
 	
 	private final String URL = "file:///android_asset/live_map/live_map.html";
 	private LiveMapWebViewInterface webInterface;
-	private Context context;
+	private LiveMapController liveMapController;
 	
-	public LiveMap(WebView webview, Context context){
+	public LiveMap(WebView webview, LiveMapController liveMapController){
 		super(webview);
-		this.context = context;
 		this.url = URL;
-		webInterface = new LiveMapWebViewInterface(this.context);
+		this.liveMapController = liveMapController;
+		webInterface = new LiveMapWebViewInterface(this.liveMapController);
 	}
 
 	public boolean hasWebViewInterface() {

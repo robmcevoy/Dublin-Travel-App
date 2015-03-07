@@ -26,6 +26,8 @@ public class JSONParser extends Parser {
 	private final String STOP_ID="stopid";
 	private final String NAME_JOIN=", ";
 	private final String TIME_STAMP="timestamp";
+	private final String LATITUDE = "latitude";
+	private final String LONGITUDE = "longitude";
 	
 	public ArrayList<StopInfo> getStopInfo(String data){
 		
@@ -95,6 +97,33 @@ public class JSONParser extends Parser {
 			}
 		} catch (Exception e) {
 			return createStopError(errorMessage);
+		}
+	}
+	
+	public Location getStopLocation(String data){
+		String errorCode, longitude, latitude;
+		String errorMessage=DEFAULT_ERROR_MESSAGE;
+		Location location = new Location();
+		int resultsLength;
+		try{
+			JSONObject json = new JSONObject(data);
+			errorCode = json.getString(ERROR_CODE);
+			errorMessage = json.getString(ERROR_MESSAGE);
+			if(errorCode.equals(NO_ERROR_CODE)){
+				JSONArray result = json.getJSONArray(RESULTS);
+				resultsLength = result.length();
+				for(int i=0; ((i<1) && (i<resultsLength)); i++){
+					JSONObject resultItem = result.getJSONObject(i);
+					latitude = resultItem.getString(LATITUDE);
+					longitude = resultItem.getString(LONGITUDE);
+					location.setLatitude(latitude);
+					location.setLongitude(longitude);
+				}
+			}
+			return location;
+		}
+		catch(Exception e){
+			return location;
 		}
 	}
 	

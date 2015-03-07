@@ -25,6 +25,14 @@ public class RtpiXmlOperator extends Operator{
 		return STOPS_URL;
 	}
 	
+	public boolean requireAdditionalLocationRequest() {
+		return false;
+	}
+	
+	public String generateStopLocationUrl(String stop) {
+		return "";
+	}
+	
 	public boolean needsAuth(){
 		return NEEDS_AUTH;
 	}

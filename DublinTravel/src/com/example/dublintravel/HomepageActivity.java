@@ -2,11 +2,8 @@ package com.example.dublintravel;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class HomepageActivity extends Activity {
 	
@@ -26,6 +23,10 @@ public class HomepageActivity extends Activity {
 	    
 	    navbar = new HomepageNavigationBar(dublinBusImageView, luasImageView, irishRailImageView, busEireannImageView, liveMapLogoImageView, this);
 	    navbar.activate();
+	    
+	    // handle bundle
+        final Bundle EXTRAS = getIntent().getExtras();
+        navbar.handleBundle(EXTRAS);
 
 	}
 

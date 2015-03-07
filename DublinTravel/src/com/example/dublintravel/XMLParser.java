@@ -27,6 +27,8 @@ public class XMLParser extends Parser {
 	private final String SCH_ARRIVAL= "Scharrival";
 	private final String EXP_DEPART= "Expdepart";
 	private final String SCH_DEPART= "Schdepart";
+	private final String STATION_LATITUDE = "StationLatitude";
+	private final String STATION_LONGITUDE = "StationLongitude";
 	private final String SECONDS_CONCAT=":00";
 	private final String STATION_CODE="StationCode";
 	private final String STATION_ALIAS="StationAlias";
@@ -93,7 +95,8 @@ public class XMLParser extends Parser {
 		ArrayList<Stop> stops = new ArrayList<Stop>();
 		SAXBuilder saxBuilder = new SAXBuilder();
 		Stop stop;
-		String stopId, name;
+		String stopId, name, longitude, latitude;
+		Location location;
 		String errorMessage=DEFAULT_ERROR_MESSAGE;
 		try{
 			Document doc = saxBuilder.build(new StringReader(data));
@@ -104,9 +107,12 @@ public class XMLParser extends Parser {
 		    	Element node = (Element)list.get(i);
 		    	stopId = node.getChildText(STATION_CODE, namespace);
 		    	name = node.getChildText(STATION_ALIAS, namespace);
+		    	longitude = node.getChildText(STATION_LONGITUDE, namespace);
+		    	latitude = node.getChildText(STATION_LATITUDE, namespace);
+		    	location = new Location(latitude, longitude);
 		    	if(name.equals(""))
 		    		name = node.getChildText(STATION_DESC, namespace);
-		    	stop = new Stop(stopId, name);
+		    	stop = new Stop(stopId, name, location);
 		    	stops.add(stop);
 		    	Collections.sort(stops);
 		    }
@@ -115,5 +121,9 @@ public class XMLParser extends Parser {
 			return createStopError(errorMessage);
 		}
 		return stops;
+	}
+
+	public Location getStopLocation(String data) {
+		return null;
 	}
 }

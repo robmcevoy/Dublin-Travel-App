@@ -1,12 +1,20 @@
 package com.example.dublintravel;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.webkit.WebView;
 import android.widget.ImageView;
 
-public class LiveMapActivity extends Activity {
+public class LiveMapActivity extends Activity implements OnMapReadyCallback {
 	
 	LiveMapController controller;
 	LiveMapNavigationBar navbar;
@@ -23,9 +31,12 @@ public class LiveMapActivity extends Activity {
         navbar = new LiveMapNavigationBar(dublinBusImageView,luasImageView, 
 		irishRailImageView,busEireannImageView, liveMapImageView);
         controller = new LiveMapController(this, navbar);
-		WebView mapview = (WebView) findViewById(R.id.map);
-		LiveMap livemap = new LiveMap(mapview, controller);
-		livemap.start();
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+		//WebView mapview = (WebView) findViewById(R.id.map);
+		//LiveMap livemap = new LiveMap(mapview, controller);
+		//livemap.start();
 		
 		// handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
@@ -42,6 +53,12 @@ public class LiveMapActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		navbar.onBackPressed();
+	}
+
+	@Override
+	public void onMapReady(GoogleMap googleMap) {
+		googleMap.setMyLocationEnabled(true);
+		googleMap.setTrafficEnabled(true);
 	}
 
 }

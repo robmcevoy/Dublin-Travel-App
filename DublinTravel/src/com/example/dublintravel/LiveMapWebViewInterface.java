@@ -1,12 +1,9 @@
 package com.example.dublintravel;
 
-import android.location.LocationManager;
 import android.webkit.JavascriptInterface;
 
 public class LiveMapWebViewInterface extends WebViewInterface {
-	
-	private LocationManager locationManager;
-	private android.location.Location current;
+
 	private Location dublinBus;
 	private Location luas;
 	private Location busEireann;
@@ -16,31 +13,14 @@ public class LiveMapWebViewInterface extends WebViewInterface {
 	public LiveMapWebViewInterface(LiveMapController liveMapController){
 		super(liveMapController);
 		this.liveMapController = liveMapController;
-		this.locationManager = (LocationManager) controller.getCurrentContext().getSystemService(controller.getCurrentContext().LOCATION_SERVICE);
 	}
 	
 	@JavascriptInterface
 	public void updateLocations(){
-		current = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		dublinBus = liveMapController.getStopLocation(new DublinBusOperator().getIndex());
 		luas =  liveMapController.getStopLocation(new LuasOperator().getIndex());
 		busEireann = liveMapController.getStopLocation(new BusEireannOperator().getIndex());
 		irishRail = liveMapController.getStopLocation(new IrishRailOperator().getIndex());
-	}
-	
-	@JavascriptInterface
-	public boolean hasCurrentLocation() {
-		return current != null;
-	}
-	
-	@JavascriptInterface
-	public double getCurrentLongitude() {
-		return current.getLongitude();
-	}
-	
-	@JavascriptInterface
-	public double getCurrentLatitude() {
-		return current.getLatitude();
 	}
 	
 	@JavascriptInterface

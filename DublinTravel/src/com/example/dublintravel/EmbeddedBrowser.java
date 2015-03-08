@@ -6,7 +6,7 @@ import android.webkit.WebView;
 
 public abstract class EmbeddedBrowser {
 	
-	private WebView webview;
+	protected WebView webview;
 	protected String url = "";
 	
 	public EmbeddedBrowser(WebView webview){

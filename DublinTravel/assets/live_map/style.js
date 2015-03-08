@@ -1,58 +1,12 @@
-//getLocations();
-var map;
-const ZOOM = 1;
-const STREET_VIEW_CONTROL = false;
-const DIV = 'map-canvas';
-const dublin_bus_image = "../img/map_dublin_bus_icon.gif";
-const irish_rail_image = "../img/map_irish_rail_icon.gif";
-const bus_eireann_image = "../img/map_bus_eireann_icon.gif";
-const luas_image="../img/map_luas_icon.gif";
-const STYLE_TITLE = "Dark Theme";
 var BACKGROUND_COLOR= Android.getBackgroundColor();
 var PRIMARY_ROAD_COLOR="#A8A8A8"; 
 var SECONDARY_ROAD_AND_LABEL_COLOR =  "#FAFAFA";  
 var LIGHTER_SECONDARY = "#E8E8E8";
-var SIZE_WIDTH=60;
-var SIZE_HEIGHT=50;
-var tmpLocation1 = new google.maps.LatLng(53.392295, -6.382072);
-var tmpLocation2 = new google.maps.LatLng(53.377535, -6.395137);
-var tmpLocation3 = new google.maps.LatLng(53.379977, -6.355617);
-var tmpLocation4 = new google.maps.LatLng(53.373052, -6.362634);
-var dublinBusIcon = {
-		  url: dublin_bus_image,
-		  size: new google.maps.Size(SIZE_WIDTH, SIZE_WIDTH),
-		  origin: new google.maps.Point(0, 0),
-		  anchor: new google.maps.Point(17, 34),
-		  scaledSize: new google.maps.Size(SIZE_WIDTH, SIZE_HEIGHT)
-};
+const STYLE_TITLE = "Dark Theme";
 
-var irishRailIcon = {
-		  url: irish_rail_image,
-		  size: new google.maps.Size(SIZE_WIDTH, SIZE_WIDTH),
-		  origin: new google.maps.Point(0, 0),
-		  anchor: new google.maps.Point(17, 34),
-		  scaledSize: new google.maps.Size(SIZE_WIDTH, SIZE_HEIGHT)
-};
-
-var busEireannIcon = {
-		  url: bus_eireann_image,
-		  size: new google.maps.Size(SIZE_WIDTH, SIZE_WIDTH),
-		  origin: new google.maps.Point(0, 0),
-		  anchor: new google.maps.Point(17, 34),
-		  scaledSize: new google.maps.Size(SIZE_WIDTH, SIZE_HEIGHT)
-};
-
-var luasIcon = {
-		  url: luas_image,
-		  size: new google.maps.Size(SIZE_WIDTH, SIZE_WIDTH),
-		  origin: new google.maps.Point(0, 0),
-		  anchor: new google.maps.Point(17, 34),
-		  scaledSize: new google.maps.Size(SIZE_WIDTH, SIZE_HEIGHT)
-};
-
-function initialize() {
-	var styles = [
-	                {
+function getMapStyle(){
+	return [
+					{
 	                    "featureType": "all",
 	                    "elementType": "labels.text.fill",
 	                    "stylers": [
@@ -397,110 +351,5 @@ function initialize() {
 	                        }
 	                    ]
 	                }
-	            ];
-
-	 var styledMap = new google.maps.StyledMapType(styles,
-	    {name: STYLE_TITLE});
-	  
-	var mapOptions = {
-			zoom: ZOOM,
-			streetViewControl: STREET_VIEW_CONTROL,
-			mapTypeControlOptions: {
-			      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-			}
-	};
-	map = new google.maps.Map(document.getElementById(DIV),mapOptions);
-	/*
-	var currentLocationMarker = new google.maps.Marker({
-	      position: currentLocation,
-	      map: map
-	});
-	var dublinBusMarker = new google.maps.Marker({
-		position: tmpLocation1,
-		map: map,
-		icon: dublinBusIcon
-	});
-	
-	var irishRailMarker = new google.maps.Marker({
-		position: tmpLocation2,
-		map: map,
-		icon: irishRailIcon
-	});
-	
-	var busEireannMarker = new google.maps.Marker({
-		position: tmpLocation3,
-		map: map,
-		icon: busEireannIcon
-	});
-	
-	var luasMarker = new google.maps.Marker({
-		position: tmpLocation4,
-		map: map,
-		icon: luasIcon
-	});
-	*/
-	map.mapTypes.set('map_style', styledMap);
-	map.setMapTypeId('map_style')
-	  
-	
-	var trafficLayer = new google.maps.TrafficLayer();
-	trafficLayer.setMap(map);
-	getLocations();
-	constantLoop();
- }
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-function getLocations(){
-	console.log("getLocations()");
-	Android.updateLocations();
-	var latlngbounds = new google.maps.LatLngBounds();
-	if(Android.hasCurrentLocation()){
-		var newLatLng = new google.maps.LatLng(Android.getCurrentLatitude(), Android.getCurrentLongitude());
-		var currentMarker = new google.maps.Marker({
-			map: map,
-			position: newLatLng
-		});
-		latlngbounds.extend(newLatLng);
-	}
-	if(Android.hasDublinBusLocation()){
-		var newLatLng = new google.maps.LatLng(Android.getDublinBusLatitude(), Android.getDublinBusLongitude());
-		var dublinBusStopMarker = new google.maps.Marker({
-			map: map,
-			position: newLatLng
-		});
-		latlngbounds.extend(newLatLng);
-	}
-	if(Android.hasIrishRailLocation()){
-		var newLatLng = new google.maps.LatLng(Android.getIrishRailLatitude(), Android.getIrishRailLongitude());
-		var irishRailStopMarker = new google.maps.Marker({
-			map: map,
-			position: newLatLng
-		});
-		latlngbounds.extend(newLatLng);
-	}
-	if(Android.hasLuasLocation()){
-		var newLatLng = new google.maps.LatLng(Android.getLuasLatitude(), Android.getLuasLongitude());
-		var luasStopMarker = new google.maps.Marker({
-			map: map,
-			position: newLatLng
-		});
-		latlngbounds.extend(newLatLng);
-	}
-	if(Android.hasBusEireannLocation()){
-		var newLatLng = new google.maps.LatLng(Android.getBusEireannLatitude(), Android.getBusEireannLongitude());
-		var busEireannMarker = new google.maps.Marker({
-			map: map,
-			position: newLatLng
-		});
-		latlngbounds.extend(newLatLng);
-	}
-	map.fitBounds(latlngbounds);
-}
-
-function constantLoop() {
-	console.log("here");
-	if(Android.isQuerying()){
-		getLocations();
-	}
-};
+	            ]
+;}

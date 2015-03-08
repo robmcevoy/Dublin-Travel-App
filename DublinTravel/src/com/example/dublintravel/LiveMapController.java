@@ -11,14 +11,14 @@ public class LiveMapController extends Controller{
 	private LiveMapNavigationBar navbar;
 	private Operator[] operators;
 	private final Lock queryingLock = new ReentrantLock();
-	private boolean isQuerying;
+	private int numQueryingLocations;
 	
 	public LiveMapController(Context context, LiveMapNavigationBar navbar){
 		super(context);
 		this.navbar = navbar;
 		this.navbar.activate(this);
 		operators = new Operator[navbar.getNumOperators()];
-		isQuerying = false;
+		numQueryingLocations = 0;
 	}
 	
 	public void changeActiveOperator(Operator operator, ImageView imageView) {
@@ -31,13 +31,16 @@ public class LiveMapController extends Controller{
 	}
 	
 	private void getStopLocations(){
+		int count = 0;
 		GetStopLocationThread thread;
 		for(int i=0; i< navbar.getNumOperators(); i++){
 			if(operators[i].hasPreviousStop() && operators[i].requireAdditionalLocationRequest()){
 				thread = new GetStopLocationThread(this);
 				thread.execute(operators[i]);
+				count++;
 			}
 		}
+		setNumQueryingLocations(count);
 	}
 	
 	public synchronized void updateLocationOfOperator(Location location, Operator operator){
@@ -58,25 +61,36 @@ public class LiveMapController extends Controller{
 		return null;
 	}
 	
-	public synchronized boolean isQuerying(){
-		boolean toReturn;
-		queryingLock.lock();
+	public boolean isQuerying(){
+		boolean answer = false;
 		try{
-			toReturn = isQuerying;
+			queryingLock.lock();
+			answer = numQueryingLocations != 0;
 		}
 		catch(Exception e){
-			toReturn = false;
+			answer = false;
 		}
 		finally{
 			queryingLock.unlock();
 		}
-		return toReturn;
+		return answer;
 	}
 	
-	public synchronized void setIsQuerying(boolean isQuerying){
-		queryingLock.lock();
+	public void decNumQueryingLocations(){
 		try{
-			this.isQuerying = isQuerying;
+			queryingLock.lock();
+			numQueryingLocations--;
+		}
+		catch(Exception e){}
+		finally{
+			queryingLock.unlock();
+		}
+	}
+	
+	private void setNumQueryingLocations(int n){
+		try{
+			queryingLock.lock();
+			numQueryingLocations=n;
 		}
 		catch(Exception e){}
 		finally{

@@ -1,6 +1,7 @@
 package com.example.dublintravel;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 public class GetStopLocationThread extends AsyncTask<Operator, Void, String> {
 	
@@ -16,7 +17,6 @@ public class GetStopLocationThread extends AsyncTask<Operator, Void, String> {
 	@Override
 	protected String doInBackground(Operator... arg0) {
 		operator = arg0[0];
-		controller.setIsQuerying(true);
 		Stop stop = operator.getPreviousStop();
 		return hs.sendGetRequest(operator.generateStopLocationUrl(stop.getID()), operator.needsAuth());
 	}
@@ -24,7 +24,8 @@ public class GetStopLocationThread extends AsyncTask<Operator, Void, String> {
 	protected void onPostExecute(String result) {
 		Location location = operator.getParser().getStopLocation(result);
 		controller.updateLocationOfOperator(location, operator);
-		controller.setIsQuerying(false);
+		controller.decNumQueryingLocations();
+		Toast.makeText(controller.getCurrentContext(), operator.getOperatorCode() + " set isQuerying to false",Toast.LENGTH_SHORT).show();
 	}
 
 }

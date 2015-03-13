@@ -1,7 +1,9 @@
 package com.example.dublintravel;
 
+import com.google.android.gms.maps.model.BitmapDescriptor;
 
-public class RtpiJsonOperator extends Operator{
+
+public abstract class RtpiJsonOperator extends Operator{
 	
 	private static final long serialVersionUID = 7458768194716917137L;
 	private final String URL_START = "http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
@@ -11,6 +13,8 @@ public class RtpiJsonOperator extends Operator{
 	private final String URL_GET_STOP_LOCATION = "http://www.dublinked.ie/cgi-bin/rtpi/busstopinformation?stopid=";
 	private boolean NEEDS_AUTH=true;
 	private Parser parser;
+	
+	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
 	protected RtpiJsonOperator(){
 		parser = new JSONParser();

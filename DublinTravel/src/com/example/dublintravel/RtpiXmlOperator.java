@@ -1,13 +1,16 @@
 package com.example.dublintravel;
 
+import com.google.android.gms.maps.model.BitmapDescriptor;
 
-public class RtpiXmlOperator extends Operator{
+
+public abstract class RtpiXmlOperator extends Operator{
 
 	private static final long serialVersionUID = -5629661535826801033L;
 	private final String URL_START = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=";
 	private final String STOPS_URL="http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML ";
 	private Parser parser;
 	private boolean NEEDS_AUTH=false;
+	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
 	protected RtpiXmlOperator(){
 		parser = new XMLParser();

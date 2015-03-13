@@ -2,6 +2,10 @@ package com.example.dublintravel;
 
 import java.io.Serializable;
 
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 public abstract class Operator implements Serializable{
 	
 	private static final long serialVersionUID = -3463204625750886206L;
@@ -15,6 +19,7 @@ public abstract class Operator implements Serializable{
 	public abstract String generateStopLocationUrl(String stop);
 	public abstract boolean needsAuth();
 	public abstract boolean requireAdditionalLocationRequest();
+	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
 	protected Operator(){
 		isActive = false;
@@ -57,7 +62,5 @@ public abstract class Operator implements Serializable{
 	
 	public boolean isActive(){
 		return isActive;
-	}
-	
-	
+	}	
 }

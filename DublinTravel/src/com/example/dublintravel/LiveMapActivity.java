@@ -34,9 +34,6 @@ public class LiveMapActivity extends Activity implements OnMapReadyCallback {
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-		//WebView mapview = (WebView) findViewById(R.id.map);
-		//LiveMap livemap = new LiveMap(mapview, controller);
-		//livemap.start();
 		
 		// handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
@@ -55,10 +52,19 @@ public class LiveMapActivity extends Activity implements OnMapReadyCallback {
 		navbar.onBackPressed();
 	}
 
+	
 	@Override
-	public void onMapReady(GoogleMap googleMap) {
+	public void onMapReady(final GoogleMap googleMap) {
 		googleMap.setMyLocationEnabled(true);
 		googleMap.setTrafficEnabled(true);
+		
+		googleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+		    @Override
+		    public void onMapLoaded() {
+		    	controller.setMap(googleMap);
+		    }
+		});
+
 	}
 
 }

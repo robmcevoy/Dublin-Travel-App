@@ -1,5 +1,7 @@
 package com.example.dublintravel;
 
+import com.google.android.gms.maps.GoogleMap;
+
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -24,8 +26,9 @@ public class GetStopLocationThread extends AsyncTask<Operator, Void, String> {
 	protected void onPostExecute(String result) {
 		Location location = operator.getParser().getStopLocation(result);
 		controller.updateLocationOfOperator(location, operator);
+		GoogleMap map = controller.getMap();
+		map.addMarker(controller.getOperatorLocationMarker(operator));
 		controller.decNumQueryingLocations();
-		Toast.makeText(controller.getCurrentContext(), operator.getOperatorCode() + " set isQuerying to false",Toast.LENGTH_SHORT).show();
 	}
 
 }

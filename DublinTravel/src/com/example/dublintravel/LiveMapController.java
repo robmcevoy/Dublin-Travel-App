@@ -25,6 +25,9 @@ public class LiveMapController extends Controller{
 	private GoogleMap googleMap;
 	private ArrayList<MarkerOptions> markers;
 	private final int PADDING = 60;
+	private final LatLng IRELAND = new LatLng(53.484786, -7.701890);
+	private final int ZOOM = 6;
+	private android.location.Location currentLocation;
 	
 	public LiveMapController(Context context, LiveMapNavigationBar navbar){
 		super(context);
@@ -45,6 +48,9 @@ public class LiveMapController extends Controller{
 	
 	public void setMap(GoogleMap googleMap){
 		this.googleMap = googleMap;
+		this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(IRELAND, ZOOM));
+		this.googleMap.setMyLocationEnabled(true);
+		this.googleMap.setTrafficEnabled(true);
 		Operator irishRailOp = new IrishRailOperator();
 		if(operators[irishRailOp.getIndex()].hasPreviousStop()){
 			MarkerOptions marker = getOperatorLocationMarker(operators[irishRailOp.getIndex()]);
@@ -63,6 +69,11 @@ public class LiveMapController extends Controller{
 			setMapBounds();
 		}
 		getStopLocations();
+	}
+	
+	public void setLocation(android.location.Location location){
+		Toast.makeText(context, "controller got location",Toast.LENGTH_SHORT).show();
+		this.currentLocation = location;
 	}
 	
 	public GoogleMap getMap(){
@@ -116,11 +127,10 @@ public class LiveMapController extends Controller{
 	
 	private void setMapBounds(){
 		Toast.makeText(this.context, "Set Map Bounds",Toast.LENGTH_SHORT).show();
-		LatLngBounds.Builder builder = new LatLngBounds.Builder();
+		LatLngBounds.Builder builder = new LatLngBounds.Builder();	
 		for (MarkerOptions marker : markers) {
-		    builder.include(marker.getPosition());
+		   	builder.include(marker.getPosition());
 		}
-		android.location.Location currentLocation = this.googleMap.getMyLocation();
 		builder.include(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()));
 		LatLngBounds bounds = builder.build();
 		CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, PADDING);

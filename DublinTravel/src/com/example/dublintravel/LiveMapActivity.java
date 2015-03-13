@@ -1,23 +1,33 @@
 package com.example.dublintravel;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-public class LiveMapActivity extends Activity implements OnMapReadyCallback {
+public class LiveMapActivity extends Activity implements OnMapReadyCallback, LocationListener,
+GoogleApiClient.ConnectionCallbacks,
+GoogleApiClient.OnConnectionFailedListener{
 	
 	LiveMapController controller;
 	LiveMapNavigationBar navbar;
+	private LocationRequest locationRequest;
+    private GoogleApiClient googleApiClient;
+    private Location location;
+    private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +48,21 @@ public class LiveMapActivity extends Activity implements OnMapReadyCallback {
 		// handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
         navbar.handleBundle(EXTRAS);
+        
+        //location
+        locationRequest = LocationRequest.create();
+        googleApiClient = new GoogleApiClient.Builder(this)
+        .addApi(LocationServices.API)
+        .addConnectionCallbacks(this)
+        .addOnConnectionFailedListener(this)
+        .build();
+        if (googleApiClient != null) {
+            googleApiClient.connect();
+        }
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.live_map, menu);
 		return true;
 	}
@@ -55,8 +75,6 @@ public class LiveMapActivity extends Activity implements OnMapReadyCallback {
 	
 	@Override
 	public void onMapReady(final GoogleMap googleMap) {
-		googleMap.setMyLocationEnabled(true);
-		googleMap.setTrafficEnabled(true);
 		
 		googleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
 		    @Override
@@ -66,5 +84,28 @@ public class LiveMapActivity extends Activity implements OnMapReadyCallback {
 		});
 
 	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		//TODO react when location changes
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {}
+
+	@Override
+	public void onConnected(Bundle arg0) {
+		Location currentLocation = fusedLocationProviderApi.getLastLocation(googleApiClient);
+        if (currentLocation != null) {
+            location = currentLocation;
+            controller.setLocation(location);
+        }
+        else{
+        	fusedLocationProviderApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+        }
+	}
+
+	@Override
+	public void onConnectionSuspended(int cause) {}
 
 }

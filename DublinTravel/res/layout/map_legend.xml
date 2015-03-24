@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   	android:layout_width="match_parent"
+  	android:layout_height="match_parent" 
+   	android:orientation="vertical">
+   	
+    <LinearLayout
+        android:layout_width="match_parent"
+	  	android:layout_height="0dp"
+		android:layout_weight="0.25"
+		android:background="@drawable/rounded_corner_orange"
+		android:layout_marginBottom="5dp"   >
+ 		<ImageView
+			android:id="@+id/busEireannMarker"
+	  		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.2"
+	  		android:src="@drawable/bus_eireann_marker"/>	    
+   		<TextView
+	   		android:id="@+id/busEireannStopName"
+	   		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.8"
+			style="@style/map_stop_name"/>
+   	</LinearLayout>
+   	
+    <LinearLayout
+        android:layout_width="match_parent"
+	  	android:layout_height="0dp"
+		android:layout_weight="0.25"
+		android:background="@drawable/rounded_corner_orange" 
+		android:layout_marginBottom="5dp"  >
+   		<ImageView
+	   		android:id="@+id/luasMarker"
+	  		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.2"
+	   		android:src="@drawable/luas_marker" />
+		<TextView
+	  		android:id="@+id/luasStopName"
+	   		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.8"
+			style="@style/map_stop_name"/> 
+	 </LinearLayout>  
+	 
+    <LinearLayout
+        android:layout_width="match_parent"
+	  	android:layout_height="0dp"
+		android:layout_weight="0.25" 
+		android:background="@drawable/rounded_corner_orange" 
+		android:layout_marginBottom="5dp" > 
+   		<ImageView
+	  		android:id="@+id/irishRailMarker"
+	  		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.2"
+	 		android:src="@drawable/irish_rail_marker"  />
+   		<TextView
+	   		android:id="@+id/irishRailStopName"
+	   		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.8"
+			style="@style/map_stop_name"/>	
+   	</LinearLayout>
+   	
+    <LinearLayout
+        android:layout_width="match_parent"
+	  	android:layout_height="0dp"
+		android:layout_weight="0.25"
+		android:background="@drawable/rounded_corner_orange" 
+		android:layout_marginBottom="5dp"  > 
+   		<ImageView
+	  		android:id="@+id/dublinBusMarker"
+	   		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.2"
+	 		android:src="@drawable/dublin_bus_marker" />   
+   		<TextView
+	   		android:id="@+id/dublinBusStopName"
+	   		android:layout_width="0dp"
+	  		android:layout_height="match_parent"
+			android:layout_weight="0.8"
+			style="@style/map_stop_name"/>
+   	</LinearLayout>
+   		    
+ </LinearLayout>

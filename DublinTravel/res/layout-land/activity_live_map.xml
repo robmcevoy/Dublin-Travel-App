@@ -11,44 +11,35 @@
    	    android:layout_height="0dp" 
    	    android:layout_weight="0.85">
    	    
-   	    <!-- 
    	    <LinearLayout
-    	    android:background="@drawable/rounded_corner_orange"
-    	    android:layout_width="0dp"
-    	    android:layout_height="match_parent"
-    	    android:layout_weight="0.7"
-    	    android:padding="4dp"
-    	    android:layout_marginRight="5dp">
-
-   			<WebView
-   		    	android:id="@+id/map"
-   		    	android:layout_width="match_parent"
-   		    	android:layout_height="match_parent"
-			/>
+   			android:layout_width="0dp"
+  			android:layout_height="match_parent" 
+   			android:layout_marginRight="5dp"
+   			android:layout_weight="0.20" >
    			
-   		</LinearLayout>
-   		 -->
-   		 
+   	        <include layout="@layout/map_legend"/>
+  		</LinearLayout>
+   		
    		 <LinearLayout
     	    android:background="@drawable/rounded_corner_orange"
     	    android:layout_width="0dp"
     	    android:layout_height="match_parent"
-    	    android:layout_weight="0.7"
+    	    android:layout_weight="0.55"
     	    android:padding="4dp"
     	    android:layout_marginRight="5dp">
-   		 <fragment
-   		    android:background="@drawable/rounded_corner_orange"
-          	android:id="@+id/map"
-          	android:layout_width="match_parent"
-          	android:layout_height="match_parent"
-          	android:name="com.google.android.gms.maps.MapFragment"/>
+   		 	<fragment
+   		    	android:background="@drawable/rounded_corner_orange"
+          		android:id="@+id/map"
+          		android:layout_width="match_parent"
+          		android:layout_height="match_parent"
+          		android:name="com.google.android.gms.maps.MapFragment"/>
    		 </LinearLayout>
    		 
    	     <LinearLayout
     	    android:background="@drawable/rounded_corner_orange"
     	    android:layout_width="0dp"
     	    android:layout_height="match_parent"
-    	    android:layout_weight="0.3"
+    	    android:layout_weight="0.25"
     	    android:padding="4dp">
 
    			<WebView

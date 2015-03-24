@@ -1,10 +1,7 @@
 package com.example.dublintravel;
 
 import java.io.Serializable;
-
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 public abstract class Operator implements Serializable{
 	
@@ -13,6 +10,7 @@ public abstract class Operator implements Serializable{
 	protected String op_code;
 	protected int index;
 	protected boolean isActive;
+	private final int numPossibleOperators = 4;
 	public abstract Parser getParser();
 	public abstract String generateRealtimeInfoUrlString(String stop);
 	public abstract String generateStopsUrl();
@@ -62,5 +60,13 @@ public abstract class Operator implements Serializable{
 	
 	public boolean isActive(){
 		return isActive;
-	}	
+	}
+	
+	public int getNumPossibleOperators(){
+		return numPossibleOperators;
+	}
+	
+	public boolean shouldSendLocationRequest(){
+		return hasPreviousStop() && requireAdditionalLocationRequest();
+	}
 }

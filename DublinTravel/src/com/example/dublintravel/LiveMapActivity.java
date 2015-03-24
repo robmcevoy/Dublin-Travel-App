@@ -14,9 +14,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class LiveMapActivity extends Activity implements OnMapReadyCallback, LocationListener,
 GoogleApiClient.ConnectionCallbacks,
@@ -40,7 +39,16 @@ GoogleApiClient.OnConnectionFailedListener{
         final ImageView liveMapImageView = (ImageView) findViewById(R.id.liveMapLogo);
         navbar = new LiveMapNavigationBar(dublinBusImageView,luasImageView, 
 		irishRailImageView,busEireannImageView, liveMapImageView);
-        controller = new LiveMapController(this, navbar);
+        TextView busEireannStopName = (TextView) findViewById(R.id.busEireannStopName);
+        TextView dublinBusStopName = (TextView) findViewById(R.id.dublinBusStopName);
+        TextView irishRailStopName = (TextView) findViewById(R.id.irishRailStopName);
+        TextView luasStopName = (TextView) findViewById(R.id.luasStopName);
+        TextView[] stopNamesArray = new TextView[navbar.getNumOperators()];
+        stopNamesArray[new BusEireannOperator().getIndex()] = busEireannStopName;
+        stopNamesArray[new DublinBusOperator().getIndex()] = dublinBusStopName;
+        stopNamesArray[new IrishRailOperator().getIndex()] = irishRailStopName;
+        stopNamesArray[new LuasOperator().getIndex()] = luasStopName;
+        controller = new LiveMapController(this, navbar,stopNamesArray);
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

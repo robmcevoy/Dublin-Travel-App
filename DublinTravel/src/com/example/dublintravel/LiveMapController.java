@@ -9,12 +9,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import android.content.Context;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
+
 
 public class LiveMapController extends Controller{
 	
@@ -28,12 +27,14 @@ public class LiveMapController extends Controller{
 	private final LatLng IRELAND = new LatLng(53.484786, -7.701890);
 	private final int ZOOM = 6;
 	private android.location.Location currentLocation;
+	private TextView[] stopNames;
 	
-	public LiveMapController(Context context, LiveMapNavigationBar navbar){
+	public LiveMapController(Context context, LiveMapNavigationBar navbar, TextView[] stopNames){
 		super(context);
 		this.navbar = navbar;
 		this.navbar.activate(this);
 		this.markers = new ArrayList<MarkerOptions>();
+		this.stopNames = stopNames;
 		operators = new Operator[navbar.getNumOperators()];
 		numQueryingLocations = 0;
 	}
@@ -44,6 +45,7 @@ public class LiveMapController extends Controller{
 	
 	public void setOperators(Operator[] newOperators){
 		this.operators = newOperators;
+		setStopNames();
 	}
 	
 	public void setMap(GoogleMap googleMap){
@@ -72,7 +74,6 @@ public class LiveMapController extends Controller{
 	}
 	
 	public void setLocation(android.location.Location location){
-		Toast.makeText(context, "controller got location",Toast.LENGTH_SHORT).show();
 		this.currentLocation = location;
 	}
 	
@@ -84,13 +85,21 @@ public class LiveMapController extends Controller{
 		int count = 0;
 		GetStopLocationThread thread;
 		for(int i=0; i< navbar.getNumOperators(); i++){
-			if(operators[i].hasPreviousStop() && operators[i].requireAdditionalLocationRequest()){
+			if(operators[i].shouldSendLocationRequest()){
 				thread = new GetStopLocationThread(this);
 				thread.execute(operators[i]);
 				count++;
 			}
 		}
 		setNumQueryingLocations(count);
+	}
+	
+	private void setStopNames(){
+		for(int i=0; i < navbar.getNumOperators(); i++){
+			if(operators[i].hasPreviousStop()){
+				stopNames[i].setText(operators[i].getPreviousStop().getName());
+			}
+		}
 	}
 	
 	public synchronized void updateLocationOfOperator(Location location, Operator operator){
@@ -100,6 +109,8 @@ public class LiveMapController extends Controller{
 				tmp = operators[i].getPreviousStop();
 				tmp.setLocation(location);
 				operators[i].setPreviousStop(tmp);
+				navbar.setOperatorWithLocation(operators[i]);
+				i = navbar.getNumOperators();
 			}
 		}
 	}
@@ -126,7 +137,6 @@ public class LiveMapController extends Controller{
 	}
 	
 	private void setMapBounds(){
-		Toast.makeText(this.context, "Set Map Bounds",Toast.LENGTH_SHORT).show();
 		LatLngBounds.Builder builder = new LatLngBounds.Builder();	
 		for (MarkerOptions marker : markers) {
 		   	builder.include(marker.getPosition());

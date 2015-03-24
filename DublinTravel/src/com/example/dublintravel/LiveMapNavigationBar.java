@@ -30,6 +30,10 @@ public class LiveMapNavigationBar extends NavigationBar {
 		super.resetOperators(newOperators);
 		controller.setOperators(operators);
 	}
+	
+	public void setOperatorWithLocation(Operator withLocation){
+		operators[withLocation.getIndex()] = withLocation;
+	}
 
 	@Override
 	public void operatorClick(ImageView imageview, final Operator operator) {

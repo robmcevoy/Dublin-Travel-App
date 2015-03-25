@@ -15,7 +15,7 @@
    			android:layout_width="0dp"
   			android:layout_height="match_parent" 
    			android:layout_marginRight="5dp"
-   			android:layout_weight="0.20" >
+   			android:layout_weight="0.25" >
    			
    	        <include layout="@layout/map_legend"/>
   		</LinearLayout>
@@ -24,7 +24,7 @@
     	    android:background="@drawable/rounded_corner_orange"
     	    android:layout_width="0dp"
     	    android:layout_height="match_parent"
-    	    android:layout_weight="0.55"
+    	    android:layout_weight="0.50"
     	    android:padding="4dp"
     	    android:layout_marginRight="5dp">
    		 	<fragment

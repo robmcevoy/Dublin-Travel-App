@@ -17,7 +17,7 @@ public abstract class RtpiJsonOperator extends Operator{
 	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
 	protected RtpiJsonOperator(){
-		parser = new JSONParser();
+		parser = new RtpiJsonParser();
 	}
 	
 	public Parser getParser(){

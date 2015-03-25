@@ -1,88 +1,437 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-   	android:layout_width="match_parent"
-  	android:layout_height="match_parent" 
-   	android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
    	
-    <LinearLayout
+     <LinearLayout
         android:layout_width="match_parent"
 	  	android:layout_height="0dp"
 		android:layout_weight="0.25"
 		android:background="@drawable/rounded_corner_orange"
-		android:layout_marginBottom="5dp"   >
- 		<ImageView
-			android:id="@+id/busEireannMarker"
-	  		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.2"
-	  		android:src="@drawable/bus_eireann_marker"/>	    
-   		<TextView
-	   		android:id="@+id/busEireannStopName"
-	   		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.8"
-			style="@style/map_stop_name"/>
-   	</LinearLayout>
-   	
-    <LinearLayout
+		android:layout_marginBottom="5dp" 
+		android:orientation="vertical" >
+		<LinearLayout
+   			android:layout_width="match_parent"
+  			android:layout_height="0dp" 
+  			android:layout_weight= "0.7">
+  			
+		    <ImageView
+	  			android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.2"
+	  			android:src="@drawable/bus_eireann_marker"/>
+		   	 
+		    <LinearLayout 
+		        android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.8"
+				android:orientation="vertical">
+				
+		        <TextView
+	   				android:id="@+id/busEireannStopName"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.3"	 
+					style="@style/map_stop_name"/>
+		        
+		        <TextView
+	   				android:id="@+id/busEireannStopDistance"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+		        
+		    </LinearLayout>
+   			
+		</LinearLayout>
+		
+		<LinearLayout
+        	android:layout_width="match_parent"
+	  		android:layout_height="0dp"
+			android:layout_weight="0.3"
+			android:layout_marginBottom="5dp" 
+			android:layout_marginLeft="5dp"  >
+				
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/walking"/>
+   			
+   				<TextView
+	   				android:id="@+id/busEireannStopWalk"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/cycling"/>
+   			
+   				<TextView
+	   				android:id="@+id/busEireannStopCycling"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/driving"/>
+   			
+   				<TextView
+	   				android:id="@+id/busEireannStopDriving"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   		</LinearLayout>			
+	</LinearLayout>
+	<LinearLayout
         android:layout_width="match_parent"
 	  	android:layout_height="0dp"
 		android:layout_weight="0.25"
-		android:background="@drawable/rounded_corner_orange" 
-		android:layout_marginBottom="5dp"  >
-   		<ImageView
-	   		android:id="@+id/luasMarker"
-	  		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.2"
-	   		android:src="@drawable/luas_marker" />
-		<TextView
-	  		android:id="@+id/luasStopName"
-	   		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.8"
-			style="@style/map_stop_name"/> 
-	 </LinearLayout>  
-	 
-    <LinearLayout
-        android:layout_width="match_parent"
-	  	android:layout_height="0dp"
-		android:layout_weight="0.25" 
-		android:background="@drawable/rounded_corner_orange" 
-		android:layout_marginBottom="5dp" > 
-   		<ImageView
-	  		android:id="@+id/irishRailMarker"
-	  		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.2"
-	 		android:src="@drawable/irish_rail_marker"  />
-   		<TextView
-	   		android:id="@+id/irishRailStopName"
-	   		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.8"
-			style="@style/map_stop_name"/>	
-   	</LinearLayout>
-   	
-    <LinearLayout
+		android:background="@drawable/rounded_corner_orange"
+		android:layout_marginBottom="5dp"
+		android:orientation="vertical" >
+		<LinearLayout
+   			android:layout_width="match_parent"
+  			android:layout_height="0dp" 
+  			android:layout_weight= "0.7">
+  			
+		    <ImageView
+	  			android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.2"
+	  			android:src="@drawable/luas_marker"/>
+		   	 
+		    <LinearLayout 
+		        android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.8"
+				android:orientation="vertical">
+				
+		        <TextView
+	   				android:id="@+id/luasStopName"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.3"	 
+					style="@style/map_stop_name"/>
+		        
+		        <TextView
+	   				android:id="@+id/luasStopDistance"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+		        
+		    </LinearLayout>
+   			
+		</LinearLayout>
+		
+		<LinearLayout
+        	android:layout_width="match_parent"
+	  		android:layout_height="0dp"
+			android:layout_weight="0.3"
+			android:layout_marginBottom="5dp"
+			android:layout_marginLeft="5dp"   >
+				
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/walking"/>
+   			
+   				<TextView
+	   				android:id="@+id/luasStopWalk"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/cycling"/>
+   			
+   				<TextView
+	   				android:id="@+id/luasStopCycling"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/driving"/>
+   			
+   				<TextView
+	   				android:id="@+id/luasStopDriving"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
         android:layout_width="match_parent"
 	  	android:layout_height="0dp"
 		android:layout_weight="0.25"
-		android:background="@drawable/rounded_corner_orange" 
-		android:layout_marginBottom="5dp"  > 
-   		<ImageView
-	  		android:id="@+id/dublinBusMarker"
-	   		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.2"
-	 		android:src="@drawable/dublin_bus_marker" />   
-   		<TextView
-	   		android:id="@+id/dublinBusStopName"
-	   		android:layout_width="0dp"
-	  		android:layout_height="match_parent"
-			android:layout_weight="0.8"
-			style="@style/map_stop_name"/>
-   	</LinearLayout>
-   		    
- </LinearLayout>
+		android:background="@drawable/rounded_corner_orange"
+		android:layout_marginBottom="5dp" 
+		android:orientation="vertical" >
+		
+		<LinearLayout
+   			android:layout_width="match_parent"
+  			android:layout_height="0dp" 
+  			android:layout_weight= "0.7">
+  			
+		    <ImageView
+	  			android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.2"
+	  			android:src="@drawable/irish_rail_marker"/>
+		   	 
+		    <LinearLayout 
+		        android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.8"
+				android:orientation="vertical">
+				
+		        <TextView
+	   				android:id="@+id/irishRailStopName"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.3"	 
+					style="@style/map_stop_name"/>
+		        
+		        <TextView
+	   				android:id="@+id/irishRailStopDistance"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+		        
+		    </LinearLayout>
+   			
+		</LinearLayout>
+		
+		<LinearLayout
+        	android:layout_width="match_parent"
+	  		android:layout_height="0dp"
+			android:layout_weight="0.3"
+			android:layout_marginBottom="5dp"
+			android:layout_marginLeft="5dp"   >
+				
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/walking"/>
+   			
+   				<TextView
+	   				android:id="@+id/irishRailStopWalk"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/cycling"/>
+   			
+   				<TextView
+	   				android:id="@+id/irishRailStopCycling"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/driving"/>
+   			
+   				<TextView
+	   				android:id="@+id/irishRailStopDriving"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+	  	android:layout_height="0dp"
+		android:layout_weight="0.25"
+		android:background="@drawable/rounded_corner_orange"
+		android:layout_marginBottom="5dp"  
+		android:orientation="vertical" >
+
+	 	<LinearLayout
+   			android:layout_width="match_parent"
+  			android:layout_height="0dp" 
+  			android:layout_weight= "0.7">
+  			
+		    <ImageView
+	  			android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.2"
+	  			android:src="@drawable/dublin_bus_marker"/>
+		   	 
+		    <LinearLayout 
+		        android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.8"
+				android:orientation="vertical">
+				
+		        <TextView
+	   				android:id="@+id/dublinBusStopName"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.3"	 
+					style="@style/map_stop_name"/>
+		        
+		        <TextView
+	   				android:id="@+id/dublinBusStopDistance"
+	   				android:layout_width="match_parent"
+	  				android:layout_height="0dp"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+		        
+		    </LinearLayout>
+   			
+		</LinearLayout>
+		
+		<LinearLayout
+        	android:layout_width="match_parent"
+	  		android:layout_height="0dp"
+			android:layout_weight="0.3"
+			android:layout_marginBottom="5dp"
+			android:layout_marginLeft="5dp"   >
+				
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/walking"/>
+   			
+   				<TextView
+	   				android:id="@+id/dublinBusStopWalk"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/cycling"/>
+   			
+   				<TextView
+	   				android:id="@+id/dublinBusStopCycling"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   			
+   			<LinearLayout
+        		android:layout_width="0dp"
+	  			android:layout_height="match_parent"
+				android:layout_weight="0.33" >
+					
+   				<ImageView
+	  				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.3"
+	  				android:src="@drawable/driving"/>
+   			
+   				<TextView
+	   				android:id="@+id/dublinBusStopDriving"
+	   				android:layout_width="0dp"
+	  				android:layout_height="match_parent"
+					android:layout_weight="0.7"	 
+					style="@style/map_stop_name"/>
+   			</LinearLayout>
+   		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

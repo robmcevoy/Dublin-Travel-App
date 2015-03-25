@@ -13,7 +13,7 @@ public abstract class RtpiXmlOperator extends Operator{
 	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
 	protected RtpiXmlOperator(){
-		parser = new XMLParser();
+		parser = new RtpiXmlParser();
 	}
 	
 	public Parser getParser() {

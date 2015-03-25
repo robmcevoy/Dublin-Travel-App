@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class LiveMapController extends Controller{
@@ -28,13 +29,19 @@ public class LiveMapController extends Controller{
 	private final int ZOOM = 6;
 	private android.location.Location currentLocation;
 	private TextView[] stopNames;
+	private TextView[] stopDistances;
+	private TravelTimes travelTimes;
+	private boolean gotStopLocations;
 	
-	public LiveMapController(Context context, LiveMapNavigationBar navbar, TextView[] stopNames){
+	public LiveMapController(Context context, LiveMapNavigationBar navbar, TextView[] stopNames, TextView[] stopDistances){
 		super(context);
 		this.navbar = navbar;
 		this.navbar.activate(this);
 		this.markers = new ArrayList<MarkerOptions>();
 		this.stopNames = stopNames;
+		this.stopDistances = stopDistances;
+		this.travelTimes = new TravelTimes();
+		this.gotStopLocations = false;
 		operators = new Operator[navbar.getNumOperators()];
 		numQueryingLocations = 0;
 	}
@@ -75,6 +82,9 @@ public class LiveMapController extends Controller{
 	
 	public void setLocation(android.location.Location location){
 		this.currentLocation = location;
+		if(shouldGetTravelTimes()){
+			getTravelTimes();
+		}
 	}
 	
 	public GoogleMap getMap(){
@@ -155,6 +165,10 @@ public class LiveMapController extends Controller{
 			tmp = numQueryingLocations;
 			if(tmp == 0){
 				setMapBounds();
+				gotStopLocations = true;
+				if(shouldGetTravelTimes()){
+					getTravelTimes();
+				}
 			}
 		}
 		catch(Exception e){}
@@ -173,5 +187,18 @@ public class LiveMapController extends Controller{
 			queryingLock.unlock();
 		}
 	}
-
+	
+	private boolean shouldGetTravelTimes(){
+		return this.gotStopLocations && (this.currentLocation != null);
+	}
+	
+	private void getTravelTimes(){
+		GetTravelTimesThread thread;
+		for(int i=0; i< navbar.getNumOperators(); i++){
+			if(operators[i].hasPreviousStop()){
+				thread = new GetTravelTimesThread(travelTimes, currentLocation, operators[i].getPreviousStop());
+				thread.execute(stopDistances[i]);
+			}
+		}
+	}
 }

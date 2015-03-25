@@ -3,7 +3,6 @@ package com.example.dublintravel;
 import com.google.android.gms.maps.GoogleMap;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 public class GetStopLocationThread extends AsyncTask<Operator, Void, String> {
 	

@@ -14,7 +14,7 @@ import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 
 // used as a helper to parse XML format web service responses
-public class XMLParser extends Parser {
+public class RtpiXmlParser extends Parser {
 	
 	private static final long serialVersionUID = 2011543856038658256L;
 	private final String OBJ_STATION_DATA = "objStationData";

@@ -43,12 +43,21 @@ GoogleApiClient.OnConnectionFailedListener{
         TextView dublinBusStopName = (TextView) findViewById(R.id.dublinBusStopName);
         TextView irishRailStopName = (TextView) findViewById(R.id.irishRailStopName);
         TextView luasStopName = (TextView) findViewById(R.id.luasStopName);
+        TextView busEireannStopDistance = (TextView) findViewById(R.id.busEireannStopDistance);
+        TextView dublinBusStopDistance = (TextView) findViewById(R.id.dublinBusStopDistance);
+        TextView irishRailStopDistance = (TextView) findViewById(R.id.irishRailStopDistance);
+        TextView luasStopDistance = (TextView) findViewById(R.id.luasStopDistance);
         TextView[] stopNamesArray = new TextView[navbar.getNumOperators()];
+        TextView[] stopDistancesArray = new TextView[navbar.getNumOperators()];
         stopNamesArray[new BusEireannOperator().getIndex()] = busEireannStopName;
+        stopDistancesArray[new BusEireannOperator().getIndex()] = busEireannStopDistance;
         stopNamesArray[new DublinBusOperator().getIndex()] = dublinBusStopName;
+        stopDistancesArray[new DublinBusOperator().getIndex()] = dublinBusStopDistance;
         stopNamesArray[new IrishRailOperator().getIndex()] = irishRailStopName;
+        stopDistancesArray[new IrishRailOperator().getIndex()] = irishRailStopDistance;
         stopNamesArray[new LuasOperator().getIndex()] = luasStopName;
-        controller = new LiveMapController(this, navbar,stopNamesArray);
+        stopDistancesArray[new LuasOperator().getIndex()] = luasStopDistance;
+        controller = new LiveMapController(this, navbar,stopNamesArray,stopDistancesArray);
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

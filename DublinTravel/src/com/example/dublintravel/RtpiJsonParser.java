@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 //used as a helper to parse JSON format web service responses
-public class JSONParser extends Parser {
+public class RtpiJsonParser extends Parser {
 	
 	private static final long serialVersionUID = 4861814382930415890L;
 	private final String NO_ERROR_CODE="0";

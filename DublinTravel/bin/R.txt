@@ -245,8 +245,8 @@ int string store_picture_message 0x7f060001
 int string store_picture_title 0x7f060000
 int string title_activity_live_map 0x7f060031
 int string wallet_buy_button_place_holder 0x7f060022
-int style AppBaseTheme 0x7f05000c
-int style AppTheme 0x7f05000d
+int style AppBaseTheme 0x7f05000d
+int style AppTheme 0x7f05000e
 int style Theme_IAPTheme 0x7f050000
 int style WalletFragmentDefaultButtonTextAppearance 0x7f050003
 int style WalletFragmentDefaultDetailsHeaderTextAppearance 0x7f050002
@@ -257,10 +257,11 @@ int style homepage_heading 0x7f050006
 int style homepage_subheading 0x7f050007
 int style list_view_heading 0x7f050008
 int style map_stop_name 0x7f050009
-int style search_bar 0x7f05000a
-int style stopTextView 0x7f05000b
-int style table_element 0x7f05000e
-int style table_header 0x7f05000f
+int style map_travel_time 0x7f05000a
+int style search_bar 0x7f05000b
+int style stopTextView 0x7f05000c
+int style table_element 0x7f05000f
+int style table_header 0x7f050010
 int[] styleable AdsAttrs { 0x7f010000, 0x7f010001, 0x7f010002 }
 int styleable AdsAttrs_adSize 0
 int styleable AdsAttrs_adSizes 1

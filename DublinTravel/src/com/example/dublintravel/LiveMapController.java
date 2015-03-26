@@ -30,17 +30,22 @@ public class LiveMapController extends Controller{
 	private android.location.Location currentLocation;
 	private TextView[] stopNames;
 	private TextView[] stopDistances;
-	private TravelTimes travelTimes;
+	private TextView[] stopWalks;
+	private TextView[] stopCycles;
+	private TextView[] stopDrivings;
 	private boolean gotStopLocations;
 	
-	public LiveMapController(Context context, LiveMapNavigationBar navbar, TextView[] stopNames, TextView[] stopDistances){
+	public LiveMapController(Context context, LiveMapNavigationBar navbar, TextView[] stopNames, TextView[] stopDistances,
+								TextView[] stopWalks, TextView[] stopCycles, TextView[] stopDrivings){
 		super(context);
 		this.navbar = navbar;
 		this.navbar.activate(this);
 		this.markers = new ArrayList<MarkerOptions>();
 		this.stopNames = stopNames;
 		this.stopDistances = stopDistances;
-		this.travelTimes = new TravelTimes();
+		this.stopWalks = stopWalks;
+		this.stopCycles = stopCycles;
+		this.stopDrivings = stopDrivings;
 		this.gotStopLocations = false;
 		operators = new Operator[navbar.getNumOperators()];
 		numQueryingLocations = 0;
@@ -196,8 +201,8 @@ public class LiveMapController extends Controller{
 		GetTravelTimesThread thread;
 		for(int i=0; i< navbar.getNumOperators(); i++){
 			if(operators[i].hasPreviousStop()){
-				thread = new GetTravelTimesThread(travelTimes, currentLocation, operators[i].getPreviousStop());
-				thread.execute(stopDistances[i]);
+				thread = new GetTravelTimesThread(currentLocation, operators[i].getPreviousStop());
+				thread.execute(stopDistances[i], stopWalks[i], stopCycles[i], stopDrivings[i]);
 			}
 		}
 	}

@@ -720,11 +720,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f05000c;
+        public static final int AppBaseTheme=0x7f05000d;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f05000d;
+        public static final int AppTheme=0x7f05000e;
         public static final int Theme_IAPTheme=0x7f050000;
         public static final int WalletFragmentDefaultButtonTextAppearance=0x7f050003;
         public static final int WalletFragmentDefaultDetailsHeaderTextAppearance=0x7f050002;
@@ -740,10 +740,11 @@ containing a value of this type.
         public static final int homepage_subheading=0x7f050007;
         public static final int list_view_heading=0x7f050008;
         public static final int map_stop_name=0x7f050009;
-        public static final int search_bar=0x7f05000a;
-        public static final int stopTextView=0x7f05000b;
-        public static final int table_element=0x7f05000e;
-        public static final int table_header=0x7f05000f;
+        public static final int map_travel_time=0x7f05000a;
+        public static final int search_bar=0x7f05000b;
+        public static final int stopTextView=0x7f05000c;
+        public static final int table_element=0x7f05000f;
+        public static final int table_header=0x7f050010;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

@@ -27,6 +27,10 @@ public class TravelTimes {
 			currentIndex++;
 	}
 	
+	public int getNumTravelModes(){
+		return strings.length;
+	}
+	
 	public String generateUrl(android.location.Location currentLocation, Stop stop){
 		return URL_START+ ORIGIN + currentLocation.getLatitude() + "," + currentLocation.getLongitude()
 				+ DESTINATION + stop.getLocation().getLatitude() + "," + stop.getLocation().getLongitude()

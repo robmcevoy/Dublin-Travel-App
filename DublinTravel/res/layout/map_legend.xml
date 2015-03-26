@@ -14,7 +14,7 @@
 		<LinearLayout
    			android:layout_width="match_parent"
   			android:layout_height="0dp" 
-  			android:layout_weight= "0.7">
+  			android:layout_weight= "0.6">
   			
 		    <ImageView
 	  			android:layout_width="0dp"
@@ -32,15 +32,15 @@
 	   				android:id="@+id/busEireannStopName"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.3"	 
+					android:layout_weight="0.7"	 
 					style="@style/map_stop_name"/>
 		        
 		        <TextView
 	   				android:id="@+id/busEireannStopDistance"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					android:layout_weight="0.3"	 
+					style="@style/map_travel_time"/>
 		        
 		    </LinearLayout>
    			
@@ -49,7 +49,7 @@
 		<LinearLayout
         	android:layout_width="match_parent"
 	  		android:layout_height="0dp"
-			android:layout_weight="0.3"
+			android:layout_weight="0.4"
 			android:layout_marginBottom="5dp" 
 			android:layout_marginLeft="5dp"  >
 				
@@ -69,7 +69,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -88,7 +88,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -107,7 +107,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    		</LinearLayout>			
 	</LinearLayout>
@@ -121,7 +121,7 @@
 		<LinearLayout
    			android:layout_width="match_parent"
   			android:layout_height="0dp" 
-  			android:layout_weight= "0.7">
+  			android:layout_weight= "0.6">
   			
 		    <ImageView
 	  			android:layout_width="0dp"
@@ -139,15 +139,15 @@
 	   				android:id="@+id/luasStopName"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.3"	 
+					android:layout_weight="0.7"	 
 					style="@style/map_stop_name"/>
 		        
 		        <TextView
 	   				android:id="@+id/luasStopDistance"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					android:layout_weight="0.3"	 
+					style="@style/map_travel_time"/>
 		        
 		    </LinearLayout>
    			
@@ -156,7 +156,7 @@
 		<LinearLayout
         	android:layout_width="match_parent"
 	  		android:layout_height="0dp"
-			android:layout_weight="0.3"
+			android:layout_weight="0.4"
 			android:layout_marginBottom="5dp"
 			android:layout_marginLeft="5dp"   >
 				
@@ -176,7 +176,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -195,7 +195,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -214,7 +214,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    		</LinearLayout>
 	</LinearLayout>
@@ -229,7 +229,7 @@
 		<LinearLayout
    			android:layout_width="match_parent"
   			android:layout_height="0dp" 
-  			android:layout_weight= "0.7">
+  			android:layout_weight= "0.6">
   			
 		    <ImageView
 	  			android:layout_width="0dp"
@@ -247,15 +247,15 @@
 	   				android:id="@+id/irishRailStopName"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.3"	 
+					android:layout_weight="0.7"	 
 					style="@style/map_stop_name"/>
 		        
 		        <TextView
 	   				android:id="@+id/irishRailStopDistance"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					android:layout_weight="0.3"	 
+					style="@style/map_travel_time"/>
 		        
 		    </LinearLayout>
    			
@@ -264,7 +264,7 @@
 		<LinearLayout
         	android:layout_width="match_parent"
 	  		android:layout_height="0dp"
-			android:layout_weight="0.3"
+			android:layout_weight="0.4"
 			android:layout_marginBottom="5dp"
 			android:layout_marginLeft="5dp"   >
 				
@@ -284,7 +284,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -303,7 +303,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -322,7 +322,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    		</LinearLayout>
 	</LinearLayout>
@@ -337,7 +337,7 @@
 	 	<LinearLayout
    			android:layout_width="match_parent"
   			android:layout_height="0dp" 
-  			android:layout_weight= "0.7">
+  			android:layout_weight= "0.6">
   			
 		    <ImageView
 	  			android:layout_width="0dp"
@@ -355,15 +355,15 @@
 	   				android:id="@+id/dublinBusStopName"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.3"	 
+					android:layout_weight="0.7"	 
 					style="@style/map_stop_name"/>
 		        
 		        <TextView
 	   				android:id="@+id/dublinBusStopDistance"
 	   				android:layout_width="match_parent"
 	  				android:layout_height="0dp"
-					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					android:layout_weight="0.3"	 
+					style="@style/map_travel_time"/>
 		        
 		    </LinearLayout>
    			
@@ -372,7 +372,7 @@
 		<LinearLayout
         	android:layout_width="match_parent"
 	  		android:layout_height="0dp"
-			android:layout_weight="0.3"
+			android:layout_weight="0.4"
 			android:layout_marginBottom="5dp"
 			android:layout_marginLeft="5dp"   >
 				
@@ -392,7 +392,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -411,7 +411,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    			
    			<LinearLayout
@@ -430,7 +430,7 @@
 	   				android:layout_width="0dp"
 	  				android:layout_height="match_parent"
 					android:layout_weight="0.7"	 
-					style="@style/map_stop_name"/>
+					style="@style/map_travel_time"/>
    			</LinearLayout>
    		</LinearLayout>
 	</LinearLayout>

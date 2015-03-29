@@ -4,9 +4,11 @@ window.onload = function()
 	const IRISH_RAIL_WIDGET = '<a class="twitter-timeline" href="https://twitter.com/IrishRail" data-widget-id="568740339671109632">Tweets by @IrishRail</a>';
 	const LUAS_WIDGET = '<a class="twitter-timeline" href="https://twitter.com/Luas" data-widget-id="568757850940649472">Tweets by @Luas</a>';
 	const BUS_EIREANN_WIDGET = '<a class="twitter-timeline" href="https://twitter.com/Buseireann" data-widget-id="568758429033177088">Tweets by @Buseireann</a>';
+	const AA_ROADWATCH_WIDGET = '<a class="twitter-timeline" href="https://twitter.com/aaroadwatch" data-widget-id="582232237401358336">Tweets by @aaroadwatch</a>';
 	const DUBLIN_BUS_OPCODE = "bac";
 	const IRISH_RAIL_OPCODE = "ir";
 	const LUAS_OPCODE = "luas";
+	const BUS_EIREANN_OPCODE = "be";
 	var active_widget;
 	
 	if(Android.getOperator() === DUBLIN_BUS_OPCODE){
@@ -20,9 +22,12 @@ window.onload = function()
 	else if(Android.getOperator() === LUAS_OPCODE){
 		active_widget= LUAS_WIDGET;
 	}
+	else if(Android.getOperator() === BUS_EIREANN_OPCODE){
+		active_widget= BUS_EIREANN_WIDGET;
+	}
 
 	else{
-		active_widget= BUS_EIREANN_WIDGET;
+		active_widget= AA_ROADWATCH_WIDGET;
 	}
 	document.body.innerHTML = active_widget;
 	twttr.widgets.load()

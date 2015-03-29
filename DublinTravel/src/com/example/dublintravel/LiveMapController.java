@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.content.Context;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,9 +34,10 @@ public class LiveMapController extends Controller{
 	private TextView[] stopCycles;
 	private TextView[] stopDrivings;
 	private boolean gotStopLocations;
+	private TwitterFeed twitterFeed;
 	
 	public LiveMapController(Context context, LiveMapNavigationBar navbar, TextView[] stopNames, TextView[] stopDistances,
-								TextView[] stopWalks, TextView[] stopCycles, TextView[] stopDrivings){
+								TextView[] stopWalks, TextView[] stopCycles, TextView[] stopDrivings, WebView twitter){
 		super(context);
 		this.navbar = navbar;
 		this.navbar.activate(this);
@@ -46,6 +48,8 @@ public class LiveMapController extends Controller{
 		this.stopCycles = stopCycles;
 		this.stopDrivings = stopDrivings;
 		this.gotStopLocations = false;
+		this.twitterFeed = new TwitterFeed(twitter, this);
+		this.twitterFeed.start();
 		operators = new Operator[navbar.getNumOperators()];
 		numQueryingLocations = 0;
 	}

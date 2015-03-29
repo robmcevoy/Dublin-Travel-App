@@ -22,12 +22,7 @@ public class LiveMapWebViewInterface extends WebViewInterface {
 		busEireann = liveMapController.getStopLocation(new BusEireannOperator().getIndex());
 		irishRail = liveMapController.getStopLocation(new IrishRailOperator().getIndex());
 	}
-	/*
-	@JavascriptInterface
-	public boolean isQuerying(){
-		return liveMapController.isQuerying();
-	}
-	*/
+
 	@JavascriptInterface
 	public boolean hasDublinBusLocation() {
 		return dublinBus != null;
@@ -86,5 +81,10 @@ public class LiveMapWebViewInterface extends WebViewInterface {
 	@JavascriptInterface
 	public double getBusEireannLongitude(){
 		return busEireann.getLongitude();
+	}
+	
+	@JavascriptInterface
+	public String getOperator() {
+		return "";
 	}
 }

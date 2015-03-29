@@ -14,6 +14,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,7 @@ GoogleApiClient.OnConnectionFailedListener{
         final ImageView liveMapImageView = (ImageView) findViewById(R.id.liveMapLogo);
         navbar = new LiveMapNavigationBar(dublinBusImageView,luasImageView, 
 		irishRailImageView,busEireannImageView, liveMapImageView);
+        WebView webview = (WebView) findViewById(R.id.twitterFeed);
         TextView busEireannStopName = (TextView) findViewById(R.id.busEireannStopName);
         TextView dublinBusStopName = (TextView) findViewById(R.id.dublinBusStopName);
         TextView irishRailStopName = (TextView) findViewById(R.id.irishRailStopName);
@@ -84,7 +86,7 @@ GoogleApiClient.OnConnectionFailedListener{
         stopDistancesArray[new LuasOperator().getIndex()] = luasStopDistance;
         stopCyclesArray[new LuasOperator().getIndex()] = luasStopCycle;
         stopDrivingsArray[new LuasOperator().getIndex()] = luasStopDriving;
-        controller = new LiveMapController(this, navbar,stopNamesArray,stopDistancesArray, stopWalksArray, stopCyclesArray, stopDrivingsArray);
+        controller = new LiveMapController(this, navbar,stopNamesArray,stopDistancesArray, stopWalksArray, stopCyclesArray, stopDrivingsArray, webview);
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

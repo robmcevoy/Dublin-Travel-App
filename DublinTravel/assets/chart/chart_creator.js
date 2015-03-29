@@ -1,12 +1,16 @@
 const irish_rail_image = "../img/irish_rail.png";
 const dublin_bus_image = "../img/dublin_bus.png";
 const bus_eireann_image = "../img/bus_eireann.png";
-const pole_image = "../img/pole.png"
 const luas_image="../img/luas.png";
+const db_marker="../img/dublin_bus_marker.png";
+const ir_marker="../img/irish_rail_marker.png";
+const be_marker="../img/bus_eireann_marker.png";
+const luas_marker="../img/luas_marker.png";
 const DUBLIN_BUS_OPCODE = "bac";
 const IRISH_RAIL_OPCODE = "ir";
 const LUAS_OPCODE = "luas";
 var active_image;
+var marker;
 const CAT_TITLE = "Due Time";
 const VALUE_TITLE = "Difference to Schedule (mins)";
 const GUIDE_TITLE = "On Time";
@@ -26,19 +30,22 @@ window.onload = function () {
 
 if(Android.getOperator() === DUBLIN_BUS_OPCODE){
 	active_image= dublin_bus_image;
+	marker = db_marker;
 }
 
 else if(Android.getOperator() === IRISH_RAIL_OPCODE){
 	active_image= irish_rail_image;
+	marker = ir_marker;
 }
 
 else if(Android.getOperator() === LUAS_OPCODE){
 	active_image= luas_image;
+	marker = luas_marker;
 }
 
 else{
-
 	active_image= bus_eireann_image;
+	marker = be_marker;
 }
 
 function getData(){
@@ -50,7 +57,7 @@ function getData(){
 	chartData.push({
 		due: serverTime,
 		difference: "0",
-		customBullet: pole_image
+		customBullet: marker
 	});
 	for(var i=0; (i<Android.getStopInfoCount() && i<Android.getMaxOnChart()); i++){
 		chartData.push({

@@ -31,7 +31,7 @@
 	        android:layout_height="match_parent"
 	        android:layout_weight="0.10"
 	        android:contentDescription="@string/app_cd"
-	        android:src="@drawable/cars"
+	        android:src="@drawable/map"
 	        android:background="@color/dark_grey"  />
 
 	    <ImageView

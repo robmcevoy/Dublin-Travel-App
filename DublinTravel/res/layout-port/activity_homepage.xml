@@ -88,7 +88,7 @@
             android:layout_height="240dp"
             android:layout_weight="0.4"
             android:contentDescription="@string/app_cd"
-            android:src="@drawable/cars" />
+            android:src="@drawable/map" />
 
     </LinearLayout>
     

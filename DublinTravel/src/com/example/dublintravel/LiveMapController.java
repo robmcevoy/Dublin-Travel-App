@@ -13,7 +13,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.content.Context;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class LiveMapController extends Controller{
@@ -81,6 +80,10 @@ public class LiveMapController extends Controller{
 		}
 		if(!moreLocationsToGet){
 			setMapBounds();
+			gotStopLocations = true;
+			if(shouldGetTravelTimes()){
+				getTravelTimes();
+			}
 		}
 		getStopLocations();
 	}

@@ -52,7 +52,9 @@ function getData(){
 	var chartData = [];
 	var serverTime = Android.getServerTime();
 	if(active_image != irish_rail_image){
-		serverTime = stringParser(serverTime)
+		serverTime = rtpiStringParser(serverTime);
+	}else if(active_image == irish_rail_image){
+		serverTime = irishRailStringParser(serverTime);
 	}
 	chartData.push({
 		due: serverTime,
@@ -60,24 +62,41 @@ function getData(){
 		customBullet: marker
 	});
 	for(var i=0; (i<Android.getStopInfoCount() && i<Android.getMaxOnChart()); i++){
+		var dueDate = rtpiStringParser(Android.getDueDate(i));
+		if(dueDate < serverTime){
+			dueDate = serverTime;
+		}
 		chartData.push({
-			due: stringParser(Android.getDueDate(i)),
+			due: dueDate,
 			difference: Android.getDifference(i),
 			customBullet: active_image
 		});
-	}
+	}	
 	return chartData;
 }
 
-function stringParser(date_string){
+function rtpiStringParser(date_string){
 	// format of input "20/02/2015 15:20:12"
-	
 	var year = date_string.substring(6,10);
 	var month = date_string.substring(3,5);
 	var monthInt = parseInt(month);
 	monthInt = monthInt -1;
 	month = monthInt.toString();
 	var day = date_string.substring(0,2);
+	var hour = date_string.substring(11,13);
+	var min = date_string.substring(14,16);
+	var sec = date_string.substring(17,19);
+	return new Date(year, month, day, hour, min, sec);
+}
+
+function irishRailStringParser(date_string){
+	// format of input 2015-03-30T13:47:37.53
+	var year = date_string.substring(0,4);
+	var month = date_string.substring(5,7);
+	var monthInt = parseInt(month);
+	monthInt = monthInt -1;
+	month = monthInt.toString();
+	var day = date_string.substring(8,10);
 	var hour = date_string.substring(11,13);
 	var min = date_string.substring(14,16);
 	var sec = date_string.substring(17,19);

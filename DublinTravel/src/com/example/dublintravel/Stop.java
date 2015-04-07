@@ -49,6 +49,10 @@ public class Stop implements Comparable<Stop>, Serializable{
 		return name.compareToIgnoreCase(other.getName());
 	}
 	
+	public boolean equals(Stop other){
+		return (name.compareToIgnoreCase(other.getName()) == 0) && (stopID.equals(other.getID()));
+	}
+	
 	public void setLocation(Location location){
 		this.location = location;
 	}

@@ -8,6 +8,5 @@
         <item name="android:textSize">18sp</item>
         <item name="android:hint">@string/search</item>  
         <item name="android:background">@drawable/rounded_corner_orange</item>
-        
     </style>
 </resources>

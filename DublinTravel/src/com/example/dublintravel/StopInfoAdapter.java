@@ -20,7 +20,6 @@ public class StopInfoAdapter extends ArrayAdapter<StopInfo> {
 		this.rtpiController = rtpiController;
 	}
 
-
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		if (v == null) {
@@ -38,11 +37,9 @@ public class StopInfoAdapter extends ArrayAdapter<StopInfo> {
 			}
 			if(destination != null){
 				destination.setText(stopInfo.getDestination());
-				//destination.setText(stopInfo.getArrivalTime());
 			}
 			if(duetime != null){
 				duetime.setText(stopInfo.getDueTime());
-				//duetime.setText(stopInfo.getDiffInMins() + "");
 			}
 			
 		}

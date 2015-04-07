@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="500dip"
-    android:layout_height="500dip"
-    android:orientation="vertical"
+    android:layout_width="500dp"
+    android:layout_height="500dp"
     android:background="@color/dark_grey"
-    android:gravity="center_horizontal"
     android:descendantFocusability="beforeDescendants"
-	android:focusableInTouchMode="true" >
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -18,39 +18,69 @@
 
     <TextView
         android:id="@+id/dialogTitle"
-        android:textColor="@color/orange"
-        android:text="@string/stop_id_hint"
-        android:textSize="28sp"
-        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="0.15"
         android:gravity="center_vertical"
-         />
+        android:text="@string/stop_id_hint"
+        android:textColor="@color/orange"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/searchBar"
-        android:layout_width="wrap_content"
-        android:minWidth="200dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
         style="@style/search_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="5dp"
-        android:visibility="invisible"
-        >
+        android:layout_weight="0.10"
+        android:minWidth="200dp"
+        android:visibility="invisible" >
     </EditText>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0.10"
+        android:background="@drawable/rounded_corner_orange"
+        android:padding="5dip" >
+        
+        <Button
+            android:layout_width="0dp"
+       		android:layout_height="match_parent"
+        	android:layout_weight="0.5"
+        	android:text="All Stops"
+        	style="@style/tab">
+        </Button>
+        
+        <View
+    		android:layout_width="3dp"
+    		android:layout_height="match_parent"
+    		android:background="@color/orange">
+        </View>
+        
+        <Button
+            android:layout_width="0dp"
+       		android:layout_height="match_parent"
+        	android:layout_weight="0.5"
+        	android:text="Favourites"
+    		android:drawableLeft="@drawable/ic_action_important"
+    		style="@style/tab" >
+        </Button>
+    </LinearLayout>
 
     <ListView
         android:id="@+id/stopsListView"
         android:layout_width="match_parent"
-        android:paddingBottom="5dip"
         android:layout_height="0dp"
-        android:layout_weight="0.70"
+        android:layout_weight="0.60"
+        android:background="@drawable/rounded_corner_orange"
         android:divider="@color/orange"
         android:dividerHeight="1dp"
         android:fastScrollEnabled="true"
-        android:textColor="@color/light_grey"
-        android:background="@drawable/rounded_corner_orange" >
+        android:paddingBottom="5dip"
+        android:textColor="@color/light_grey" >
     </ListView>
 
 </LinearLayout>

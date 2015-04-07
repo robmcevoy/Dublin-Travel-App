@@ -468,22 +468,24 @@ containing a value of this type.
         public static final int dublin_bus_long=0x7f02001f;
         public static final int dublin_bus_marker=0x7f020020;
         public static final int grey_background=0x7f020021;
-        public static final int ic_launcher=0x7f020022;
-        public static final int ic_plusone_medium_off_client=0x7f020023;
-        public static final int ic_plusone_small_off_client=0x7f020024;
-        public static final int ic_plusone_standard_off_client=0x7f020025;
-        public static final int ic_plusone_tall_off_client=0x7f020026;
-        public static final int icon=0x7f020027;
-        public static final int irish_rail=0x7f020028;
-        public static final int irish_rail_marker=0x7f020029;
-        public static final int luas=0x7f02002a;
-        public static final int luas_marker=0x7f02002b;
-        public static final int map=0x7f02002c;
-        public static final int powered_by_google_dark=0x7f02002d;
-        public static final int powered_by_google_light=0x7f02002e;
-        public static final int rounded_corner_dark_grey=0x7f02002f;
-        public static final int rounded_corner_orange=0x7f020030;
-        public static final int walking=0x7f020031;
+        public static final int ic_action_important=0x7f020022;
+        public static final int ic_launcher=0x7f020023;
+        public static final int ic_plusone_medium_off_client=0x7f020024;
+        public static final int ic_plusone_small_off_client=0x7f020025;
+        public static final int ic_plusone_standard_off_client=0x7f020026;
+        public static final int ic_plusone_tall_off_client=0x7f020027;
+        public static final int icon=0x7f020028;
+        public static final int irish_rail=0x7f020029;
+        public static final int irish_rail_marker=0x7f02002a;
+        public static final int luas=0x7f02002b;
+        public static final int luas_marker=0x7f02002c;
+        public static final int map=0x7f02002d;
+        public static final int powered_by_google_dark=0x7f02002e;
+        public static final int powered_by_google_light=0x7f02002f;
+        public static final int rounded_corner_dark_grey=0x7f020030;
+        public static final int rounded_corner_orange=0x7f020031;
+        public static final int star=0x7f020032;
+        public static final int walking=0x7f020033;
     }
     public static final class id {
         public static final int action_settings=0x7f070040;
@@ -744,8 +746,9 @@ containing a value of this type.
         public static final int map_travel_time=0x7f05000a;
         public static final int search_bar=0x7f05000b;
         public static final int stopTextView=0x7f05000c;
-        public static final int table_element=0x7f05000f;
-        public static final int table_header=0x7f050010;
+        public static final int tab=0x7f05000f;
+        public static final int table_element=0x7f050010;
+        public static final int table_header=0x7f050011;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

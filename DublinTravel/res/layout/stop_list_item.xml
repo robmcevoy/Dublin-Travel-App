@@ -13,14 +13,33 @@
         android:paddingLeft="10dp" 
         android:paddingTop="10dp">
     </TextView>
-
-    <TextView
-        android:id="@+id/stopIdTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:textStyle="bold"
-        android:gravity="right"
-        android:paddingRight="10dp">
-    </TextView>
+    
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" >
+       
+       <LinearLayout
+       		android:layout_width="0dp"
+       		android:layout_height="match_parent"
+       		android:layout_weight="0.75" >
+       </LinearLayout>
+       
+       <ImageView
+           	android:id="@+id/favourite"
+           	android:layout_width="0dp"
+        	android:layout_height="match_parent" 
+        	android:layout_weight="0.10"
+           	android:src="@drawable/ic_action_important" />
+        
+        
+       <TextView
+        	android:id="@+id/stopIdTextView"
+        	android:layout_width="0dp"
+        	android:layout_height="match_parent" 
+        	android:layout_weight="0.15"
+        	android:paddingRight="10dp">
+    	</TextView>
+       
+   </LinearLayout>
 
 </LinearLayout>

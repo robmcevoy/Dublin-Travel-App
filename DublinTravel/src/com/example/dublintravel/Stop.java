@@ -10,6 +10,7 @@ public class Stop implements Comparable<Stop>, Serializable{
 	private boolean error;
 	private String errorMessage;
 	private Location location;
+	private boolean favourite;
 	
 	public Stop(){}
 	
@@ -17,6 +18,7 @@ public class Stop implements Comparable<Stop>, Serializable{
 		this.stopID = stopId;
 		this.name = name;
 		this.error = false;
+		this.favourite = false;
 	}
 	
 	public Stop(String stopId, String name, Location location){
@@ -24,6 +26,7 @@ public class Stop implements Comparable<Stop>, Serializable{
 		this.name = name;
 		this.location = location;
 		this.error = false;
+		this.favourite = false;
 	}
 	
 	public void setErrorMessage(String message){
@@ -63,5 +66,17 @@ public class Stop implements Comparable<Stop>, Serializable{
 	
 	public boolean hasLocation(){
 		return location != null;
+	}
+	
+	public void favourite(){
+		this.favourite = true;
+	}
+	
+	public void unfavourite(){
+		this.favourite = false;
+	}
+	
+	public boolean isFavourite(){
+		return this.favourite;
 	}
 }

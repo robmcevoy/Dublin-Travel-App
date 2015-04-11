@@ -69,7 +69,7 @@
        		android:layout_height="match_parent"
         	android:layout_weight="0.5"
         	android:text="@string/tab_favourites"
-    		android:drawableLeft="@drawable/ic_action_important"
+    		android:drawableLeft="@drawable/ic_action_important_active"
     		style="@style/tab" >
         </Button>
     </LinearLayout>

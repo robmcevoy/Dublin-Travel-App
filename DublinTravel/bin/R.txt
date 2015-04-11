@@ -121,7 +121,7 @@ int drawable rounded_corner_dark_grey 0x7f020031
 int drawable rounded_corner_orange 0x7f020032
 int drawable star 0x7f020033
 int drawable walking 0x7f020034
-int id action_settings 0x7f070043
+int id action_settings 0x7f070044
 int id adjust_height 0x7f070002
 int id adjust_width 0x7f070001
 int id allStopsBtn 0x7f070024
@@ -144,6 +144,7 @@ int id dublinBusStopDistance 0x7f070037
 int id dublinBusStopDriving 0x7f07003a
 int id dublinBusStopName 0x7f070036
 int id dublinBusStopWalk 0x7f070038
+int id favourite 0x7f070042
 int id favouritesBtn 0x7f070025
 int id grayscale 0x7f070015
 int id holo_dark 0x7f070007
@@ -176,7 +177,7 @@ int id satellite 0x7f070004
 int id searchBar 0x7f070022
 int id selectionDetails 0x7f07000d
 int id stop 0x7f07003b
-int id stopIdTextView 0x7f070042
+int id stopIdTextView 0x7f070043
 int id stopInfoDestination 0x7f07003f
 int id stopInfoDueTime 0x7f070040
 int id stopInfoListView 0x7f07003c

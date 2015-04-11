@@ -489,7 +489,7 @@ containing a value of this type.
         public static final int walking=0x7f020034;
     }
     public static final class id {
-        public static final int action_settings=0x7f070043;
+        public static final int action_settings=0x7f070044;
         public static final int adjust_height=0x7f070002;
         public static final int adjust_width=0x7f070001;
         public static final int allStopsBtn=0x7f070024;
@@ -512,6 +512,7 @@ containing a value of this type.
         public static final int dublinBusStopDriving=0x7f07003a;
         public static final int dublinBusStopName=0x7f070036;
         public static final int dublinBusStopWalk=0x7f070038;
+        public static final int favourite=0x7f070042;
         public static final int favouritesBtn=0x7f070025;
         public static final int grayscale=0x7f070015;
         public static final int holo_dark=0x7f070007;
@@ -544,7 +545,7 @@ containing a value of this type.
         public static final int searchBar=0x7f070022;
         public static final int selectionDetails=0x7f07000d;
         public static final int stop=0x7f07003b;
-        public static final int stopIdTextView=0x7f070042;
+        public static final int stopIdTextView=0x7f070043;
         public static final int stopInfoDestination=0x7f07003f;
         public static final int stopInfoDueTime=0x7f070040;
         public static final int stopInfoListView=0x7f07003c;

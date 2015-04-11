@@ -40,8 +40,7 @@ public class StopInfoAdapter extends ArrayAdapter<StopInfo> {
 			}
 			if(duetime != null){
 				duetime.setText(stopInfo.getDueTime());
-			}
-			
+			}	
 		}
 		return v;
 	}

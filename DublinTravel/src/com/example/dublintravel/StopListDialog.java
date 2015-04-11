@@ -25,12 +25,15 @@ public class StopListDialog {
 	private ProgressBar progressBar;
 	private RtpiController rtpiController;
 	private ArrayList<Stop> allStops;
+	private ArrayList<Stop> toDisplay;
 	ArrayList<Stop> favourites;
 	private Button allStopsBtn;
 	private Button favouritesBtn;
 	private LinearLayout tabBar;
 	private FavouritesDatabase favouritesDb;
 	private boolean favouritesTabActive;
+	private final String errorMessage = "Unable to make favourite operation";
+	private StopAdapter stopAdapter;
 	
 	public StopListDialog(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
@@ -53,11 +56,40 @@ public class StopListDialog {
 	public void open(){
 		dialog.show();
 		activateTab();
-		GetStopsThread thread = new GetStopsThread(rtpiController, this, rtpiController.getCurrentOperator());
-		thread.execute(listview);
+		GetStopsThread thread = new GetStopsThread(this, rtpiController.getCurrentOperator());
+		thread.execute();
 		setOnItemClickListener();
 		setSearchBarListener();
 		setTabClickListners();
+	}
+	
+	public void updateStops(ArrayList<Stop> stops) {
+		this.allStops = stops;
+		this.toDisplay = stops;
+		stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1, toDisplay);
+		listview.setAdapter(stopAdapter);
+		displayStops();
+	}
+	
+	private void displayStops(){
+		favouritesDb.open();
+		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(rtpiController.getCurrentOperator());
+		boolean favourited;
+		for(Stop stop: toDisplay){
+			favourited = false;
+			for(Stop favouritedStop: favouritedStops){
+				if(stop.equals(favouritedStop)){
+					stop.favourite();
+					favourited = true;
+				}
+			}
+			if(!favourited){
+				stop.unfavourite();
+			}
+		}
+		favouritesDb.close();
+		stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1, toDisplay);
+		listview.setAdapter(stopAdapter);
 	}
 	
 	private void activateTab(){
@@ -67,26 +99,23 @@ public class StopListDialog {
 		if(!favouritesTabActive){
 			toActivate = allStopsBtn;
 			toDeactivate = favouritesBtn;
-			img = rtpiController.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important_active);
+			img = rtpiController.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important);
 		}
 		else{
 			toActivate = favouritesBtn;
 			toDeactivate = allStopsBtn;
-			img = rtpiController.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important);
+			img = rtpiController.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important_active);
 		}
 		toActivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.orange));
 		toDeactivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.light_grey));
 		img.setBounds( 0, 0, 60, 60 );
 		favouritesBtn.setCompoundDrawables( img, null, null, null );
+		wipeSearch();
 	}
 	
 	public synchronized void makeElementsVisible(){
 		searchBar.setVisibility(View.VISIBLE);
 		tabBar.setVisibility(View.VISIBLE);
-		StopAdapter tmpAdapter = (StopAdapter) listview.getAdapter();
-		for(int i=0; i<tmpAdapter.getCount(); i++ ){
-			allStops.add(tmpAdapter.getItem(i));
-		}
 	}
 	
 	public synchronized void setLoading(){
@@ -101,6 +130,11 @@ public class StopListDialog {
 		progressBar.setVisibility(View.GONE);
 	}
 	
+	private void wipeSearch(){
+		searchBar.setText("");
+		searchBar.setHint(R.string.search);
+	}
+	
 	private void setOnItemClickListener(){
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -113,57 +147,49 @@ public class StopListDialog {
 		
 		listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long id) {
-				if(!favouritesTabActive){
-					Stop stop = (Stop) listview.getAdapter().getItem(position);
-					try{
+				Stop stop = (Stop) listview.getAdapter().getItem(position);
+				int lastViewedPosition = listview.getFirstVisiblePosition();
+				View v = listview.getChildAt(0);
+				int topOffset = (v == null) ? 0 : v.getTop();	
+				try{
+					favouritesDb.open();
+					if(!stop.isFavourite()){
 						favouritesDb.addFavourite(stop, rtpiController.getCurrentOperator());
-						Toast.makeText(rtpiController.getCurrentContext(), "Stop Added To Favourites",Toast.LENGTH_LONG).show();
 					}
-					catch(Exception e){
-						Toast.makeText(rtpiController.getCurrentContext(), e.toString(),Toast.LENGTH_LONG).show();
+					else{
+						favouritesDb.deleteFavorite(stop, rtpiController.getCurrentOperator());
 					}
+					favouritesDb.close();
+					displayStops();
+					listview.setSelectionFromTop(lastViewedPosition, topOffset);
+				}
+				catch(Exception e){
+					Toast.makeText(rtpiController.getCurrentContext(), errorMessage,Toast.LENGTH_LONG).show();
 				}
 				return true;
 			}
 		});
-        
 	}
 	
 	private void setTabClickListners(){
-		allStopsBtn.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+		allStopsBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
             	favouritesTabActive = false;
             	activateTab();
-            	StopAdapter stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1, allStops );
-    			listview.setAdapter(stopAdapter);          	
+            	toDisplay = allStops;
+            	displayStops();
             }
         });
 		
-		favouritesBtn.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+		favouritesBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
             	favouritesTabActive = true;
             	activateTab();
-            	try{
-            		favouritesDb.open();
-            		ArrayList<Stop> stops = favouritesDb.getFavourites(rtpiController.getCurrentOperator());
-            		favourites.clear();
-            		for(Stop stop1: stops){
-            			for(Stop stop2 : allStops){
-            				if(stop1.equals(stop2)){
-            					favourites.add(stop2);
-            				}
-            			}
-            		}
-            		StopAdapter stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1,favourites );
-        			listview.setAdapter(stopAdapter);
-            	}
-            	catch(Exception e){
-            		Toast.makeText(rtpiController.getCurrentContext(), e.getMessage(),Toast.LENGTH_LONG).show();
-            	}
+            	favouritesDb.open();
+        		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(rtpiController.getCurrentOperator());
+        		favouritesDb.close();
+        		toDisplay = favouritedStops;
+        		displayStops();
             }
         });
 	}
@@ -179,21 +205,15 @@ public class StopListDialog {
 
 			String search = s+"";
 			ArrayList<Stop> subset = new ArrayList<Stop>();
-			ArrayList<Stop> toSearch = new ArrayList<Stop>();
-			if(!favouritesTabActive){
-				toSearch = allStops;
-			}
-			else{
-				toSearch = favourites;
-			}
+			ArrayList<Stop> toSearch = allStops;
 			for(Stop tempStop: toSearch){
 				if(tempStop.getName().toLowerCase().contains(search.toLowerCase()) ||
 						tempStop.getID().toLowerCase().contains(search.toLowerCase())){
 						subset.add(tempStop);
 				}
 			}
-			StopAdapter stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1,subset );
-			listview.setAdapter(stopAdapter);	
+			toDisplay = subset;
+			displayStops();
 		}});
 	}
 }

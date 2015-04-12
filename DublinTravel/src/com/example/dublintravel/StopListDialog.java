@@ -188,7 +188,15 @@ public class StopListDialog {
             	favouritesDb.open();
         		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(rtpiController.getCurrentOperator());
         		favouritesDb.close();
-        		toDisplay = favouritedStops;
+        		ArrayList<Stop> newToDisplay = new ArrayList<Stop>();
+        		for(Stop favourited: favouritedStops){
+        			for(Stop stop: allStops){
+        				if(favourited.equals(stop)){
+        					newToDisplay.add(stop);
+        				}
+        			}
+        		}
+        		toDisplay = newToDisplay;
         		displayStops();
             }
         });

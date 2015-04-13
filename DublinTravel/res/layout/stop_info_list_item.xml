@@ -5,37 +5,25 @@
     <TextView
         android:id="@+id/stopInfoRoute"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/light_grey"
-		android:layout_weight="0.33"
-		android:padding="5dp"
-		android:gravity="center">
+        android:layout_height="wrap_content" 
+        android:layout_weight="0.33"
+        style="@style/list_view_item">
     </TextView>
 
     <TextView
         android:id="@+id/stopInfoDestination"
         android:layout_width="0dp"
         android:layout_height="wrap_content" 
-        android:textColor="@color/light_grey"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:layout_weight="0.33"
-        android:padding="5dp"
-        android:gravity="center">
+        style="@style/list_view_item">
     </TextView>
     
     <TextView
         android:id="@+id/stopInfoDueTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/light_grey"
-        android:textSize="18sp"
-        android:textStyle="bold"
 		android:layout_weight="0.33"
-		android:padding="5dp"
-		android:gravity="center">
+		style="@style/list_view_item">
     </TextView>
 
 </LinearLayout>

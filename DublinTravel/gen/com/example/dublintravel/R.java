@@ -425,6 +425,7 @@ containing a value of this type.
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
@@ -432,6 +433,14 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f0b0000;
         public static final int activity_vertical_margin=0x7f0b0001;
+        public static final int dialog_title_size=0x7f0b0008;
+        public static final int heading_size=0x7f0b0005;
+        public static final int homepage_padding=0x7f0b0009;
+        public static final int margin=0x7f0b0007;
+        public static final int sub_heading_size=0x7f0b0006;
+        public static final int text_size_large=0x7f0b0002;
+        public static final int text_size_medium=0x7f0b0003;
+        public static final int text_size_small=0x7f0b0004;
     }
     public static final class drawable {
         public static final int bus_eireann=0x7f020000;
@@ -546,17 +555,17 @@ containing a value of this type.
         public static final int selectionDetails=0x7f07000d;
         public static final int stop=0x7f07003b;
         public static final int stopIdTextView=0x7f070043;
-        public static final int stopInfoDestination=0x7f07003f;
-        public static final int stopInfoDueTime=0x7f070040;
-        public static final int stopInfoListView=0x7f07003c;
-        public static final int stopInfoRoute=0x7f07003e;
+        public static final int stopInfoDestination=0x7f07003e;
+        public static final int stopInfoDueTime=0x7f07003f;
+        public static final int stopInfoListView=0x7f070040;
+        public static final int stopInfoRoute=0x7f07003d;
         public static final int stopNameTextView=0x7f070041;
         public static final int stopsListView=0x7f070026;
         public static final int strict_sandbox=0x7f07000b;
         public static final int tabBar=0x7f070023;
         public static final int terrain=0x7f070005;
         public static final int twitterFeed=0x7f07001f;
-        public static final int webView1=0x7f07003d;
+        public static final int webView1=0x7f07003c;
         public static final int wrap_content=0x7f07000f;
     }
     public static final class integer {
@@ -570,7 +579,8 @@ containing a value of this type.
         public static final int navigation_bar=0x7f030004;
         public static final int rtpi_dashboard=0x7f030005;
         public static final int stop_info_list_item=0x7f030006;
-        public static final int stop_list_item=0x7f030007;
+        public static final int stop_info_table=0x7f030007;
+        public static final int stop_list_item=0x7f030008;
     }
     public static final class menu {
         public static final int homepage=0x7f0c0000;
@@ -730,11 +740,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f05000d;
+        public static final int AppBaseTheme=0x7f05000e;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f05000e;
+        public static final int AppTheme=0x7f05000f;
         public static final int Theme_IAPTheme=0x7f050000;
         public static final int WalletFragmentDefaultButtonTextAppearance=0x7f050003;
         public static final int WalletFragmentDefaultDetailsHeaderTextAppearance=0x7f050002;
@@ -749,13 +759,12 @@ containing a value of this type.
         public static final int homepage_heading=0x7f050006;
         public static final int homepage_subheading=0x7f050007;
         public static final int list_view_heading=0x7f050008;
-        public static final int map_stop_name=0x7f050009;
-        public static final int map_travel_time=0x7f05000a;
-        public static final int search_bar=0x7f05000b;
-        public static final int stopTextView=0x7f05000c;
-        public static final int tab=0x7f05000f;
-        public static final int table_element=0x7f050010;
-        public static final int table_header=0x7f050011;
+        public static final int list_view_item=0x7f050009;
+        public static final int map_stop_name=0x7f05000a;
+        public static final int map_travel_time=0x7f05000b;
+        public static final int search_bar=0x7f05000c;
+        public static final int stop_text_view=0x7f05000d;
+        public static final int tab=0x7f050010;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

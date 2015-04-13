@@ -31,7 +31,6 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 	}
 
 	protected void onPostExecute(String result) {
-
 		if(!isCancelled()){
 			int lastViewedPosition = listview.getFirstVisiblePosition();
 			View v = listview.getChildAt(0);

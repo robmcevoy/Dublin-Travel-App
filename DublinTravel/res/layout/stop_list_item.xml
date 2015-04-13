@@ -8,8 +8,7 @@
         android:id="@+id/stopNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textSize="@dimen/text_size_medium"
         android:paddingLeft="10dp" 
         android:paddingTop="10dp">
     </TextView>

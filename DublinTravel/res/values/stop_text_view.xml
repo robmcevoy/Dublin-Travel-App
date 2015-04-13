@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="stop_text_view" >
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>s
+        <item name="android:text">@string/stop_id_hint</item>  
+        <item name="android:textColor">@color/light_grey</item> 
+        <item name="android:background">@drawable/rounded_corner_orange</item> 
+        <item name="android:textSize">@dimen/text_size_large</item>       
+    </style>
+</resources>

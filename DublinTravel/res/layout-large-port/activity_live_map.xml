@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    style="@style/background"
+    android:orientation="vertical">
+
+	<include layout="@layout/navigation_bar" />
+
+	<LinearLayout
+    	android:background="@drawable/rounded_corner_orange"
+    	android:layout_width="match_parent"
+    	android:layout_height="0dp"
+    	android:layout_weight="0.45"
+    	android:padding="4dp"
+    	android:layout_marginBottom="@dimen/margin">
+	
+		<fragment
+          	android:id="@+id/map"
+          	android:layout_width="match_parent"
+          	android:layout_height="match_parent"
+          	android:name="com.google.android.gms.maps.MapFragment"/>
+	</LinearLayout>	
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+    	android:layout_height="0dp"
+    	android:layout_weight="0.40" >
+		
+	    <LinearLayout
+	        android:layout_width="0dp"
+    		android:layout_height="match_parent"
+    		android:layout_weight="0.5"
+    		android:layout_marginRight="@dimen/margin">
+	        <include layout="@layout/map_legend"/>
+	    </LinearLayout>
+	    
+		<LinearLayout
+    		android:background="@drawable/rounded_corner_orange"
+    		android:layout_width="0dp"
+    		android:layout_height="match_parent"
+    		android:layout_weight="0.5"
+    		android:padding="4dp">
+    	
+   			<WebView
+   				android:id="@+id/twitterFeed"
+   		   		android:layout_width="match_parent"
+   		    	android:layout_height="match_parent"/>
+   			
+   		</LinearLayout>
+   	</LinearLayout>
+</LinearLayout>

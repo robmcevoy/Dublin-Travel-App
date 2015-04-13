@@ -38,8 +38,11 @@ public class StopListDialog {
 	private boolean favouritesTabActive;
 	private final String errorMessage = "Unable to make favourite operation";
 	private StopAdapter stopAdapter;
-	private final double WIDTH_PERCENTAGE = 0.9;
-	private final double HEIGHT_PERCENTAGE = 0.7;
+	private final double WIDTH_PERCENTAGE_PORTRAIT = 0.9;
+	private final double HEIGHT_PERCENTAGE_PORTRAIT = 0.7;
+	private final double WIDTH_PERCENTAGE_LANDSCAPE = 0.5;
+	private final double HEIGHT_PERCENTAGE_LANDSCAPE = 0.9;
+	private final int ORIENTATION_LANDSCAPE = 2;
 	private WindowManager.LayoutParams lp;
 	
 	public StopListDialog(RtpiController rtpiController){
@@ -47,14 +50,7 @@ public class StopListDialog {
 		dialog = new Dialog(rtpiController.getCurrentContext());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog);
-		Point size = new Point();
-		WindowManager wm = (WindowManager) rtpiController.getCurrentContext().getSystemService(Context.WINDOW_SERVICE);
-		Display display = wm.getDefaultDisplay();
-		display.getSize(size);
-		lp = new WindowManager.LayoutParams();
-	    lp.copyFrom(dialog.getWindow().getAttributes());
-	    lp.width = (int) (size.x * WIDTH_PERCENTAGE);
-	    lp.height = (int) (size.y * HEIGHT_PERCENTAGE);
+		setDialogSize();
 		listview = (ListView) dialog.findViewById(R.id.stopsListView);
 		searchBar = (EditText) dialog.findViewById(R.id.searchBar);
 		progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
@@ -66,6 +62,27 @@ public class StopListDialog {
 		allStops = new ArrayList<Stop>();
 		favouritesDb = new FavouritesDatabase(rtpiController.getCurrentContext());
 		favouritesDb.open();
+	}
+	
+	private void setDialogSize(){
+		Point size = new Point();
+		WindowManager wm = (WindowManager) rtpiController.getCurrentContext().getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		display.getSize(size);
+		lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    int orientation = rtpiController.getCurrentContext().getResources().getConfiguration().orientation;
+	    double x,y;
+	    if(orientation == ORIENTATION_LANDSCAPE){
+	    	x = WIDTH_PERCENTAGE_LANDSCAPE;
+	    	y = HEIGHT_PERCENTAGE_LANDSCAPE;
+	    }
+	    else{
+	    	x = WIDTH_PERCENTAGE_PORTRAIT;
+	    	y = HEIGHT_PERCENTAGE_PORTRAIT;
+	    }
+	    lp.width = (int) (size.x * x);
+	    lp.height = (int) (size.y * y);
 	}
 	
 	public void open(){

@@ -24,7 +24,7 @@
         android:gravity="center_vertical"
         android:text="@string/stop_id_hint"
         android:textColor="@color/orange"
-        android:textSize="28sp"
+        android:textSize="@dimen/dialog_title_size"
         android:textStyle="bold" />
 
     <EditText
@@ -32,7 +32,7 @@
         style="@style/search_bar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="@dimen/margin"
         android:layout_weight="0.10"
         android:minWidth="200dp"
         android:visibility="invisible" >
@@ -42,7 +42,7 @@
         android:id="@+id/tabBar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="@dimen/margin"
         android:layout_weight="0.10"
         android:background="@drawable/rounded_corner_orange"
         android:padding="5dip"

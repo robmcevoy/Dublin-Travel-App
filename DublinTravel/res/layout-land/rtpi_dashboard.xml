@@ -18,7 +18,7 @@
         	android:layout_height="match_parent"
         	android:layout_weight="0.35"
         	android:orientation="vertical"
-        	android:layout_marginRight="5dp" >
+        	android:layout_marginRight="@dimen/margin" >
         
             <LinearLayout
                 android:layout_width="match_parent"
@@ -35,11 +35,11 @@
                     android:orientation="vertical"
                     android:layout_weight="0.3"
                     android:gravity="center_horizontal"
-                    android:layout_marginRight="5dp" >
+                    android:layout_marginRight="@dimen/margin" >
 
                     <TextView
                         android:id="@+id/stop"
-                        style="@style/stopTextView"
+                        style="@style/stop_text_view"
                         android:layout_width= "match_parent"
                         android:layout_height="match_parent" />
 
@@ -52,51 +52,7 @@
                 	android:layout_weight="0.7"
                 	android:background="@drawable/rounded_corner_orange" >
                 	
-                     <LinearLayout
-                    	android:layout_width="match_parent"
-                		android:layout_height="0dp"
-                		android:orientation="horizontal" 
-                		android:layout_weight="0.2"
-                		android:background="@drawable/rounded_corner_orange" >
-                       	
-                        <TextView 
-                            android:text="@string/route_header"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.33"
-                            style="@style/list_view_heading">
-                        </TextView>
-                        
-                        <TextView 
-                            android:text="@string/destination_header"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.33"
-                            style="@style/list_view_heading"
-                            >
-                        </TextView>
-                        
-                        <TextView 
-                            android:text="@string/duetime_header"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.33"
-                            style="@style/list_view_heading">
-                        </TextView>
-                         
-                         
-                     </LinearLayout>
-                	
-                	<ListView
-                    	android:id="@+id/stopInfoListView"
-                    	android:layout_width="match_parent"
-                   		android:layout_height="0dp"
-                    	android:paddingTop="10dp"
-                    	android:layout_weight="0.8"
-                    	android:divider="@color/orange"
-        				android:dividerHeight="1dp">
-                    
-                	</ListView>
+                    <include layout="@layout/stop_info_table"></include>
                 </LinearLayout>
 				
             </LinearLayout>

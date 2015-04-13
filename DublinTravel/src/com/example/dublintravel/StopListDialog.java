@@ -3,11 +3,15 @@ package com.example.dublintravel;
 import java.util.ArrayList;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,12 +38,23 @@ public class StopListDialog {
 	private boolean favouritesTabActive;
 	private final String errorMessage = "Unable to make favourite operation";
 	private StopAdapter stopAdapter;
+	private final double WIDTH_PERCENTAGE = 0.9;
+	private final double HEIGHT_PERCENTAGE = 0.7;
+	private WindowManager.LayoutParams lp;
 	
 	public StopListDialog(RtpiController rtpiController){
 		this.rtpiController = rtpiController;
 		dialog = new Dialog(rtpiController.getCurrentContext());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog);
+		Point size = new Point();
+		WindowManager wm = (WindowManager) rtpiController.getCurrentContext().getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		display.getSize(size);
+		lp = new WindowManager.LayoutParams();
+	    lp.copyFrom(dialog.getWindow().getAttributes());
+	    lp.width = (int) (size.x * WIDTH_PERCENTAGE);
+	    lp.height = (int) (size.y * HEIGHT_PERCENTAGE);
 		listview = (ListView) dialog.findViewById(R.id.stopsListView);
 		searchBar = (EditText) dialog.findViewById(R.id.searchBar);
 		progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
@@ -55,6 +70,7 @@ public class StopListDialog {
 	
 	public void open(){
 		dialog.show();
+		dialog.getWindow().setAttributes(lp);
 		activateTab();
 		GetStopsThread thread = new GetStopsThread(this, rtpiController.getCurrentOperator());
 		thread.execute();

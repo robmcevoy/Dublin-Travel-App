@@ -141,7 +141,7 @@ public class StopListDialog {
 		}
 		toActivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.orange));
 		toDeactivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.light_grey));
-		img.setBounds( 0, 0, 60, 60 );
+		img.setBounds( 0, 0, img.getIntrinsicWidth(), img.getIntrinsicWidth() );
 		favouritesBtn.setCompoundDrawables( img, null, null, null );
 		wipeSearch();
 	}

@@ -18,5 +18,6 @@
     <string name="title_activity_live_map">LiveMap</string>
     <string name="tab_all_stops">All Stops</string>
     <string name="tab_favourites">Favourites</string>
+    <string name="title_activity_user_manual">UserManualActivity</string>
 
 </resources>

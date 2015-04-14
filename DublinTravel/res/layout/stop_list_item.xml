@@ -20,14 +20,14 @@
        <LinearLayout
        		android:layout_width="0dp"
        		android:layout_height="match_parent"
-       		android:layout_weight="0.75" >
+       		android:layout_weight="0.70" >
        </LinearLayout>
        
        <ImageView
            	android:id="@+id/favourite"
            	android:layout_width="0dp"
         	android:layout_height="match_parent" 
-        	android:layout_weight="0.10"
+        	android:layout_weight="0.05"
            	android:src="@drawable/ic_action_important" />
         
         
@@ -35,8 +35,9 @@
         	android:id="@+id/stopIdTextView"
         	android:layout_width="0dp"
         	android:layout_height="match_parent" 
-        	android:layout_weight="0.15"
-        	android:paddingRight="10dp">
+        	 android:textSize="@dimen/text_size_medium"
+        	android:layout_weight="0.25"
+        	android:paddingRight="5dp">
     	</TextView>
        
    </LinearLayout>

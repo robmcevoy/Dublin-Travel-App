@@ -23,9 +23,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7"
+        android:layout_weight="0.60"
         android:gravity="center_vertical"
-        android:paddingBottom="@dimen/homepage_padding" 
         android:paddingLeft="@dimen/homepage_padding"  >
 
         <LinearLayout
@@ -93,6 +92,15 @@
             android:contentDescription="@string/app_cd"
             android:src="@drawable/map" />
 
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10">
+        
+        <include layout="@layout/user_guide_button"/>
+        
     </LinearLayout>
     
 </LinearLayout>

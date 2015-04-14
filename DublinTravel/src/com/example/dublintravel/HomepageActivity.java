@@ -20,8 +20,9 @@ public class HomepageActivity extends Activity {
 	    final ImageView busEireannImageView = (ImageView) findViewById(R.id.busEireannLogo);
 	    final ImageView luasImageView = (ImageView) findViewById(R.id.luasLogo);
 	    final ImageView liveMapLogoImageView = (ImageView) findViewById(R.id.liveMapLogo);
+	    final ImageView userManualImageView = (ImageView) findViewById(R.id.userManual);
 	    
-	    navbar = new HomepageNavigationBar(dublinBusImageView, luasImageView, irishRailImageView, busEireannImageView, liveMapLogoImageView, this);
+	    navbar = new HomepageNavigationBar(dublinBusImageView, luasImageView, irishRailImageView, busEireannImageView, liveMapLogoImageView, userManualImageView, this);
 	    navbar.activate();
 	    
 	    // handle bundle

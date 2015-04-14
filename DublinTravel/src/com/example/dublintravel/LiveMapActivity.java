@@ -10,13 +10,18 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import android.graphics.Point;
 import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.Display;
 import android.view.Menu;
+import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LiveMapActivity extends Activity implements OnMapReadyCallback, LocationListener,
 GoogleApiClient.ConnectionCallbacks,
@@ -90,6 +95,8 @@ GoogleApiClient.OnConnectionFailedListener{
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        
+        setSmallScreenConfig();
 		
 		// handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
@@ -153,5 +160,23 @@ GoogleApiClient.OnConnectionFailedListener{
 
 	@Override
 	public void onConnectionSuspended(int cause) {}
+	
+	private void setSmallScreenConfig(){
+		try{
+			Display display = getWindowManager().getDefaultDisplay();
+			Point size = new Point();
+			display.getSize(size);
+			int width = size.x;
+			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterFeedLayout);
+			LinearLayout mapLegendLayout = (LinearLayout) findViewById(R.id.mapLegendLayout);
+			LinearLayout map = (LinearLayout) findViewById(R.id.mapLayout);
+			twitterLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+			mapLegendLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+			map.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+		}
+		catch(Exception e){
+			//not using small layout
+		}
+	}
 
 }

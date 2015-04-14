@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    style="@style/background"
+    android:orientation="vertical" >
+    
+	<include layout="@layout/navigation_bar" />
+	  
+	<LinearLayout
+		android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.10" 
+	    android:layout_marginBottom="@dimen/margin">
+
+       	<TextView
+       		android:id="@+id/stop"
+           	style="@style/stop_text_view"
+          	android:layout_width="match_parent"
+       		android:layout_height="match_parent"/>
+	    
+	</LinearLayout>
+
+	<HorizontalScrollView
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.75" 
+	    android:layout_marginBottom="@dimen/margin" >
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:orientation="horizontal" >
+	        
+	        <LinearLayout
+        		android:layout_width="wrap_content"
+            	android:layout_height="match_parent"
+            	android:orientation="vertical" 
+            	android:id="@+id/table"
+           		android:background="@drawable/rounded_corner_orange">
+       	
+            	<include layout="@layout/stop_info_table"></include>
+            
+     		</LinearLayout> 
+     		
+	        <LinearLayout
+	            android:id="@+id/chartVisLayout"
+				android:background="@drawable/rounded_corner_orange"
+		  		android:layout_height="match_parent"
+		  		android:layout_width="match_parent"
+		  		android:padding="4dp">
+	        
+	       	 	<WebView
+					android:id="@+id/webView1"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"/>
+	       	</LinearLayout>
+
+     		
+	        <LinearLayout
+	            android:id="@+id/twitterLayout"
+				android:background="@drawable/rounded_corner_orange"
+		  		android:layout_height="match_parent"
+		  		android:layout_width="match_parent"
+		  		android:padding="4dp">
+				<WebView
+    	   			android:id="@+id/twitterFeed"
+    	   			android:layout_width="wrap_content"
+           			android:layout_height="match_parent" />
+			</LinearLayout>
+	    </LinearLayout>
+	</HorizontalScrollView>
+</LinearLayout>

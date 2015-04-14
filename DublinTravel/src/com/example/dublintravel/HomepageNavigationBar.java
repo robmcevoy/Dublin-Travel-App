@@ -9,13 +9,16 @@ import android.widget.ImageView;
 public class HomepageNavigationBar extends NavigationBar {
 	
 	private Context context;
+	private ImageView userManualImageView;
 
 	public HomepageNavigationBar(ImageView dublinBusImageView,
 			ImageView luasImageView, ImageView irishRailImageView,
-			ImageView busEireannImageView, ImageView mapImageView, Context context) {
+			ImageView busEireannImageView, ImageView mapImageView, ImageView userManualImageView, Context context) {
 		super(dublinBusImageView, luasImageView, irishRailImageView,
 				busEireannImageView, mapImageView);
 		this.context = context;
+		this.userManualImageView = userManualImageView;
+		setUserManualClick();
 	}
 	
 	@Override
@@ -52,6 +55,19 @@ public class HomepageNavigationBar extends NavigationBar {
             	i.putExtras(createBundle());
             	getContext().startActivity(i);
             }
+        });
+	}
+	
+	private void setUserManualClick(){
+		userManualImageView.setOnClickListener(new View.OnClickListener()
+        {
+			public void onClick(View v)
+            {
+				Intent i = new Intent(getContext(), UserManualActivity.class);
+            	i.putExtras(createBundle());
+            	getContext().startActivity(i);
+            }
+			
         });
 	}
 

@@ -3,9 +3,13 @@ package com.example.dublintravel;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
+import android.view.Display;
 import android.view.Menu;
+import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,7 +22,7 @@ public class RtpiDashboardActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rtpi_dashboard);
-		
+			
 		// create objects
         final Context context = this;
         final TextView stopTextView = (TextView) findViewById(R.id.stop);
@@ -34,9 +38,28 @@ public class RtpiDashboardActivity extends Activity {
 		irishRailImageView,busEireannImageView, liveMapImageView);
         rtpiController = new RtpiController(context, navbar, stopTextView, stopInfoListView, chartVis, twitterFeed);
 	    
+        setSmallScreenConfig();
         // handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
         navbar.handleBundle(EXTRAS);   
+	}
+	
+	private void setSmallScreenConfig(){
+		try{
+			Display display = getWindowManager().getDefaultDisplay();
+			Point size = new Point();
+			display.getSize(size);
+			int width = size.x;
+			LinearLayout table = (LinearLayout) findViewById(R.id.table);
+			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterLayout);
+			LinearLayout chartVisLayout = (LinearLayout) findViewById(R.id.chartVisLayout);
+			twitterLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+			chartVisLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+			table.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+		}
+		catch(Exception e){
+			// use large layout
+		}
 	}
 
 
@@ -45,7 +68,6 @@ public class RtpiDashboardActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
 	
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {

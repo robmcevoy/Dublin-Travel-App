@@ -16,7 +16,7 @@ public class HttpSender {
 	public String sendGetRequest(String address, boolean needsAuth1){
 		// sends a http request and returns the response as a string		
 		needsAuth = needsAuth1;
-		String result="nothing";
+		String result="";
 		URL url;
 		try {
 			url = new URL(address);
@@ -27,7 +27,7 @@ public class HttpSender {
 			InputStream in = uc.getInputStream();
 			result = convertInputStreamToString(in);
 		} catch (Exception e) {
-			return "exception in http sender: " + e.toString();
+			return null;
 		}
 		return result;
 	}

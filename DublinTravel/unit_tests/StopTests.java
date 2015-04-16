@@ -12,6 +12,8 @@ public class StopTests extends TestCase {
 	private final double LONGITUDE = 1.4;
 	private final double LATITUDE = 3.1;
 	private final String ERROR_MESSAGE = "error message";
+	private final Stop TO_COMPARE = new Stop("2", STOP_NAME);
+	private final Stop TO_COMPARE_2 = new Stop("2", "differnet name");
 	
 	protected void setUp() {
 		stop = new Stop(STOP_ID, STOP_NAME);
@@ -49,6 +51,13 @@ public class StopTests extends TestCase {
 		// set errorMessage
 		stop.setErrorMessage(ERROR_MESSAGE);
 		assertTrue(stop.getName().equals(ERROR_MESSAGE));
+	}
+	
+	public void testCase6(){
+		// comparing stops
+		assertTrue(!stop.equals(TO_COMPARE));
+		assertTrue(!stop.equals(TO_COMPARE_2));
+		assertTrue(stop.equals(stop));
 	}
 
 }

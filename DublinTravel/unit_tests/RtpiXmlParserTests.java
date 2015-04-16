@@ -1,5 +1,11 @@
 import com.example.dublintravel.RtpiXmlParser;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import junit.framework.TestCase;
 import com.example.dublintravel.StopInfo;
 import com.example.dublintravel.Stop;
@@ -11,8 +17,12 @@ public class RtpiXmlParserTests extends TestCase {
 	private final String EXPECTED_DUE_TIME= "3";
 	private final String EXPECTED_DESTINATON= "M3 Parkway";
 	private final String EXPECTED_ROUTE= "Northbound";
-	private final String EXPECTED_ARRIVAL_TIME= "15/04/2015 17:10:00";
-	private final String EXPECTED_SCH_ARRIVAL_TIME= "15/04/2015 17:09:00";
+	private final String DATE_FORMAT= "dd/MM/yyyy";
+	private final DateFormat DF = new SimpleDateFormat(DATE_FORMAT);
+	private final Date TODAY = Calendar.getInstance().getTime();
+	private final String DATE_STING = DF.format(TODAY);
+	private final String EXPECTED_ARRIVAL_TIME= DATE_STING + " " + "17:10:00";
+	private final String EXPECTED_SCH_ARRIVAL_TIME= DATE_STING + " " + "17:09:00";
 	private final String EXPECTED_SERVER_TIME= "2015-04-15T17:08:56.22";
 	private final String EXPECTED_STOP_ID= "BFSTC";
 	private final String EXPECTED_STOP_NAME= "Belfast Central";

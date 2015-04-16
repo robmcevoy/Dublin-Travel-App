@@ -92,7 +92,7 @@ public class StopInfo implements Comparable<StopInfo> {
 	}
 	
 	public boolean isDue(String duetime){
-		if(duetime.toLowerCase().equals("due")){
+		if(duetime.toLowerCase().equals(DUE)){
 			return true;
 		}
 		return false;

@@ -6,8 +6,10 @@ import android.content.Context;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.Menu;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -49,13 +51,20 @@ public class RtpiDashboardActivity extends Activity {
 			Display display = getWindowManager().getDefaultDisplay();
 			Point size = new Point();
 			display.getSize(size);
-			int width = size.x;
-			LinearLayout table = (LinearLayout) findViewById(R.id.table);
+			int width = (int)(size.x * rtpiController.getHorizonalScrollViewPercentageWidth());
 			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterLayout);
 			LinearLayout chartVisLayout = (LinearLayout) findViewById(R.id.chartVisLayout);
+			LinearLayout table = (LinearLayout) findViewById(R.id.table);
 			twitterLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
 			chartVisLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
 			table.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+			final HorizontalScrollView scrollview = (HorizontalScrollView) findViewById(R.id.scrollview);
+		    scrollview.postDelayed(new Runnable() {
+		        @Override
+		        public void run() {
+		            scrollview.fullScroll(View.FOCUS_UP);
+		        }
+		    }, 600);
 		}
 		catch(Exception e){
 			// use large layout

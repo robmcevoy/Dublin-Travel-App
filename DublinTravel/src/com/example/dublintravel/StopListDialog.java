@@ -42,6 +42,7 @@ public class StopListDialog {
 	private final double HEIGHT_PERCENTAGE_PORTRAIT = 0.7;
 	private final double WIDTH_PERCENTAGE_LANDSCAPE = 0.5;
 	private final double HEIGHT_PERCENTAGE_LANDSCAPE = 0.9;
+	private final double TAB_ICON_SIZE_MULTIPLIER= 0.7;
 	private final int ORIENTATION_LANDSCAPE = 2;
 	private WindowManager.LayoutParams lp;
 	
@@ -141,7 +142,7 @@ public class StopListDialog {
 		}
 		toActivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.orange));
 		toDeactivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.light_grey));
-		img.setBounds( 0, 0, img.getIntrinsicWidth(), img.getIntrinsicWidth() );
+		img.setBounds( 0, 0, (int)(img.getIntrinsicWidth()*TAB_ICON_SIZE_MULTIPLIER), (int)(img.getIntrinsicWidth()*TAB_ICON_SIZE_MULTIPLIER) );
 		favouritesBtn.setCompoundDrawables( img, null, null, null );
 		wipeSearch();
 	}

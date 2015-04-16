@@ -504,7 +504,7 @@ containing a value of this type.
         public static final int walking=0x7f020035;
     }
     public static final class id {
-        public static final int action_settings=0x7f07004b;
+        public static final int action_settings=0x7f07004c;
         public static final int adjust_height=0x7f070002;
         public static final int adjust_width=0x7f070001;
         public static final int allStopsBtn=0x7f070027;
@@ -518,7 +518,7 @@ containing a value of this type.
         public static final int buyButton=0x7f07000c;
         public static final int buy_now=0x7f070011;
         public static final int buy_with_google=0x7f070010;
-        public static final int chartVisLayout=0x7f070040;
+        public static final int chartVisLayout=0x7f070041;
         public static final int classic=0x7f070014;
         public static final int dialogTitle=0x7f070024;
         public static final int donate_with_google=0x7f070013;
@@ -528,7 +528,7 @@ containing a value of this type.
         public static final int dublinBusStopDriving=0x7f07003d;
         public static final int dublinBusStopName=0x7f070039;
         public static final int dublinBusStopWalk=0x7f07003b;
-        public static final int favourite=0x7f070048;
+        public static final int favourite=0x7f070049;
         public static final int favouritesBtn=0x7f070028;
         public static final int grayscale=0x7f070015;
         public static final int holo_dark=0x7f070007;
@@ -560,25 +560,26 @@ containing a value of this type.
         public static final int progressBar=0x7f070023;
         public static final int sandbox=0x7f07000a;
         public static final int satellite=0x7f070004;
+        public static final int scrollview=0x7f07003f;
         public static final int searchBar=0x7f070025;
         public static final int selectionDetails=0x7f07000d;
         public static final int stop=0x7f07003e;
-        public static final int stopIdTextView=0x7f070049;
-        public static final int stopInfoDestination=0x7f070044;
-        public static final int stopInfoDueTime=0x7f070045;
-        public static final int stopInfoListView=0x7f070046;
-        public static final int stopInfoRoute=0x7f070043;
-        public static final int stopNameTextView=0x7f070047;
+        public static final int stopIdTextView=0x7f07004a;
+        public static final int stopInfoDestination=0x7f070045;
+        public static final int stopInfoDueTime=0x7f070046;
+        public static final int stopInfoListView=0x7f070047;
+        public static final int stopInfoRoute=0x7f070044;
+        public static final int stopNameTextView=0x7f070048;
         public static final int stopsListView=0x7f070029;
         public static final int strict_sandbox=0x7f07000b;
         public static final int tabBar=0x7f070026;
-        public static final int table=0x7f07003f;
+        public static final int table=0x7f070040;
         public static final int terrain=0x7f070005;
         public static final int twitterFeed=0x7f070022;
         public static final int twitterFeedLayout=0x7f070021;
-        public static final int twitterLayout=0x7f070042;
-        public static final int userManual=0x7f07004a;
-        public static final int webView1=0x7f070041;
+        public static final int twitterLayout=0x7f070043;
+        public static final int userManual=0x7f07004b;
+        public static final int webView1=0x7f070042;
         public static final int wrap_content=0x7f07000f;
     }
     public static final class integer {

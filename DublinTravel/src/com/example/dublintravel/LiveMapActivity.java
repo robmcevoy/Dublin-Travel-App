@@ -21,7 +21,6 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class LiveMapActivity extends Activity implements OnMapReadyCallback, LocationListener,
 GoogleApiClient.ConnectionCallbacks,
@@ -166,7 +165,7 @@ GoogleApiClient.OnConnectionFailedListener{
 			Display display = getWindowManager().getDefaultDisplay();
 			Point size = new Point();
 			display.getSize(size);
-			int width = size.x;
+			int width = (int)(size.x * controller.getHorizonalScrollViewPercentageWidth());
 			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterFeedLayout);
 			LinearLayout mapLegendLayout = (LinearLayout) findViewById(R.id.mapLegendLayout);
 			LinearLayout map = (LinearLayout) findViewById(R.id.mapLayout);

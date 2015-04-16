@@ -7,6 +7,7 @@ public abstract class Controller {
 	
 	protected Context context;
 	protected ImageView activeImageView;
+	private final double PERCENTAGE_WIDTH=0.95;
 	
 	protected Controller(Context context){
 		this.context = context;
@@ -25,4 +26,8 @@ public abstract class Controller {
 	}
 	
 	public abstract void changeActiveOperator(Operator operator, ImageView imageView);
+	
+	public double getHorizonalScrollViewPercentageWidth(){
+		return PERCENTAGE_WIDTH;
+	}
 }

@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">My Stop</string>
+    <string name="homepage_subheading">Select a Dashboard..</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="go_button">Go</string>
@@ -10,7 +11,7 @@
     <string name="app_cd">Application logo</string>
     <string name="irish_rail_cd">Irish Rail logo</string>
     <string name="dublin_bus_cd">Dublin Bus logo</string>
-    <string name="stop_id_hint">Choose a Departing Stop..</string>
+    <string name="stop_id_hint">Choose a Departure Stop..</string>
     <string name="route_header">Route</string>
     <string name="destination_header">Destination</string>
     <string name="duetime_header">Due (mins)</string>

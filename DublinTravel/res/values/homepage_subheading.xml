@@ -2,6 +2,6 @@
 <resources>
     <style name="homepage_subheading" >
         <item name="android:textSize">@dimen/sub_heading_size</item>
-        <item name="android:text">Select a Dashboard..</item>
+        <item name="android:text">@string/homepage_subheading</item>
     </style>
 </resources>

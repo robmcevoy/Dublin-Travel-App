@@ -169,9 +169,15 @@ GoogleApiClient.OnConnectionFailedListener{
 			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterFeedLayout);
 			LinearLayout mapLegendLayout = (LinearLayout) findViewById(R.id.mapLegendLayout);
 			LinearLayout map = (LinearLayout) findViewById(R.id.mapLayout);
+			LinearLayout lastMapLegendItem = (LinearLayout) findViewById(R.id.lastMapLegendItem);
 			twitterLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
 			mapLegendLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
 			map.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+			lastMapLegendItem.setBackground(getResources().getDrawable(R.drawable.rounded_corner_orange_no_bottom));
+			int orientation = getResources().getConfiguration().orientation;
+			if(orientation == 2){
+				twitterLayout.setPadding(controller.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingTop(), controller.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingBottom());
+			}
 		}
 		catch(Exception e){
 			//not using small layout

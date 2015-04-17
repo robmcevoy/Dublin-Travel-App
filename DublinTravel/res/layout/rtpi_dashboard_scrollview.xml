@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>  
+    <HorizontalScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/scrollview"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_marginBottom="@dimen/margin"
+	    android:fadeScrollbars="false"
+	    android:scrollbarSize="4dp"
+	    android:scrollbarThumbHorizontal="@drawable/scrollbar" >
+
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:orientation="horizontal" >
+	        
+	        <LinearLayout
+        		android:layout_width="match_parent"
+            	android:layout_height="match_parent"
+            	android:orientation="vertical" 
+            	android:id="@+id/table"
+           		android:background="@drawable/rounded_corner_orange_no_bottom">
+       	
+            	<include layout="@layout/stop_info_table"></include>
+            
+     		</LinearLayout> 
+     		
+	        <LinearLayout
+	            android:id="@+id/chartVisLayout"
+				android:background="@drawable/rounded_corner_orange_no_bottom"
+		  		android:layout_height="match_parent"
+		  		android:layout_width="match_parent"
+		  		android:padding="4dp">
+	        
+	       	 	<WebView
+					android:id="@+id/webView1"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"/>
+	       	</LinearLayout>
+
+     		
+	        <LinearLayout
+	            android:id="@+id/twitterLayout"
+				android:background="@drawable/rounded_corner_orange_no_bottom"
+		  		android:layout_height="match_parent"
+		  		android:layout_width="match_parent"
+		  		android:padding="4dp">
+				<WebView
+    	   			android:id="@+id/twitterFeed"
+    	   			android:layout_width="match_parent"
+           			android:layout_height="match_parent" />
+			</LinearLayout>
+	    </LinearLayout>
+	</HorizontalScrollView>

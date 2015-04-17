@@ -58,13 +58,10 @@ public class RtpiDashboardActivity extends Activity {
 			twitterLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
 			chartVisLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
 			table.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
-			final HorizontalScrollView scrollview = (HorizontalScrollView) findViewById(R.id.scrollview);
-		    scrollview.postDelayed(new Runnable() {
-		        @Override
-		        public void run() {
-		            scrollview.fullScroll(View.FOCUS_UP);
-		        }
-		    }, 600);
+			int orientation = getResources().getConfiguration().orientation;
+			if(orientation == 2){
+				twitterLayout.setPadding(rtpiController.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingTop(), rtpiController.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingBottom());
+			}
 		}
 		catch(Exception e){
 			// use large layout

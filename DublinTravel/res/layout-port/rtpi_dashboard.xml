@@ -20,54 +20,11 @@
 	    
 	</LinearLayout>
 
-	<HorizontalScrollView
-	    android:id="@+id/scrollview"
+	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
-	    android:layout_weight="0.75" 
-	    android:layout_marginBottom="@dimen/margin" >
+	    android:layout_weight="0.75"  >
 
-	    <LinearLayout
-	        android:layout_width="wrap_content"
-	        android:layout_height="match_parent"
-	        android:orientation="horizontal" >
-	        
-	        <LinearLayout
-        		android:layout_width="match_parent"
-            	android:layout_height="match_parent"
-            	android:orientation="vertical" 
-            	android:id="@+id/table"
-           		android:background="@drawable/rounded_corner_orange">
-       	
-            	<include layout="@layout/stop_info_table"></include>
-            
-     		</LinearLayout> 
-     		
-	        <LinearLayout
-	            android:id="@+id/chartVisLayout"
-				android:background="@drawable/rounded_corner_orange"
-		  		android:layout_height="match_parent"
-		  		android:layout_width="match_parent"
-		  		android:padding="4dp">
-	        
-	       	 	<WebView
-					android:id="@+id/webView1"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"/>
-	       	</LinearLayout>
-
-     		
-	        <LinearLayout
-	            android:id="@+id/twitterLayout"
-				android:background="@drawable/rounded_corner_orange"
-		  		android:layout_height="match_parent"
-		  		android:layout_width="match_parent"
-		  		android:padding="4dp">
-				<WebView
-    	   			android:id="@+id/twitterFeed"
-    	   			android:layout_width="match_parent"
-           			android:layout_height="match_parent" />
-			</LinearLayout>
-	    </LinearLayout>
-	</HorizontalScrollView>
+	 	<include layout="@layout/rtpi_dashboard_scrollview"/>
+	</LinearLayout>
 </LinearLayout>

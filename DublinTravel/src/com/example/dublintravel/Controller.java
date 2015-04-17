@@ -7,7 +7,8 @@ public abstract class Controller {
 	
 	protected Context context;
 	protected ImageView activeImageView;
-	private final double PERCENTAGE_WIDTH=0.95;
+	private final double PERCENTAGE_WIDTH=1.00;
+	private final int TWITTER_FEED_LANDSCAPE_PADDING=100;
 	
 	protected Controller(Context context){
 		this.context = context;
@@ -29,5 +30,9 @@ public abstract class Controller {
 	
 	public double getHorizonalScrollViewPercentageWidth(){
 		return PERCENTAGE_WIDTH;
+	}
+	
+	public int getTwitterFeedLandscapePadding(){
+		return TWITTER_FEED_LANDSCAPE_PADDING;
 	}
 }

@@ -12,6 +12,7 @@
      	android:background="@drawable/rounded_corner_orange" >
                        	
      	<TextView 
+     	    android:id="@+id/tableHeader1"
       		android:text="@string/route_header"
          	android:layout_width="0dp"
           	android:layout_height="match_parent"
@@ -20,6 +21,7 @@
         </TextView>
                         
      	<TextView 
+     	    android:id="@+id/tableHeader2"
           	android:text="@string/destination_header"
            	android:layout_width="0dp"
           	android:layout_height="match_parent"
@@ -28,6 +30,7 @@
       	</TextView>
                         
        	<TextView 
+       	    android:id="@+id/tableHeader3"
        		android:text="@string/duetime_header"
           	android:layout_width="0dp"
            	android:layout_height="match_parent"

@@ -17,6 +17,7 @@
   			android:layout_weight= "0.6">
   			
 		    <ImageView
+		        android:id="@+id/busEireannMarker"
 	  			android:layout_width="0dp"
 	  			android:layout_height="match_parent"
 				android:layout_weight="0.2"
@@ -124,6 +125,7 @@
   			android:layout_weight= "0.6">
   			
 		    <ImageView
+		        android:id="@+id/luasMarker"
 	  			android:layout_width="0dp"
 	  			android:layout_height="match_parent"
 				android:layout_weight="0.2"
@@ -232,6 +234,7 @@
   			android:layout_weight= "0.6">
   			
 		    <ImageView
+		        android:id="@+id/irishRailMarker"
 	  			android:layout_width="0dp"
 	  			android:layout_height="match_parent"
 				android:layout_weight="0.2"
@@ -327,6 +330,7 @@
    		</LinearLayout>
 	</LinearLayout>
 	<LinearLayout
+	    android:id="@+id/lastMapLegendItem"
         android:layout_width="match_parent"
 	  	android:layout_height="0dp"
 		android:layout_weight="0.25"
@@ -340,6 +344,7 @@
   			android:layout_weight= "0.6">
   			
 		    <ImageView
+		        android:id="@+id/dublinBusMarker"
 	  			android:layout_width="0dp"
 	  			android:layout_height="match_parent"
 				android:layout_weight="0.2"

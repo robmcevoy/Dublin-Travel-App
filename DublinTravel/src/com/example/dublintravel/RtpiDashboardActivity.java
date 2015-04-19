@@ -3,19 +3,14 @@ package com.example.dublintravel;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Point;
-import android.view.Display;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class RtpiDashboardActivity extends Activity {
+public class RtpiDashboardActivity extends Activity implements SmallScreen {
 
 	RtpiController rtpiController;
 	RtpiNavigationBar navbar;
@@ -40,34 +35,11 @@ public class RtpiDashboardActivity extends Activity {
 		irishRailImageView,busEireannImageView, liveMapImageView);
         rtpiController = new RtpiController(context, navbar, stopTextView, stopInfoListView, chartVis, twitterFeed);
 	    
-        setSmallScreenConfig();
+        configureSmallScreen();
         // handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
         navbar.handleBundle(EXTRAS);   
 	}
-	
-	private void setSmallScreenConfig(){
-		try{
-			Display display = getWindowManager().getDefaultDisplay();
-			Point size = new Point();
-			display.getSize(size);
-			int width = (int)(size.x * rtpiController.getHorizonalScrollViewPercentageWidth());
-			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterLayout);
-			LinearLayout chartVisLayout = (LinearLayout) findViewById(R.id.chartVisLayout);
-			LinearLayout table = (LinearLayout) findViewById(R.id.table);
-			twitterLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
-			chartVisLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
-			table.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
-			int orientation = getResources().getConfiguration().orientation;
-			if(orientation == 2){
-				twitterLayout.setPadding(rtpiController.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingTop(), rtpiController.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingBottom());
-			}
-		}
-		catch(Exception e){
-			// use large layout
-		}
-	}
-
 
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -90,6 +62,17 @@ public class RtpiDashboardActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		navbar.onBackPressed();
+	}
+
+	public void configureSmallScreen() {
+		try{
+			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterLayout);
+			LinearLayout chartVisLayout = (LinearLayout) findViewById(R.id.chartVisLayout);
+			LinearLayout table = (LinearLayout) findViewById(R.id.table);
+			rtpiController.configureHorizontalScrollView(this, table, chartVisLayout, twitterLayout);
+		}
+		catch(Exception e){/* normal layout*/};
+		
 	}
 	
 }

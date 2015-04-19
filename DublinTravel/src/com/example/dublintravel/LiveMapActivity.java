@@ -9,14 +9,10 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-
-import android.graphics.Point;
 import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Display;
 import android.view.Menu;
-import android.view.ViewGroup.LayoutParams;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,7 +20,7 @@ import android.widget.TextView;
 
 public class LiveMapActivity extends Activity implements OnMapReadyCallback, LocationListener,
 GoogleApiClient.ConnectionCallbacks,
-GoogleApiClient.OnConnectionFailedListener{
+GoogleApiClient.OnConnectionFailedListener, SmallScreen{
 	
 	LiveMapController controller;
 	LiveMapNavigationBar navbar;
@@ -95,7 +91,7 @@ GoogleApiClient.OnConnectionFailedListener{
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         
-        setSmallScreenConfig();
+        configureSmallScreen();
 		
 		// handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
@@ -159,29 +155,18 @@ GoogleApiClient.OnConnectionFailedListener{
 
 	@Override
 	public void onConnectionSuspended(int cause) {}
-	
-	private void setSmallScreenConfig(){
+
+	@Override
+	public void configureSmallScreen() {
 		try{
-			Display display = getWindowManager().getDefaultDisplay();
-			Point size = new Point();
-			display.getSize(size);
-			int width = (int)(size.x * controller.getHorizonalScrollViewPercentageWidth());
+			LinearLayout lastMapLegendItem = (LinearLayout) findViewById(R.id.lastMapLegendItem);
 			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterFeedLayout);
 			LinearLayout mapLegendLayout = (LinearLayout) findViewById(R.id.mapLegendLayout);
 			LinearLayout map = (LinearLayout) findViewById(R.id.mapLayout);
-			LinearLayout lastMapLegendItem = (LinearLayout) findViewById(R.id.lastMapLegendItem);
-			twitterLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
-			mapLegendLayout.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
-			map.setLayoutParams(new LinearLayout.LayoutParams(width, LayoutParams.MATCH_PARENT));
+			controller.configureHorizontalScrollView(this, map, mapLegendLayout, twitterLayout);
 			lastMapLegendItem.setBackground(getResources().getDrawable(R.drawable.rounded_corner_orange_no_bottom));
-			int orientation = getResources().getConfiguration().orientation;
-			if(orientation == 2){
-				twitterLayout.setPadding(controller.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingTop(), controller.getTwitterFeedLandscapePadding(), twitterLayout.getPaddingBottom());
-			}
 		}
-		catch(Exception e){
-			//not using small layout
-		}
+		catch(Exception e){/* normal layout*/};
 	}
 
 }

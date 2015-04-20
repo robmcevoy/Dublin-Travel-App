@@ -6,9 +6,6 @@ const db_marker="../img/dublin_bus_marker.png";
 const ir_marker="../img/irish_rail_marker.png";
 const be_marker="../img/bus_eireann_marker.png";
 const luas_marker="../img/luas_marker.png";
-const DUBLIN_BUS_OPCODE = "bac";
-const IRISH_RAIL_OPCODE = "ir";
-const LUAS_OPCODE = "luas";
 var active_image;
 var marker;
 const CAT_TITLE = "Due Time";
@@ -28,17 +25,17 @@ window.onload = function () {
 	document.body.style.backgroundColor = BACKGROUND_COLOR;
 }
 
-if(Android.getOperator() === DUBLIN_BUS_OPCODE){
+if(Android.getOperator() === Android.getDublinBusOpCode()){
 	active_image= dublin_bus_image;
 	marker = db_marker;
 }
 
-else if(Android.getOperator() === IRISH_RAIL_OPCODE){
+else if(Android.getOperator() === Android.getIrishRailOpCode()){
 	active_image= irish_rail_image;
 	marker = ir_marker;
 }
 
-else if(Android.getOperator() === LUAS_OPCODE){
+else if(Android.getOperator() === Android.getLuasOpCode()){
 	active_image= luas_image;
 	marker = luas_marker;
 }

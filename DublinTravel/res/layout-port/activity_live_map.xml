@@ -7,9 +7,16 @@
 	<include layout="@layout/navigation_bar" />
 	
 	<LinearLayout
+		android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.03" >
+		<include layout="@layout/dot_bar"></include>
+	</LinearLayout>
+	
+	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
-	    android:layout_weight="0.85" >
+	    android:layout_weight="0.82" >
 	    
 	    <include layout="@layout/live_map_scrollview"/>
 	</LinearLayout>

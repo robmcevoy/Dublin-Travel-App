@@ -20,6 +20,8 @@ const BULLET_SIZE = 50;
 const LINE_THICKNESS = 3;
 const AXIS_THICKNESS = 3;
 const MIN_PERIOD = "mm";
+const TEST_DIV = "testing";
+var chartData = [];
 
 window.onload = function () {
 	document.body.style.backgroundColor = BACKGROUND_COLOR;
@@ -46,7 +48,6 @@ else{
 }
 
 function getData(){
-	var chartData = [];
 	var serverTime = Android.getServerTime();
 	if(active_image != irish_rail_image){
 		serverTime = rtpiStringParser(serverTime);

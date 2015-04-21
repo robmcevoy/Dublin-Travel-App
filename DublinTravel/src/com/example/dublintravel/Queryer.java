@@ -1,14 +1,18 @@
 package com.example.dublintravel;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import android.widget.ListView;
 
 public class Queryer extends Thread {
 	
 	private RtpiController rtpiController;
 	private final int queryRate = 5000;
+	private ExecutorService threadExecutor;
 	
 	public Queryer (RtpiController rtpiController){
 		this.rtpiController = rtpiController;
+		threadExecutor= Executors.newFixedThreadPool(1);
 	}
 	
 	public void run(){
@@ -20,17 +24,14 @@ public class Queryer extends Thread {
 			ListView stopInfoListView = rtpiController.getStopInfoListView();
 			if(stop != null){
 				si = new GetStopInfoThread(operator, stop.getID(), rtpiController, chartVis);
-				si.execute(stopInfoListView);
+				si.executeOnExecutor(threadExecutor, stopInfoListView);
 			}
 			try {
 				Thread.sleep(queryRate);
 			} catch (InterruptedException e) {
-				if(si != null){
-					si.cancel(true);
-				}
+				this.threadExecutor.shutdownNow();
+				threadExecutor= Executors.newFixedThreadPool(1);
 			}
 		}
 	}
-	
-
 }

@@ -9,26 +9,33 @@ window.onload = function()
 	const IRISH_RAIL_OPCODE = "ir";
 	const LUAS_OPCODE = "luas";
 	const BUS_EIREANN_OPCODE = "be";
+	const DIV = "operator";
 	var active_widget;
 	
-	if(Android.getOperator() === DUBLIN_BUS_OPCODE){
+	if(Android.getOperator() === Android.getDublinBusOpCode()){
 		active_widget= DUBLIN_BUS_WIDGET;
 	}
 
-	else if(Android.getOperator() === IRISH_RAIL_OPCODE){
+	else if(Android.getOperator() === Android.getIrishRailOpCode()){
 		active_widget= IRISH_RAIL_WIDGET;
 	}
 
-	else if(Android.getOperator() === LUAS_OPCODE){
+	else if(Android.getOperator() === Android.getLuasOpCode()){
 		active_widget= LUAS_WIDGET;
 	}
-	else if(Android.getOperator() === BUS_EIREANN_OPCODE){
+	else if(Android.getOperator() === getBusEireannOpCode()){
 		active_widget= BUS_EIREANN_WIDGET;
 	}
 
 	else{
 		active_widget= AA_ROADWATCH_WIDGET;
 	}
-	document.body.innerHTML = active_widget;
-	twttr.widgets.load()
+	
+	document.getElementById(DIV).className = Android.getOperator();
+	var para = document.createElement("P");
+    var t = document.createTextNode(Android.getOperator());
+    para.appendChild(t);
+    document.getElementById(DIV).appendChild(para);
+	document.body.innerHTML =  active_widget + document.body.innerHTML;
+	twttr.widgets.load();
 }

@@ -75,4 +75,8 @@ public class RtpiDashboardActivity extends Activity implements SmallScreen {
 		
 	}
 	
+	public RtpiController getController(){
+		return this.rtpiController;
+	}
+	
 }

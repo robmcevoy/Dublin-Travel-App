@@ -168,5 +168,9 @@ GoogleApiClient.OnConnectionFailedListener, SmallScreen{
 		}
 		catch(Exception e){/* normal layout*/};
 	}
+	
+	public LiveMapController getController(){
+		return this.controller;
+	}
 
 }

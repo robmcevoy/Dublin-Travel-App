@@ -6,11 +6,11 @@ import android.widget.ListView;
 
 public class Queryer extends Thread {
 	
-	private RtpiController rtpiController;
+	private PTDController rtpiController;
 	private final int queryRate = 5000;
 	private ExecutorService threadExecutor;
 	
-	public Queryer (RtpiController rtpiController){
+	public Queryer (PTDController rtpiController){
 		this.rtpiController = rtpiController;
 		threadExecutor= Executors.newFixedThreadPool(1);
 	}

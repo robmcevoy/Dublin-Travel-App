@@ -1,4 +1,4 @@
-import com.example.dublintravel.RtpiXmlParser;
+import com.example.dublintravel.IrishRailXmlParser;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,7 +13,7 @@ import com.example.dublintravel.Stop;
 
 public class RtpiXmlParserTests extends TestCase {
 	
-	private RtpiXmlParser parser;
+	private IrishRailXmlParser parser;
 	private final String EXPECTED_DUE_TIME= "3";
 	private final String EXPECTED_DESTINATON= "M3 Parkway";
 	private final String EXPECTED_ROUTE= "Northbound";
@@ -30,7 +30,7 @@ public class RtpiXmlParserTests extends TestCase {
 	private final double EXPECTED_LONGITUDE= -5.91744;
 	
 	protected void setUp() {
-		parser = new RtpiXmlParser();
+		parser = new IrishRailXmlParser();
 	}
 	
 	private final String TEST_XML_1=

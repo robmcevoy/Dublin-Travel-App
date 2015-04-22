@@ -10,14 +10,14 @@ import android.webkit.WebView;
 public class ChartWebView extends EmbeddedBrowser {
 	
 	private final String URL = "file:///android_asset/chart/am_charts.html";
-	private RtpiWebViewInterface webInterface;
+	private PTDWebViewInterface webInterface;
 	public static final String LOG_TAG = "CHART_LOG";
 	private JSONObject testData;
 
-	public ChartWebView(WebView webview, RtpiController rtpiController){
+	public ChartWebView(WebView webview, PTDController rtpiController){
 		super(webview);
 		this.url = URL;
-		webInterface = new RtpiWebViewInterface(rtpiController);
+		webInterface = new PTDWebViewInterface(rtpiController);
 		setConsoleLog();
 	}
 	

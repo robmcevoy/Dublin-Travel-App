@@ -11,10 +11,10 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 	private Operator operator;
 	private String stop;
 	private ListView listview;
-	private RtpiController rtpiController;
+	private PTDController rtpiController;
 	private ChartWebView chartVis;
 	
-	public GetStopInfoThread(Operator operator, String stop, RtpiController rtpiController, ChartWebView chartVis){
+	public GetStopInfoThread(Operator operator, String stop, PTDController rtpiController, ChartWebView chartVis){
 		hs = new HttpSender();
 		this.operator = operator;
 		this.stop = stop;

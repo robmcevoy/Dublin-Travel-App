@@ -2,7 +2,6 @@ package com.example.dublintravel;
 
 import java.util.ArrayList;
 import android.os.AsyncTask;
-import android.widget.ListView;
 
 public class GetStopsThread extends AsyncTask<Void, Integer, String> {
 	

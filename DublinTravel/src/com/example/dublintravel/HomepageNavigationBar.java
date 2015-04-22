@@ -1,30 +1,21 @@
 package com.example.dublintravel;
 
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
 public class HomepageNavigationBar extends NavigationBar {
 	
-	private Context context;
 	private ImageView userManualImageView;
-
-	public HomepageNavigationBar(ImageView dublinBusImageView,
-			ImageView luasImageView, ImageView irishRailImageView,
-			ImageView busEireannImageView, ImageView mapImageView, ImageView userManualImageView, Context context) {
-		super(dublinBusImageView, luasImageView, irishRailImageView,
-				busEireannImageView, mapImageView);
-		this.context = context;
-		this.userManualImageView = userManualImageView;
+	
+	public HomepageNavigationBar(Activity activity){
+		super(activity);
+		this.userManualImageView = (ImageView) activity.findViewById(R.id.userManual);
 		setUserManualClick();
 	}
-	
-	@Override
-	public Context getContext() {
-		return context;
-	}
+
 
 	@Override
 	public void operatorClick(ImageView imageview, final Operator operator) {
@@ -36,7 +27,8 @@ public class HomepageNavigationBar extends NavigationBar {
             		operators[i].deactivate();
             	}
             	operator.activate();
-            	Intent i = new Intent(getContext(), RtpiDashboardActivity.class);
+            	Intent i = new Intent(getContext(), PTDActivity.class);
+            	i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             	i.putExtras(createBundle());
             	getContext().startActivity(i);
             	operator.deactivate();
@@ -51,7 +43,8 @@ public class HomepageNavigationBar extends NavigationBar {
         {
             public void onClick(View v)
             {
-            	Intent i = new Intent(getContext(), LiveMapActivity.class);
+            	Intent i = new Intent(getContext(), MapDashboardActivity.class);
+            	i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             	i.putExtras(createBundle());
             	getContext().startActivity(i);
             }
@@ -64,6 +57,7 @@ public class HomepageNavigationBar extends NavigationBar {
 			public void onClick(View v)
             {
 				Intent i = new Intent(getContext(), UserManualActivity.class);
+				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             	i.putExtras(createBundle());
             	getContext().startActivity(i);
             }

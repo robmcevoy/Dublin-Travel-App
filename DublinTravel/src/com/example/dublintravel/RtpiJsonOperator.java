@@ -17,16 +17,16 @@ public abstract class RtpiJsonOperator extends Operator{
 	
 	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
-	protected RtpiJsonOperator(String op_code, int index){
-		super(op_code, index, NEEDS_AUTH, PARSER, REQUIRE_LOCATION_REQUEST);
+	protected RtpiJsonOperator(String opCode, int index){
+		super(opCode, index, NEEDS_AUTH, PARSER, REQUIRE_LOCATION_REQUEST);
 	}
 	
 	public String generateRealtimeInfoUrlString(String stop) {
-		return URL_START + stop + URL_MIDDLE + op_code + URL_END;
+		return URL_START + stop + URL_MIDDLE + opCode + URL_END;
 	}
 	
 	public String generateStopsUrl(){
-		return URL_GET_STOPS_START + op_code + URL_END;
+		return URL_GET_STOPS_START + opCode + URL_END;
 	}
 
 	public String generateStopLocationUrl(String stop) {

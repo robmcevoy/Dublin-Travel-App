@@ -7,16 +7,16 @@ public class TwitterFeed extends EmbeddedBrowser {
 	private final String URL = "file:///android_asset/twitter_feed/twitter_feed.html";
 	private WebViewInterface webInterface;
 
-	public TwitterFeed(WebView webview, RtpiController rtpiController){
+	public TwitterFeed(WebView webview, PTDController rtpiController){
 		super(webview);
 		this.url = URL;
-		webInterface = new RtpiWebViewInterface(rtpiController);
+		webInterface = new PTDWebViewInterface(rtpiController);
 	}
 	
-	public TwitterFeed(WebView webview, LiveMapController liveMapController){
+	public TwitterFeed(WebView webview, MapDashboardController liveMapController){
 		super(webview);
 		this.url = URL;
-		webInterface = new LiveMapWebViewInterface(liveMapController);
+		webInterface = new MapWebViewInterface(liveMapController);
 	}
 
 	public boolean hasWebViewInterface() {

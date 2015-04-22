@@ -21,7 +21,6 @@ public class GoogleDirectionsJsonParser {
 				JSONArray legs = route.getJSONArray(LEGS);
 				if(legs.length() > 0){
 					leg = legs.getJSONObject(0);
-					JSONObject distance = leg.getJSONObject(DISTANCE);
 				}
 			}
 		}

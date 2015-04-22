@@ -7,7 +7,7 @@ public abstract class Operator implements Serializable{
 	
 	private static final long serialVersionUID = -3463204625750886206L;
 	private Stop previousStop;
-	protected String op_code;
+	protected String opCode;
 	protected int index;
 	protected boolean isActive;
 	protected boolean needsAuth;
@@ -19,9 +19,9 @@ public abstract class Operator implements Serializable{
 	public abstract String generateStopLocationUrl(String stop);
 	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
-	protected Operator(String op_code, int index, boolean needsAuth, Parser parser, boolean requireLocationRequest){
+	protected Operator(String opCode, int index, boolean needsAuth, Parser parser, boolean requireLocationRequest){
 		isActive = false;
-		this.op_code = op_code;
+		this.opCode = opCode;
 		this.index = index;
 		this.needsAuth = needsAuth;
 		this.parser = parser;
@@ -48,7 +48,7 @@ public abstract class Operator implements Serializable{
 	}
 	
 	public String getOperatorCode(){
-		return op_code;
+		return opCode;
 	}	
 	
 	public int getIndex(){

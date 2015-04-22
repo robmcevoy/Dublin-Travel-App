@@ -5,14 +5,31 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 
-public class IrishRailOperator extends RtpiXmlOperator {
+public class IrishRailOperator extends Operator{
 
-	private static final long serialVersionUID = 4362786347952215799L;
+	private static final long serialVersionUID = -5629661535826801033L;
+	private final String URL_START = "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=";
+	private final String STOPS_URL="http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML ";
+	private static boolean NEEDS_AUTH=false;
+	private static final Parser PARSER = new IrishRailXmlParser();
+	private static boolean REQUIRE_LOCATION_REQUEST=false;
 	private final static String OP_CODE="ir";
 	private final static int INDEX=3;
 	
 	public IrishRailOperator(){
-		super(OP_CODE, INDEX);
+		super(OP_CODE, INDEX, NEEDS_AUTH, PARSER, REQUIRE_LOCATION_REQUEST);
+	}
+
+	public String generateRealtimeInfoUrlString(String stop) {
+		return URL_START + stop;
+	}
+	
+	public String generateStopsUrl(){
+		return STOPS_URL;
+	}
+	
+	public String generateStopLocationUrl(String stop) {
+		return "";
 	}
 	
 	public BitmapDescriptor getMarkerColor(Controller controller){

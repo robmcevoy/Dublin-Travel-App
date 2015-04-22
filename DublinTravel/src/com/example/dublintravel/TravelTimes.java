@@ -2,9 +2,6 @@ package com.example.dublintravel;
 
 public class TravelTimes {
 	
-	private final int WALKING_INDEX=0;
-	private final int BICYCLING_INDEX=1;
-	private final int DRIVING_INDEX = 2;
 	private int currentIndex;
 	private final String[] strings = {"walking","bicycling","driving"};
 	private final String URL_START = "https://maps.googleapis.com/maps/api/directions/json?";

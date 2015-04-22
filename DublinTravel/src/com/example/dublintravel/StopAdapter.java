@@ -13,9 +13,9 @@ import android.widget.TextView;
 public class StopAdapter extends ArrayAdapter<Stop> {
 	
 	private ArrayList<Stop> stops;
-	private RtpiController rtpiController;
+	private PTDController rtpiController;
 	
-	public StopAdapter(RtpiController rtpiController, int textViewResourceId, ArrayList<Stop> stops) {
+	public StopAdapter(PTDController rtpiController, int textViewResourceId, ArrayList<Stop> stops) {
 		super(rtpiController.getCurrentContext(), textViewResourceId, stops);
 		this.stops = stops;
 		this.rtpiController = rtpiController;

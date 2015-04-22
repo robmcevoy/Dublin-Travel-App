@@ -27,7 +27,7 @@ public class StopListDialog {
 	private ListView listview;
 	private EditText searchBar;
 	private ProgressBar progressBar;
-	private RtpiController rtpiController;
+	private PTDController rtpiController;
 	private ArrayList<Stop> allStops;
 	private ArrayList<Stop> toDisplay;
 	ArrayList<Stop> favourites;
@@ -46,9 +46,9 @@ public class StopListDialog {
 	private final int ORIENTATION_LANDSCAPE = 2;
 	private WindowManager.LayoutParams lp;
 	
-	public StopListDialog(RtpiController rtpiController){
+	public StopListDialog(PTDController rtpiController){
 		this.rtpiController = rtpiController;
-		dialog = new Dialog(rtpiController.getCurrentContext());
+		dialog = new Dialog(rtpiController.getActivity());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog);
 		setDialogSize();
@@ -67,7 +67,8 @@ public class StopListDialog {
 	
 	private void setDialogSize(){
 		Point size = new Point();
-		WindowManager wm = (WindowManager) rtpiController.getCurrentContext().getSystemService(Context.WINDOW_SERVICE);
+		//WindowManager wm = (WindowManager) rtpiController.getCurrentContext().getSystemService(Context.WINDOW_SERVICE);
+		WindowManager wm = (WindowManager) rtpiController.getActivity().getSystemService(Context.WINDOW_SERVICE);
 		Display display = wm.getDefaultDisplay();
 		display.getSize(size);
 		lp = new WindowManager.LayoutParams();

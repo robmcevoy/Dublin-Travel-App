@@ -12,9 +12,9 @@ import android.widget.TextView;
 public class StopInfoAdapter extends ArrayAdapter<StopInfo> {
 
 	private ArrayList<StopInfo> stopInfos;
-	private RtpiController rtpiController;
+	private PTDController rtpiController;
 	
-	public StopInfoAdapter(RtpiController rtpiController, int textViewResourceId, ArrayList<StopInfo> stopInfos) {
+	public StopInfoAdapter(PTDController rtpiController, int textViewResourceId, ArrayList<StopInfo> stopInfos) {
 		super(rtpiController.getCurrentContext(), textViewResourceId, stopInfos);
 		this.stopInfos = stopInfos;
 		this.rtpiController = rtpiController;

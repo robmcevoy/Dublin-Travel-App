@@ -15,12 +15,18 @@ import android.widget.LinearLayout;
 public abstract class Controller {
 	
 	protected Context context;
+	protected Activity activity;
 	protected ImageView activeImageView;
 	private final double PERCENTAGE_WIDTH=1.00;
 	private final int TWITTER_FEED_LANDSCAPE_PADDING=100;
 	
-	protected Controller(Context context){
-		this.context = context;
+	protected Controller(Activity activity){
+		this.context = activity.getApplicationContext();
+		this.activity = activity;
+	}
+	
+	public Activity getActivity(){
+		return this.activity;
 	}
 	
 	protected synchronized Context getCurrentContext(){

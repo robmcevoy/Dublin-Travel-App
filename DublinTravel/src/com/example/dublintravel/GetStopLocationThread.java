@@ -7,10 +7,10 @@ import android.os.AsyncTask;
 public class GetStopLocationThread extends AsyncTask<Operator, Void, String> {
 	
 	private HttpSender hs;
-	private LiveMapController controller;
+	private MapDashboardController controller;
 	private Operator operator;
 	
-	public GetStopLocationThread(LiveMapController controller){
+	public GetStopLocationThread(MapDashboardController controller){
 		hs = new HttpSender();
 		this.controller = controller;
 	}

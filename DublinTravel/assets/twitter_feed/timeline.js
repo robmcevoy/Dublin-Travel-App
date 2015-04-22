@@ -23,7 +23,7 @@ window.onload = function()
 	else if(Android.getOperator() === Android.getLuasOpCode()){
 		active_widget= LUAS_WIDGET;
 	}
-	else if(Android.getOperator() === getBusEireannOpCode()){
+	else if(Android.getOperator() === Android.getBusEireannOpCode()){
 		active_widget= BUS_EIREANN_WIDGET;
 	}
 

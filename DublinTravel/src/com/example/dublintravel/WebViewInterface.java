@@ -23,7 +23,27 @@ public class WebViewInterface {
     
     @JavascriptInterface
     public String getSecondaryColor(){
-   	 String tmp = controller.getCurrentContext().getResources().getString(R.color.orange);
-   	 return "#" + tmp.substring(3);
+   	 	String tmp = controller.getCurrentContext().getResources().getString(R.color.orange);
+   	 	return "#" + tmp.substring(3);
+    }
+    
+    @JavascriptInterface
+    public String getDublinBusOpCode(){
+   	 	return new DublinBusOperator().getOperatorCode();
+    }
+    
+    @JavascriptInterface
+    public String getIrishRailOpCode(){
+    	return new IrishRailOperator().getOperatorCode();
+    }
+    
+    @JavascriptInterface
+    public String getLuasOpCode(){
+   	 	return new LuasOperator().getOperatorCode();
+    }
+    
+    @JavascriptInterface
+    public String getBusEireannOpCode(){
+   	 	return new BusEireannOperator().getOperatorCode();
     }
 }

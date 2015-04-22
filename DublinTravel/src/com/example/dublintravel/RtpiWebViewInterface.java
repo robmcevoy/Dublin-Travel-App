@@ -58,25 +58,5 @@ public class RtpiWebViewInterface extends WebViewInterface{
      public String getServerTime(){
     	 return rtpiController.getServerTime();
      }
-     
-     @JavascriptInterface
-     public String getDublinBusOpCode(){
-    	 return new DublinBusOperator().getOperatorCode();
-     }
-     
-     @JavascriptInterface
-     public String getIrishRailOpCode(){
-    	 return new IrishRailOperator().getOperatorCode();
-     }
-     
-     @JavascriptInterface
-     public String getLuasOpCode(){
-    	 return new LuasOperator().getOperatorCode();
-     }
-     
-     @JavascriptInterface
-     public String getBusEireannOpCode(){
-    	 return new BusEireannOperator().getOperatorCode();
-     }
 
 }

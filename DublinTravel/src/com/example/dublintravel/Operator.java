@@ -10,17 +10,22 @@ public abstract class Operator implements Serializable{
 	protected String op_code;
 	protected int index;
 	protected boolean isActive;
+	protected boolean needsAuth;
+	protected Parser parser;
+	protected boolean requireLocationRequest;
 	private final int numPossibleOperators = 4;
-	public abstract Parser getParser();
 	public abstract String generateRealtimeInfoUrlString(String stop);
 	public abstract String generateStopsUrl();
 	public abstract String generateStopLocationUrl(String stop);
-	public abstract boolean needsAuth();
-	public abstract boolean requireAdditionalLocationRequest();
 	public abstract BitmapDescriptor getMarkerColor(Controller controller);
 	
-	protected Operator(){
+	protected Operator(String op_code, int index, boolean needsAuth, Parser parser, boolean requireLocationRequest){
 		isActive = false;
+		this.op_code = op_code;
+		this.index = index;
+		this.needsAuth = needsAuth;
+		this.parser = parser;
+		this.requireLocationRequest = requireLocationRequest;
 	}
 	
 	public boolean equals(Operator operator){
@@ -68,5 +73,17 @@ public abstract class Operator implements Serializable{
 	
 	public boolean shouldSendLocationRequest(){
 		return hasPreviousStop() && requireAdditionalLocationRequest();
+	}
+	
+	public boolean requireAdditionalLocationRequest(){
+		return requireLocationRequest;
+	}
+	
+	public boolean needsAuth(){
+		return needsAuth;
+	}
+	
+	public Parser getParser(){
+		return parser;
 	}
 }

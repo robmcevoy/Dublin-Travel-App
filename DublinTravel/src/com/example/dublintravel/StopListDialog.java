@@ -27,7 +27,7 @@ public class StopListDialog {
 	private ListView listview;
 	private EditText searchBar;
 	private ProgressBar progressBar;
-	private PTDController rtpiController;
+	private PTDController controller;
 	private ArrayList<Stop> allStops;
 	private ArrayList<Stop> toDisplay;
 	ArrayList<Stop> favourites;
@@ -46,9 +46,9 @@ public class StopListDialog {
 	private final int ORIENTATION_LANDSCAPE = 2;
 	private WindowManager.LayoutParams lp;
 	
-	public StopListDialog(PTDController rtpiController){
-		this.rtpiController = rtpiController;
-		dialog = new Dialog(rtpiController.getActivity());
+	public StopListDialog(PTDController controller){
+		this.controller = controller;
+		dialog = new Dialog(controller.getActivity());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog);
 		setDialogSize();
@@ -61,19 +61,18 @@ public class StopListDialog {
 		favouritesTabActive = false;
 		favourites = new ArrayList<Stop>();
 		allStops = new ArrayList<Stop>();
-		favouritesDb = new FavouritesDatabase(rtpiController.getCurrentContext());
+		favouritesDb = new FavouritesDatabase(controller.getCurrentContext());
 		favouritesDb.open();
 	}
 	
 	private void setDialogSize(){
 		Point size = new Point();
-		//WindowManager wm = (WindowManager) rtpiController.getCurrentContext().getSystemService(Context.WINDOW_SERVICE);
-		WindowManager wm = (WindowManager) rtpiController.getActivity().getSystemService(Context.WINDOW_SERVICE);
+		WindowManager wm = (WindowManager) controller.getActivity().getSystemService(Context.WINDOW_SERVICE);
 		Display display = wm.getDefaultDisplay();
 		display.getSize(size);
 		lp = new WindowManager.LayoutParams();
 	    lp.copyFrom(dialog.getWindow().getAttributes());
-	    int orientation = rtpiController.getCurrentContext().getResources().getConfiguration().orientation;
+	    int orientation = controller.getCurrentContext().getResources().getConfiguration().orientation;
 	    double x,y;
 	    if(orientation == ORIENTATION_LANDSCAPE){
 	    	x = WIDTH_PERCENTAGE_LANDSCAPE;
@@ -91,7 +90,7 @@ public class StopListDialog {
 		dialog.show();
 		dialog.getWindow().setAttributes(lp);
 		activateTab();
-		GetStopsThread thread = new GetStopsThread(this, rtpiController.getCurrentOperator());
+		GetStopsThread thread = new GetStopsThread(this, controller.getCurrentOperator());
 		thread.execute();
 		setOnItemClickListener();
 		setSearchBarListener();
@@ -101,14 +100,14 @@ public class StopListDialog {
 	public void updateStops(ArrayList<Stop> stops) {
 		this.allStops = stops;
 		this.toDisplay = stops;
-		stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1, toDisplay);
+		stopAdapter = new StopAdapter(controller, android.R.layout.simple_list_item_1, toDisplay);
 		listview.setAdapter(stopAdapter);
 		displayStops();
 	}
 	
 	private void displayStops(){
 		favouritesDb.open();
-		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(rtpiController.getCurrentOperator());
+		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(controller.getCurrentOperator());
 		boolean favourited;
 		for(Stop stop: toDisplay){
 			favourited = false;
@@ -123,7 +122,7 @@ public class StopListDialog {
 			}
 		}
 		favouritesDb.close();
-		stopAdapter = new StopAdapter(rtpiController, android.R.layout.simple_list_item_1, toDisplay);
+		stopAdapter = new StopAdapter(controller, android.R.layout.simple_list_item_1, toDisplay);
 		listview.setAdapter(stopAdapter);
 	}
 	
@@ -134,15 +133,15 @@ public class StopListDialog {
 		if(!favouritesTabActive){
 			toActivate = allStopsBtn;
 			toDeactivate = favouritesBtn;
-			img = rtpiController.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important);
+			img = controller.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important);
 		}
 		else{
 			toActivate = favouritesBtn;
 			toDeactivate = allStopsBtn;
-			img = rtpiController.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important_active);
+			img = controller.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important_active);
 		}
-		toActivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.orange));
-		toDeactivate.setTextColor(rtpiController.getCurrentContext().getResources().getColor(R.color.light_grey));
+		toActivate.setTextColor(controller.getCurrentContext().getResources().getColor(R.color.orange));
+		toDeactivate.setTextColor(controller.getCurrentContext().getResources().getColor(R.color.light_grey));
 		img.setBounds( 0, 0, (int)(img.getIntrinsicWidth()*TAB_ICON_SIZE_MULTIPLIER), (int)(img.getIntrinsicWidth()*TAB_ICON_SIZE_MULTIPLIER) );
 		favouritesBtn.setCompoundDrawables( img, null, null, null );
 		wipeSearch();
@@ -175,7 +174,7 @@ public class StopListDialog {
 
 			public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
 				Stop stop = (Stop) listview.getAdapter().getItem(position);
-				rtpiController.changeStop(stop);
+				controller.changeStop(stop);
 				dialog.dismiss();
 			}
         });
@@ -189,17 +188,17 @@ public class StopListDialog {
 				try{
 					favouritesDb.open();
 					if(!stop.isFavourite()){
-						favouritesDb.addFavourite(stop, rtpiController.getCurrentOperator());
+						favouritesDb.addFavourite(stop, controller.getCurrentOperator());
 					}
 					else{
-						favouritesDb.deleteFavorite(stop, rtpiController.getCurrentOperator());
+						favouritesDb.deleteFavorite(stop, controller.getCurrentOperator());
 					}
 					favouritesDb.close();
 					displayStops();
 					listview.setSelectionFromTop(lastViewedPosition, topOffset);
 				}
 				catch(Exception e){
-					Toast.makeText(rtpiController.getCurrentContext(), errorMessage,Toast.LENGTH_LONG).show();
+					Toast.makeText(controller.getCurrentContext(), errorMessage,Toast.LENGTH_LONG).show();
 				}
 				return true;
 			}
@@ -221,7 +220,7 @@ public class StopListDialog {
             	favouritesTabActive = true;
             	activateTab();
             	favouritesDb.open();
-        		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(rtpiController.getCurrentOperator());
+        		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(controller.getCurrentOperator());
         		favouritesDb.close();
         		ArrayList<Stop> newToDisplay = new ArrayList<Stop>();
         		for(Stop favourited: favouritedStops){

@@ -7,6 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+/* an abstract class that controls navigation between public transport operators and activities
+ * classes inheriting this class must implement operatorClick & setMapClick because depending on
+ * the activity the reaction to these clicks will be different
+ */
+
 public abstract class NavigationBar {
 		
 	protected final static int NUM_OPERATORS=4;

@@ -13,8 +13,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.app.Activity;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/* Controls all logic, reacts to user input, screen rotation and device size
+ * and updates real time visualizations for map dashboards
+ */
 
 public class MapDashboardController extends Controller{
 	
@@ -52,6 +56,7 @@ public class MapDashboardController extends Controller{
 		numQueryingLocations = 0;
 		this.navbar = new MapDashboardNavigationBar(activity);
 		this.navbar.activate(this);
+		configureSmallScreen();
 	}
 	
 	public void changeActiveOperator(Operator operator, ImageView imageView) {
@@ -216,5 +221,17 @@ public class MapDashboardController extends Controller{
 	
 	public MapDashboardNavigationBar getNavbar(){
 		return this.navbar;
+	}
+
+	public void configureSmallScreen() {
+		if(!isLargeScreen()){
+			LinearLayout lastMapLegendItem = (LinearLayout) activity.findViewById(R.id.lastMapLegendItem);
+			LinearLayout twitterLayout = (LinearLayout) activity.findViewById(R.id.twitterFeedLayout);
+			LinearLayout mapLegendLayout = (LinearLayout) activity.findViewById(R.id.mapLegendLayout);
+			LinearLayout map = (LinearLayout) activity.findViewById(R.id.mapLayout);
+			configureHorizontalScrollView(activity, map, mapLegendLayout, twitterLayout);
+			lastMapLegendItem.setBackground(activity.getResources().getDrawable(R.drawable.rounded_corner_orange_no_bottom));
+		}
+		
 	}
 }

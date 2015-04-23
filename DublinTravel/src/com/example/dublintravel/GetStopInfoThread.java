@@ -11,14 +11,14 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 	private Operator operator;
 	private String stop;
 	private ListView listview;
-	private PTDController rtpiController;
+	private PTDController controller;
 	private ChartWebView chartVis;
 	
-	public GetStopInfoThread(Operator operator, String stop, PTDController rtpiController, ChartWebView chartVis){
+	public GetStopInfoThread(Operator operator, String stop, PTDController controller, ChartWebView chartVis){
 		hs = new HttpSender();
 		this.operator = operator;
 		this.stop = stop;
-		this.rtpiController = rtpiController;
+		this.controller = controller;
 		this.chartVis = chartVis;
 	}
 	
@@ -37,7 +37,7 @@ public class GetStopInfoThread extends AsyncTask<ListView, Void, String>{
 			int topOffset = (v == null) ? 0 : v.getTop();
 		
 			ArrayList<StopInfo> stopInfoArray = operator.getParser().getStopInfo(result);
-			StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(rtpiController, android.R.layout.simple_list_item_1,stopInfoArray );
+			StopInfoAdapter stopInfoAdapter = new StopInfoAdapter(controller, android.R.layout.simple_list_item_1,stopInfoArray );
 			listview.setAdapter(stopInfoAdapter);
 			listview.setSelectionFromTop(lastViewedPosition, topOffset);
 			chartVis.reload();

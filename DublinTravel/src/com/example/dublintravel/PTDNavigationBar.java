@@ -7,6 +7,11 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
+/* navigation bar for public transport dashboards,
+ * clicking a transport operators does not change the activity
+ * but changes the dashboard's content
+ */
+
 public class PTDNavigationBar extends NavigationBar {
 	
 	private PTDController controller;
@@ -15,7 +20,6 @@ public class PTDNavigationBar extends NavigationBar {
 		super(activity);
 	}
 	
-	@Override
 	public Context getContext() {
 		return controller.getCurrentContext();
 	}
@@ -39,12 +43,10 @@ public class PTDNavigationBar extends NavigationBar {
         {
             public void onClick(View v)
             {
-            	// deactivate all 
             	for(int i=0; i<NUM_OPERATORS; i++){
             		operators[i].deactivate();
             	}
             	controller.changeActiveOperator(operator, imageview);
-            	//activate selected
             	operator.activate();
             }
         });

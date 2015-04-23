@@ -1,36 +1,35 @@
 package com.example.dublintravel;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import android.os.AsyncTask;
 import android.widget.ListView;
 
 public class Queryer extends Thread {
 	
-	private PTDController rtpiController;
+	private PTDController controller;
 	private final int queryRate = 5000;
-	private ExecutorService threadExecutor;
 	
-	public Queryer (PTDController rtpiController){
-		this.rtpiController = rtpiController;
-		threadExecutor= Executors.newFixedThreadPool(1);
+	public Queryer (PTDController controller){
+		this.controller = controller;
 	}
 	
 	public void run(){
 		while(true){			
+			AsyncTask<ListView, Void, String> executing = null;
 			GetStopInfoThread si = null;
-			Operator operator = rtpiController.getCurrentOperator();
-			Stop stop = rtpiController.getCurrentStop();
-			ChartWebView chartVis = rtpiController.getChartWebView();
-			ListView stopInfoListView = rtpiController.getStopInfoListView();
+			Operator operator = controller.getCurrentOperator();
+			Stop stop = controller.getCurrentStop();
+			ChartWebView chartVis = controller.getChartWebView();
+			ListView stopInfoListView = controller.getStopInfoListView();
 			if(stop != null){
-				si = new GetStopInfoThread(operator, stop.getID(), rtpiController, chartVis);
-				si.executeOnExecutor(threadExecutor, stopInfoListView);
+				si = new GetStopInfoThread(operator, stop.getID(), controller, chartVis);
+				executing = si.execute(stopInfoListView);
 			}
 			try {
 				Thread.sleep(queryRate);
 			} catch (InterruptedException e) {
-				this.threadExecutor.shutdownNow();
-				threadExecutor= Executors.newFixedThreadPool(1);
+				if(executing !=null){
+					executing.cancel(true);
+				}
 			}
 		}
 	}

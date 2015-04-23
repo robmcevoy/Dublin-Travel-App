@@ -3,20 +3,20 @@ package com.example.dublintravel;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.LinearLayout;
 
-public class PTDActivity extends Activity implements SmallScreenConfigurable {
+/* activity that runs the public transport dashboard */
 
-	PTDController rtpiController;
+public class PTDActivity extends Activity {
+
+	PTDController controller;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rtpi_dashboard);
-        rtpiController = new PTDController(this);
+		controller = new PTDController(this);
         final Bundle EXTRAS = getIntent().getExtras();
-        rtpiController.getNavBar().handleBundle(EXTRAS);
-        configureSmallScreen(); 
+        controller.getNavBar().handleBundle(EXTRAS);
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -27,32 +27,20 @@ public class PTDActivity extends Activity implements SmallScreenConfigurable {
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putAll(rtpiController.getNavBar().createBundle());
+		savedInstanceState.putAll(controller.getNavBar().createBundle());
 	}
 	
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
-		rtpiController.getNavBar().handleBundle(savedInstanceState);
-		
+		controller.getNavBar().handleBundle(savedInstanceState);
 	}
 	
 	@Override
 	public void onBackPressed() {
-		rtpiController.getNavBar().onBackPressed();
-	}
-
-	public void configureSmallScreen() {
-		try{
-			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterLayout);
-			LinearLayout chartVisLayout = (LinearLayout) findViewById(R.id.chartVisLayout);
-			LinearLayout table = (LinearLayout) findViewById(R.id.table);
-			rtpiController.configureHorizontalScrollView(this, table, chartVisLayout, twitterLayout);
-		}
-		catch(Exception e){/* normal layout*/};
-		
+		controller.getNavBar().onBackPressed();
 	}
 	
 	public PTDController getController(){
-		return this.rtpiController;
+		return this.controller;
 	}
 }

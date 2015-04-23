@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
+/* navigation bar for map dashboards,
+ * clicking a transport operators changes the activity
+ * to the public transport dashboard 
+ */
+
 public class MapDashboardNavigationBar extends NavigationBar {
 	
 	private MapDashboardController controller;
-	
 	
 	public MapDashboardNavigationBar(Activity activity){
 		super(activity);
@@ -29,7 +33,6 @@ public class MapDashboardNavigationBar extends NavigationBar {
 		operators[withLocation.getIndex()] = withLocation;
 	}
 
-	@Override
 	public void operatorClick(ImageView imageview, final Operator operator) {
 		imageview.setOnClickListener(new View.OnClickListener()
 		{
@@ -50,13 +53,12 @@ public class MapDashboardNavigationBar extends NavigationBar {
 		
 	}
 
-	@Override
 	public void setMapClick(ImageView imageview) {
 		imageview.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
             {
-				// do nothing
+				// do nothing, already on page
             }
 		});
 		

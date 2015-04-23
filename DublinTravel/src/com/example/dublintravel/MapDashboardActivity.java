@@ -13,11 +13,12 @@ import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import android.widget.LinearLayout;
+
+/* activity that runs the map dashboard */
 
 public class MapDashboardActivity extends Activity implements OnMapReadyCallback, LocationListener,
 GoogleApiClient.ConnectionCallbacks,
-GoogleApiClient.OnConnectionFailedListener, SmallScreenConfigurable{
+GoogleApiClient.OnConnectionFailedListener{
 	
 	MapDashboardController controller;
 	private LocationRequest locationRequest;
@@ -33,14 +34,8 @@ GoogleApiClient.OnConnectionFailedListener, SmallScreenConfigurable{
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        
-        configureSmallScreen();
-		
-		// handle bundle
         final Bundle EXTRAS = getIntent().getExtras();
         controller.getNavbar().handleBundle(EXTRAS);
-        
-        //location
         locationRequest = LocationRequest.create();
         googleApiClient = new GoogleApiClient.Builder(this)
         .addApi(LocationServices.API)
@@ -99,18 +94,6 @@ GoogleApiClient.OnConnectionFailedListener, SmallScreenConfigurable{
 	@Override
 	public void onConnectionSuspended(int cause) {}
 
-	@Override
-	public void configureSmallScreen() {
-		try{
-			LinearLayout lastMapLegendItem = (LinearLayout) findViewById(R.id.lastMapLegendItem);
-			LinearLayout twitterLayout = (LinearLayout) findViewById(R.id.twitterFeedLayout);
-			LinearLayout mapLegendLayout = (LinearLayout) findViewById(R.id.mapLegendLayout);
-			LinearLayout map = (LinearLayout) findViewById(R.id.mapLayout);
-			controller.configureHorizontalScrollView(this, map, mapLegendLayout, twitterLayout);
-			lastMapLegendItem.setBackground(getResources().getDrawable(R.drawable.rounded_corner_orange_no_bottom));
-		}
-		catch(Exception e){/* normal layout*/};
-	}
 	
 	public MapDashboardController getController(){
 		return this.controller;

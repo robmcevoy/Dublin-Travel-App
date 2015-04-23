@@ -6,8 +6,13 @@ import android.app.Activity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+/* Controls all logic, reacts to user input, screen rotation and device size
+ * and updates real time visualizations for public transport dashboards
+ */
 
 public class PTDController extends Controller {
 	
@@ -37,6 +42,7 @@ public class PTDController extends Controller {
 		setStopListener();
 		this.navbar = new PTDNavigationBar(activity);
 		this.navbar.activate(this);
+		configureSmallScreen(); 
 	}
 	
 	public synchronized void changeStop(Stop newStop){
@@ -137,5 +143,14 @@ public class PTDController extends Controller {
 	
 	public NavigationBar getNavBar(){
 		return this.navbar;
+	}
+
+	public void configureSmallScreen() {
+		if(!isLargeScreen()){
+			LinearLayout twitterLayout = (LinearLayout) activity.findViewById(R.id.twitterLayout);
+			LinearLayout chartVisLayout = (LinearLayout) activity.findViewById(R.id.chartVisLayout);
+			LinearLayout table = (LinearLayout) activity.findViewById(R.id.table);
+			configureHorizontalScrollView(this.activity, table, chartVisLayout, twitterLayout);
+		}	
 	}
 }

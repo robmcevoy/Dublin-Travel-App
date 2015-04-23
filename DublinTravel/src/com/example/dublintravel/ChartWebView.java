@@ -14,10 +14,10 @@ public class ChartWebView extends EmbeddedBrowser {
 	public static final String LOG_TAG = "CHART_LOG";
 	private JSONObject testData;
 
-	public ChartWebView(WebView webview, PTDController rtpiController){
+	public ChartWebView(WebView webview, PTDController controller){
 		super(webview);
 		this.url = URL;
-		webInterface = new PTDWebViewInterface(rtpiController);
+		webInterface = new PTDWebViewInterface(controller);
 		setConsoleLog();
 	}
 	

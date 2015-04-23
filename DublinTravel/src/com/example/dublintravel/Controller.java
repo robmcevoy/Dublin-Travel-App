@@ -2,6 +2,7 @@ package com.example.dublintravel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.Display;
@@ -11,6 +12,11 @@ import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+/* intented to be extended by dashboard controllers,
+ * contains some helper functions common to dashboards
+ * and methods they must implement
+ */
 
 public abstract class Controller {
 	
@@ -33,6 +39,8 @@ public abstract class Controller {
 		return context;
 	}
 	
+	public abstract void configureSmallScreen();
+	
 	protected void changeImageViewBorder(ImageView imageView){
 		if(activeImageView != null){
 			activeImageView.setBackground(context.getResources().getDrawable(R.drawable.rounded_corner_dark_grey));
@@ -51,7 +59,12 @@ public abstract class Controller {
 		return TWITTER_FEED_LANDSCAPE_PADDING;
 	}
 	
-	public void configureHorizontalScrollView(final Activity activity, final View view1, final View view2, final View twitter) throws Exception{
+	public boolean isLargeScreen(){
+		return (activity.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 
+			        Configuration.SCREENLAYOUT_SIZE_LARGE;
+	}
+	
+	protected void configureHorizontalScrollView(final Activity activity, final View view1, final View view2, final View twitter){
 			Display display = activity.getWindowManager().getDefaultDisplay();
 			Point size = new Point();
 			display.getSize(size);

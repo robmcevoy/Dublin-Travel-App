@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
+/* navigation bar for homepage,
+ * a click of any option will result in the launching of a new activity
+ */
+
 public class HomepageNavigationBar extends NavigationBar {
 	
 	private ImageView userManualImageView;

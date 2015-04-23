@@ -13,12 +13,12 @@ import android.widget.TextView;
 public class StopAdapter extends ArrayAdapter<Stop> {
 	
 	private ArrayList<Stop> stops;
-	private PTDController rtpiController;
+	private PTDController controller;
 	
-	public StopAdapter(PTDController rtpiController, int textViewResourceId, ArrayList<Stop> stops) {
-		super(rtpiController.getCurrentContext(), textViewResourceId, stops);
+	public StopAdapter(PTDController controller, int textViewResourceId, ArrayList<Stop> stops) {
+		super(controller.getCurrentContext(), textViewResourceId, stops);
 		this.stops = stops;
-		this.rtpiController = rtpiController;
+		this.controller = controller;
 	}
 
 	public ArrayList<Stop> getStops(){
@@ -28,7 +28,7 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		if (v == null) {
-			LayoutInflater vi = (LayoutInflater)rtpiController.getCurrentContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater vi = (LayoutInflater)controller.getCurrentContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.stop_list_item, null, false);
 		}
 		Stop stop = stops.get(position);

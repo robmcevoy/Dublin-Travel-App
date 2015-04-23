@@ -8,21 +8,21 @@ public class PTDWebViewInterface extends WebViewInterface{
 	
 	private ArrayList<StopInfo> stopInfoArray;
 	private final int MAX_NUM_ON_CHART = 5;
-	private PTDController rtpiController;
+	private PTDController controller;
 	
-	public PTDWebViewInterface(PTDController rtpiController){
-		super(rtpiController);
-		this.rtpiController = rtpiController;
+	public PTDWebViewInterface(PTDController controller){
+		super(controller);
+		this.controller = controller;
 		this.stopInfoArray = new ArrayList<StopInfo>();
 	}
 	
 	 @JavascriptInterface
 	 public String getOperator() {
-    	 return rtpiController.getCurrentOperator().getOperatorCode();
+    	 return controller.getCurrentOperator().getOperatorCode();
      }
      @JavascriptInterface 
      public int getStopInfoCount(){
-    	 stopInfoArray = rtpiController.getStopInfos();
+    	 stopInfoArray = controller.getStopInfos();
     	 if(stopInfoArray != null){
     		 return stopInfoArray.size();
     	 }
@@ -56,7 +56,7 @@ public class PTDWebViewInterface extends WebViewInterface{
      
      @JavascriptInterface
      public String getServerTime(){
-    	 return rtpiController.getServerTime();
+    	 return controller.getServerTime();
      }
 
 }

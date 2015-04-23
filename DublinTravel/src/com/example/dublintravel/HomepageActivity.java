@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+/* welcomes page for application 
+ * allows user to launch or dashboard or open user manual by clicking the relevent image
+ */
+
 public class HomepageActivity extends Activity {
 	
 	HomepageNavigationBar navbar;

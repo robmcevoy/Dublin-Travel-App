@@ -2,6 +2,12 @@ package com.example.dublintravel;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
 
+/* Although this class extends the Operator class it is not a public transport operator itself
+ * 3 public transport operators are available through the Rtpi Rest API
+ * Dublin Bus, Luas & Bus Eireann
+ * Each of these operators extend from this class
+ * Data is returned from this API in Json format
+ */
 
 public abstract class RtpiJsonOperator extends Operator{
 	

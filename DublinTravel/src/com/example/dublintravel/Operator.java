@@ -3,6 +3,9 @@ package com.example.dublintravel;
 import java.io.Serializable;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 
+/* encapsulates a public transport operator
+ * each public transport operator must inherit from this class */
+
 public abstract class Operator implements Serializable{
 	
 	private static final long serialVersionUID = -3463204625750886206L;

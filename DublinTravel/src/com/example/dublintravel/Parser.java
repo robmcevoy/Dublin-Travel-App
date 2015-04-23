@@ -3,6 +3,10 @@ package com.example.dublintravel;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/* All formats that are parsable must extend this class
+ * They must be able to parse stops, stop information and stop locations
+ */
+
 public abstract class Parser implements Serializable {
 
 	private static final long serialVersionUID = -7454288656434101180L;

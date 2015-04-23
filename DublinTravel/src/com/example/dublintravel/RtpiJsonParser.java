@@ -8,7 +8,8 @@ import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-//used as a helper to parse JSON format web service responses
+/* parser Json responses from the Rtpi API */
+
 public class RtpiJsonParser extends Parser {
 	
 	private static final long serialVersionUID = 4861814382930415890L;

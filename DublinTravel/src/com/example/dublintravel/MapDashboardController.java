@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 public class MapDashboardController extends Controller{
 	
-	private MapDashboardNavigationBar navbar;
 	private Operator[] operators;
 	private final Lock queryingLock = new ReentrantLock();
 	private int numQueryingLocations;
@@ -35,11 +34,10 @@ public class MapDashboardController extends Controller{
 	private TextView[] stopDrivings;
 	private boolean gotStopLocations;
 	private TwitterFeed twitterFeed;
+	private MapDashboardNavigationBar navbar;
 	
 	public MapDashboardController(Activity activity){
 		super(activity);
-		this.navbar = new MapDashboardNavigationBar(activity);
-		this.navbar.activate(this);
 		this.markers = new ArrayList<MarkerOptions>();
 		MapLegendCreator creator = new MapLegendCreator();
 		this.stopNames = creator.createStopNames(activity);
@@ -52,6 +50,8 @@ public class MapDashboardController extends Controller{
 		this.twitterFeed.start();
 		operators = new Operator[NavigationBar.getNumOperators()];
 		numQueryingLocations = 0;
+		this.navbar = new MapDashboardNavigationBar(activity);
+		this.navbar.activate(this);
 	}
 	
 	public void changeActiveOperator(Operator operator, ImageView imageView) {

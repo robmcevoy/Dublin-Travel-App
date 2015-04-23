@@ -15,7 +15,7 @@ public class MapDashboardNavigationBar extends NavigationBar {
 	}
 	
 	public void activate(MapDashboardController controller){
-		this.controller = controller;
+		this.controller =  controller;
 		super.activate();
 		controller.changeActiveOperator(null, mapImageView);
 	}

@@ -13,7 +13,8 @@ import org.jdom2.Element;
 import org.jdom2.Namespace;
 import org.jdom2.input.SAXBuilder;
 
-// used as a helper to parse XML format web service responses
+/* parser XML responses from the Irish Rail API */
+
 public class IrishRailXmlParser extends Parser {
 	
 	private static final long serialVersionUID = 2011543856038658256L;
@@ -36,7 +37,6 @@ public class IrishRailXmlParser extends Parser {
 	private final String INVALID = "00:00";
 	private final String SERVER_TIME="Servertime";
 
-	// returns a String representing the time until the next public transporter arrives at the stop provided
 	public ArrayList<StopInfo> getStopInfo(String data){
 
 		String duetime, destination, route, scheduledArrivalTime, arrivalTime, serverTime;

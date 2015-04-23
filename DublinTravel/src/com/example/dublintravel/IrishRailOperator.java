@@ -4,6 +4,8 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+/* Represents the Irish Rail public transport operator 
+ * Data is returned from this API in XMl format*/
 
 public class IrishRailOperator extends Operator{
 

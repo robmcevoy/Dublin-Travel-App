@@ -4,6 +4,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
+/* One of the three public transport operators available through the Rtpi Rest Api */
 
 public class LuasOperator extends RtpiJsonOperator {
 

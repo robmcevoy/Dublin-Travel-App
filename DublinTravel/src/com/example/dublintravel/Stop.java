@@ -2,6 +2,8 @@ package com.example.dublintravel;
 
 import java.io.Serializable;
 
+/* encapsulates a Bus, Tram Stop or Train Station */
+
 public class Stop implements Comparable<Stop>, Serializable{
 
 	private static final long serialVersionUID = -4720166227379166665L;

@@ -2,6 +2,8 @@ package com.example.dublintravel;
 
 import java.io.Serializable;
 
+/* encapsulates a geographical location in terms of longitude and latitude */
+
 public class Location implements Serializable{
 	
 	private static final long serialVersionUID = 8361758409104292980L;

@@ -3,6 +3,9 @@ package com.example.dublintravel;
 import java.util.ArrayList;
 import android.webkit.JavascriptInterface;
 
+/* creates a javascript interface for the public transport dashboard chart visualizations
+ * inherits some other interface functions from WebViewInterface
+ */
 
 public class PTDWebViewInterface extends WebViewInterface{
 	

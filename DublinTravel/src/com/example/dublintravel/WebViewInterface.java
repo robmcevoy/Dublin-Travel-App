@@ -2,6 +2,10 @@ package com.example.dublintravel;
 
 import android.webkit.JavascriptInterface;
 
+/* The javascript interface for all embedded browsers in the application
+ * this class can be extended in order to expose more functions
+ */
+
 public class WebViewInterface {
 	
 	private final String INTERFACE_NAME = "Android";

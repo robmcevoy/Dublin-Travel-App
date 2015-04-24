@@ -1,3 +1,8 @@
+/* creates visualization of transport operators traveling towards a stop
+ * calls to functions that begin with Android eg: Android.getBackgroundColor()
+ * are calls to the Android Javscript Interface
+ */
+
 const irish_rail_image = "../img/irish_rail.png";
 const dublin_bus_image = "../img/dublin_bus.png";
 const bus_eireann_image = "../img/bus_eireann.png";
@@ -20,8 +25,9 @@ const BULLET_SIZE = 50;
 const LINE_THICKNESS = 3;
 const AXIS_THICKNESS = 3;
 const MIN_PERIOD = "mm";
-const TEST_DIV = "testing";
 var chartData = [];
+const IRISH_RAIL_PARSE = [0,4,5,7,8,10,11,13,14,16,17,19];
+const RTPI_PARSE = [6,10,3,5,0,2,11,13,14,16,17,19];
 
 window.onload = function () {
 	document.body.style.backgroundColor = BACKGROUND_COLOR;
@@ -74,30 +80,25 @@ function getData(){
 }
 
 function rtpiStringParser(date_string){
-	// format of input "20/02/2015 15:20:12"
-	var year = date_string.substring(6,10);
-	var month = date_string.substring(3,5);
-	var monthInt = parseInt(month);
-	monthInt = monthInt -1;
-	month = monthInt.toString();
-	var day = date_string.substring(0,2);
-	var hour = date_string.substring(11,13);
-	var min = date_string.substring(14,16);
-	var sec = date_string.substring(17,19);
-	return new Date(year, month, day, hour, min, sec);
+	// format of input 20/02/2015 15:20:12
+	return parseDate(date_string, RTPI_PARSE);
 }
 
 function irishRailStringParser(date_string){
 	// format of input 2015-03-30T13:47:37.53
-	var year = date_string.substring(0,4);
-	var month = date_string.substring(5,7);
+	return parseDate(date_string, IRISH_RAIL_PARSE);
+}
+
+function parseDate(date_string, parseArray){
+	var year = date_string.substring(parseArray[0],parseArray[1]);
+	var month = date_string.substring(parseArray[2],parseArray[3]);
 	var monthInt = parseInt(month);
 	monthInt = monthInt -1;
 	month = monthInt.toString();
-	var day = date_string.substring(8,10);
-	var hour = date_string.substring(11,13);
-	var min = date_string.substring(14,16);
-	var sec = date_string.substring(17,19);
+	var day = date_string.substring(parseArray[4],parseArray[5]);
+	var hour = date_string.substring(parseArray[6],parseArray[7]);
+	var min = date_string.substring(parseArray[8],parseArray[9]);
+	var sec = date_string.substring(parseArray[10],parseArray[11]);
 	return new Date(year, month, day, hour, min, sec);
 }
 

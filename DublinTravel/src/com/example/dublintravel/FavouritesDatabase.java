@@ -10,17 +10,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/* SQLite Database to store favourite stops 
+ * The Database is stored on the Android device
+ */
 
 public class FavouritesDatabase {
 	
-	private static final String DATABASE_TABLE = "favoutites";
+	private static final String DATABASE_TABLE = "favourites";
 	private static final String KEY_ID = "id";
 	private static final String KEY_STOP_ID = "stop_id";
 	private static final String KEY_OPERATOR = "operator";
 	private static final String KEY_NAME = "name";
 	
 	private static final String DATABASE_NAME = "my_stop_database";
-	private static final int DATABASE_VERSION = 15;
+	private static final int DATABASE_VERSION = 16;
 	
 	private DbHelper helper;
 	private final Context context;

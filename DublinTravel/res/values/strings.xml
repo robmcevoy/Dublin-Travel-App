@@ -15,10 +15,13 @@
     <string name="route_header">Route</string>
     <string name="destination_header">Destination</string>
     <string name="duetime_header">Due (mins)</string>
-    <string name="search">Search..</string>
+    <string name="search">Search by Stop ID or Name..</string>
     <string name="title_activity_live_map">LiveMap</string>
     <string name="tab_all_stops">All Stops</string>
     <string name="tab_favourites">Favourites</string>
     <string name="title_activity_user_manual">UserManualActivity</string>
-
+    <string name="light_theme">Light</string>
+	<string name="dark_theme">Dark</string>
+	<string name="change_theme_cd">Change Theme Button</string>
+	<string name="user_guide_cd">User Guide Button</string>
 </resources>

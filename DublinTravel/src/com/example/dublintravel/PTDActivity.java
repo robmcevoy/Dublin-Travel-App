@@ -13,7 +13,6 @@ public class PTDActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.rtpi_dashboard);
 		controller = new PTDController(this);
         final Bundle EXTRAS = getIntent().getExtras();
         controller.getNavBar().handleBundle(EXTRAS);

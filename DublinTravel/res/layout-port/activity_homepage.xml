@@ -1,7 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    style="@style/background"
     android:orientation="vertical"
     android:gravity="center_horizontal" >
 
@@ -95,7 +94,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.05">
-        <include layout="@layout/user_guide_button"/>       
+        
+        <include layout="@layout/user_guide_button"></include>
+       
     </LinearLayout>
     
 </LinearLayout>

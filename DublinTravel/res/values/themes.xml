@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DarkTheme" >
+		<item name="android:windowBackground">@color/dark_color</item>
+		<item name="android:textColor">@color/light_color</item>
+	</style>
+
+	<style name="LightTheme">
+		<item name="android:windowBackground">@color/light_color</item>
+		<item name="android:textColor">@color/dark_color</item>
+	</style>
+</resources>

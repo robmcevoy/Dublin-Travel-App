@@ -1,5 +1,7 @@
 package com.example.dublintravel;
 
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.webkit.JavascriptInterface;
 
 /* The javascript interface for all embedded browsers in the application
@@ -21,9 +23,16 @@ public class WebViewInterface {
 	
 	@JavascriptInterface
     public String getBackgroundColor(){
-    	String tmp =controller.getCurrentContext().getResources().getString(R.color.dark_grey);
-    	return "#" + tmp.substring(3);
+		int[] attrs = {android.R.attr.background};
+		TypedArray ta = controller.getActivity().obtainStyledAttributes(Theme.getCurrentTheme(), attrs);
+		int backgroundColor = ta.getColor(0, Color.BLACK);
+    	return Integer.toHexString(backgroundColor);
     }
+	
+	@JavascriptInterface
+	public boolean isDarkTheme(){
+		return Theme.isDarkTheme();
+	}
     
     @JavascriptInterface
     public String getSecondaryColor(){

@@ -16,7 +16,6 @@ public class HomepageActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_homepage);
 	    navbar = new HomepageNavigationBar(this);
 	    navbar.activate();
 	    

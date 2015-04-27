@@ -13,8 +13,7 @@
 	        android:layout_weight="0.10"
 	        android:contentDescription="@string/bus_eireann_cd"
 	        android:src="@drawable/bus_eireann" 
-			android:background="@drawable/rounded_corner_dark_grey" 
-	        />
+			android:background="@drawable/rounded_corner_dark_grey" />
 
 	    <ImageView
 	        android:id="@+id/luasLogo"
@@ -22,8 +21,7 @@
 	        android:layout_height="match_parent"
 	        android:layout_weight="0.10"
 	        android:contentDescription="@string/luas_cd"
-	        android:src="@drawable/luas"
-	        android:background="@color/dark_grey"  />
+	        android:src="@drawable/luas"  />
 
 	    <ImageView
 	        android:id="@+id/liveMapLogo"
@@ -31,8 +29,7 @@
 	        android:layout_height="match_parent"
 	        android:layout_weight="0.10"
 	        android:contentDescription="@string/app_cd"
-	        android:src="@drawable/map"
-	        android:background="@color/dark_grey"  />
+	        android:src="@drawable/map"  />
 
 	    <ImageView
 	        android:id="@+id/irishRailLogo"
@@ -40,8 +37,7 @@
 	        android:layout_height="match_parent"
 	        android:layout_weight="0.10"
 	        android:contentDescription="@string/irish_rail_cd"
-	        android:src="@drawable/irish_rail"
-	        android:background="@color/dark_grey" />
+	        android:src="@drawable/irish_rail"/>
 
 	    <ImageView
 	        android:id="@+id/dublinBusLogo"
@@ -49,6 +45,5 @@
 	        android:layout_height="match_parent"
 	        android:layout_weight="0.10"
 	        android:contentDescription="@string/dublin_bus_cd"
-	        android:src="@drawable/dublin_bus" 
-	        android:background="@color/dark_grey" />
+	        android:src="@drawable/dublin_bus" />
 </LinearLayout>

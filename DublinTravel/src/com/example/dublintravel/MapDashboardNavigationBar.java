@@ -15,7 +15,7 @@ public class MapDashboardNavigationBar extends NavigationBar {
 	private MapDashboardController controller;
 	
 	public MapDashboardNavigationBar(Activity activity){
-		super(activity);
+		super(activity, R.layout.activity_live_map);
 	}
 	
 	public void activate(MapDashboardController controller){

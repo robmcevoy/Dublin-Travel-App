@@ -3,8 +3,6 @@
     <style name="search_bar" >
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">@color/light_grey</item>
-        <item name="android:textColor">@color/light_grey</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:hint">@string/search</item>  
         <item name="android:background">@drawable/rounded_corner_orange</item>

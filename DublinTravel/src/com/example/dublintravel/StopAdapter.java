@@ -3,6 +3,8 @@ package com.example.dublintravel;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +38,16 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 			TextView stopName = (TextView) v.findViewById(R.id.stopNameTextView);
 			TextView stopId = (TextView) v.findViewById(R.id.stopIdTextView);
 			ImageView favourite = (ImageView) v.findViewById(R.id.favourite);
+			int[] attrs = {android.R.attr.textColor};
+			TypedArray ta = controller.getActivity().obtainStyledAttributes(Theme.getCurrentTheme(), attrs);
+			int textColor = ta.getColor(0, Color.BLACK);
+			
 			if (stopName != null) {
+				stopName.setTextColor(textColor);
 				stopName.setText(stop.getName().trim());
 			}
 			if(stopId != null) {
+				stopId.setTextColor(textColor);
 				stopId.setText(stop.getID().trim());
 			}
 			if(stop.isFavourite()){

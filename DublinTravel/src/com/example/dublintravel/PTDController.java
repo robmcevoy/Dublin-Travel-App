@@ -29,6 +29,7 @@ public class PTDController extends Controller {
 	
 	PTDController(Activity activity){		
 		super(activity);
+		this.navbar = new PTDNavigationBar(activity);
 		this.activity = activity;
 		this.stopView = (TextView) activity.findViewById(R.id.stop);
 		this.stopInfoListView = (ListView) activity.findViewById(R.id.stopInfoListView);
@@ -40,9 +41,8 @@ public class PTDController extends Controller {
 		this.queryStarted = false;
 		this.queryer = new Queryer(this);
 		setStopListener();
-		this.navbar = new PTDNavigationBar(activity);
-		this.navbar.activate(this);
 		configureSmallScreen(); 
+		this.navbar.activate(this);
 	}
 	
 	public synchronized void changeStop(Stop newStop){

@@ -7,6 +7,7 @@ import com.example.dublintravel.RtpiJsonParser;
 import com.example.dublintravel.StopInfo;
 import com.example.dublintravel.Stop;
 
+/* JUnit tests for RtpiJsonParserTests class */
 
 public class RtpiJsonParserTests extends TestCase {
 	
@@ -112,7 +113,7 @@ public class RtpiJsonParserTests extends TestCase {
 		parser = new RtpiJsonParser();
 	}
 	
-	public void testCase1(){
+	public void testGetStopInfoObject(){
 		// test ability to reach correct stop info object
 		ArrayList<StopInfo> stopInfos = parser.getStopInfo(TEST_JSON_1);
 		assertTrue(stopInfos.size() == 1);
@@ -125,7 +126,7 @@ public class RtpiJsonParserTests extends TestCase {
 		assertTrue(stopInfo.getServerTime().equals(EXPECTED_SERVER_TIME));
 	}
 	
-	public void testCase2(){
+	public void testGetStop(){
 		// test ability to create correct stop object
 		ArrayList<Stop> stops = parser.getStops(TEST_JSON_2);
 		assertTrue(stops.size() == 1);
@@ -134,7 +135,7 @@ public class RtpiJsonParserTests extends TestCase {
 		assertTrue(stop.getName().equals(EXPECTED_STOP_NAME));
 	}
 	
-	public void testCase3(){
+	public void testGetStopLocation(){
 		// test ability to create correct location object
 		Location location = parser.getStopLocation(TEST_JSON_3);
 		assert(location != null);

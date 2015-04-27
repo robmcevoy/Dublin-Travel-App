@@ -29,7 +29,6 @@ GoogleApiClient.OnConnectionFailedListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_live_map);
         controller = new MapDashboardController(this);
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);

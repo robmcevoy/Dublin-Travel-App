@@ -1,9 +1,10 @@
 package com.example.dublintravel;
 
 import java.util.ArrayList;
-
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -13,12 +14,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class StopListDialog {
@@ -31,8 +32,8 @@ public class StopListDialog {
 	private ArrayList<Stop> allStops;
 	private ArrayList<Stop> toDisplay;
 	ArrayList<Stop> favourites;
-	private Button allStopsBtn;
-	private Button favouritesBtn;
+	private TextView allStopsBtn;
+	private TextView favouritesBtn;
 	private LinearLayout tabBar;
 	private FavouritesDatabase favouritesDb;
 	private boolean favouritesTabActive;
@@ -48,7 +49,7 @@ public class StopListDialog {
 	
 	public StopListDialog(PTDController controller){
 		this.controller = controller;
-		dialog = new Dialog(controller.getActivity());
+		dialog = new Dialog(controller.getActivity(), Theme.getCurrentTheme());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog);
 		setDialogSize();
@@ -56,8 +57,8 @@ public class StopListDialog {
 		searchBar = (EditText) dialog.findViewById(R.id.searchBar);
 		progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
 		tabBar = (LinearLayout) dialog.findViewById(R.id.tabBar);
-		allStopsBtn = (Button) dialog.findViewById(R.id.allStopsBtn);
-		favouritesBtn = (Button) dialog.findViewById(R.id.favouritesBtn);
+		allStopsBtn = (TextView) dialog.findViewById(R.id.allStopsBtn);
+		favouritesBtn = (TextView) dialog.findViewById(R.id.favouritesBtn);
 		favouritesTabActive = false;
 		favourites = new ArrayList<Stop>();
 		allStops = new ArrayList<Stop>();
@@ -127,8 +128,8 @@ public class StopListDialog {
 	}
 	
 	private void activateTab(){
-		Button toActivate;
-		Button toDeactivate;
+		TextView toActivate;
+		TextView toDeactivate;
 		Drawable img;
 		if(!favouritesTabActive){
 			toActivate = allStopsBtn;
@@ -141,7 +142,10 @@ public class StopListDialog {
 			img = controller.getCurrentContext().getResources().getDrawable(R.drawable.ic_action_important_active);
 		}
 		toActivate.setTextColor(controller.getCurrentContext().getResources().getColor(R.color.orange));
-		toDeactivate.setTextColor(controller.getCurrentContext().getResources().getColor(R.color.light_grey));
+		int[] attrs = {android.R.attr.textColor};
+		TypedArray ta = controller.getActivity().obtainStyledAttributes(Theme.getCurrentTheme(), attrs);
+		int textColor = ta.getColor(0, Color.BLACK);
+		toDeactivate.setTextColor(textColor);
 		img.setBounds( 0, 0, (int)(img.getIntrinsicWidth()*TAB_ICON_SIZE_MULTIPLIER), (int)(img.getIntrinsicWidth()*TAB_ICON_SIZE_MULTIPLIER) );
 		favouritesBtn.setCompoundDrawables( img, null, null, null );
 		wipeSearch();

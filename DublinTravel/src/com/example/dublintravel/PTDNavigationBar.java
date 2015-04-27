@@ -17,7 +17,7 @@ public class PTDNavigationBar extends NavigationBar {
 	private PTDController controller;
 	
 	public PTDNavigationBar(Activity activity){
-		super(activity);
+		super(activity, R.layout.rtpi_dashboard);
 	}
 	
 	public Context getContext() {

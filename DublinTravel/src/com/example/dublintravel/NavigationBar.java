@@ -15,13 +15,16 @@ import android.widget.ImageView;
 public abstract class NavigationBar {
 		
 	protected final static int NUM_OPERATORS=4;
+	protected final static String OPERATORS_KEY = "operators";
 	protected Operator[] operators;
 	protected ImageView[] imageviews;
     protected ImageView mapImageView;
     protected Activity activity;
 
     
-    public NavigationBar(Activity activity){
+    public NavigationBar(Activity activity, int layout_id){
+    	activity.setTheme(Theme.getCurrentTheme());
+		activity.setContentView(layout_id);
     	this.activity = activity;
     	operators = new Operator[NUM_OPERATORS];
     	imageviews = new ImageView[NUM_OPERATORS];
@@ -75,7 +78,7 @@ public abstract class NavigationBar {
 	
 	public void handleBundle(Bundle extras) {
 		if(extras != null){
-			Object[] objects = (Object[]) extras.getSerializable(BundleKeys.getOperatorsKey());
+			Object[] objects = (Object[]) extras.getSerializable(OPERATORS_KEY);
 			Operator[] newOperators = new Operator[NUM_OPERATORS];
 			for(int i=0; i<objects.length; i++){
 				newOperators[i] = (Operator) objects[i];
@@ -86,7 +89,7 @@ public abstract class NavigationBar {
 	
 	public Bundle createBundle(){
 		Bundle bundle = new Bundle();  
-    	bundle.putSerializable(BundleKeys.getOperatorsKey(), operators);
+    	bundle.putSerializable(OPERATORS_KEY, operators);
     	return bundle;
 	}
 	

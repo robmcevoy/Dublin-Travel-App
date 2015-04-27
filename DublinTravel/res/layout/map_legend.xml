@@ -335,7 +335,6 @@
 	  	android:layout_height="0dp"
 		android:layout_weight="0.25"
 		android:background="@drawable/rounded_corner_orange"
-		android:layout_marginBottom="@dimen/margin"  
 		android:orientation="vertical" >
 
 	 	<LinearLayout

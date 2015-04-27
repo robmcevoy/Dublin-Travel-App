@@ -42,6 +42,7 @@ public class MapDashboardController extends Controller{
 	
 	public MapDashboardController(Activity activity){
 		super(activity);
+		this.navbar = new MapDashboardNavigationBar(activity);
 		this.markers = new ArrayList<MarkerOptions>();
 		MapLegendCreator creator = new MapLegendCreator();
 		this.stopNames = creator.createStopNames(activity);
@@ -54,9 +55,8 @@ public class MapDashboardController extends Controller{
 		this.twitterFeed.start();
 		operators = new Operator[NavigationBar.getNumOperators()];
 		numQueryingLocations = 0;
-		this.navbar = new MapDashboardNavigationBar(activity);
-		this.navbar.activate(this);
 		configureSmallScreen();
+		this.navbar.activate(this);
 	}
 	
 	public void changeActiveOperator(Operator operator, ImageView imageView) {

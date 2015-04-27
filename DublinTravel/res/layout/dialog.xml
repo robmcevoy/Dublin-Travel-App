@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/dark_grey"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     android:gravity="center_horizontal"
@@ -32,6 +31,7 @@
         style="@style/search_bar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:padding="5dp"
         android:layout_marginBottom="@dimen/margin"
         android:layout_weight="0.10"
         android:minWidth="200dp"
@@ -44,26 +44,21 @@
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/margin"
         android:layout_weight="0.10"
-        android:background="@drawable/rounded_corner_orange"
-        android:padding="5dip"
-        android:visibility="invisible" >
-        
-        <Button
+        android:visibility="invisible">
+        <TextView
             android:id="@+id/allStopsBtn"
             android:layout_width="0dp"
        		android:layout_height="match_parent"
         	android:layout_weight="0.5"
         	android:text="@string/tab_all_stops"
         	style="@style/tab">
-        </Button>
-        
+        </TextView>
         <View
     		android:layout_width="3dp"
     		android:layout_height="match_parent"
     		android:background="@color/orange">
         </View>
-        
-        <Button
+        <TextView
             android:id="@+id/favouritesBtn"
             android:layout_width="0dp"
        		android:layout_height="match_parent"
@@ -71,7 +66,7 @@
         	android:text="@string/tab_favourites"
     		android:drawableLeft="@drawable/ic_action_important_active"
     		style="@style/tab" >
-        </Button>
+        </TextView>
     </LinearLayout>
 
     <ListView
@@ -84,7 +79,6 @@
         android:dividerHeight="1dp"
         android:fastScrollEnabled="true"
         android:paddingBottom="5dip"
-        android:textColor="@color/light_grey"
         android:longClickable="true" >
     </ListView>
 

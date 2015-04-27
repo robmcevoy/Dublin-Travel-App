@@ -399,8 +399,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_pressed=0x7f080005;
         public static final int common_signin_btn_text_dark=0x7f08001a;
         public static final int common_signin_btn_text_light=0x7f08001b;
-        public static final int dark_grey=0x7f080018;
-        public static final int light_grey=0x7f080019;
+        public static final int dark_color=0x7f080018;
+        public static final int light_color=0x7f080019;
         public static final int orange=0x7f080017;
         public static final int wallet_bright_foreground_disabled_holo_light=0x7f08000f;
         /** 
@@ -505,10 +505,11 @@ containing a value of this type.
         public static final int rounded_corner_orange_no_bottom=0x7f020036;
         public static final int scrollbar=0x7f020037;
         public static final int star=0x7f020038;
-        public static final int walking=0x7f020039;
+        public static final int theme_change=0x7f020039;
+        public static final int walking=0x7f02003a;
     }
     public static final class id {
-        public static final int action_settings=0x7f070057;
+        public static final int action_settings=0x7f070058;
         public static final int adjust_height=0x7f070002;
         public static final int adjust_width=0x7f070001;
         public static final int allStopsBtn=0x7f070024;
@@ -590,10 +591,11 @@ containing a value of this type.
         public static final int tableHeader2=0x7f070050;
         public static final int tableHeader3=0x7f070051;
         public static final int terrain=0x7f070005;
+        public static final int themeToggle=0x7f070056;
         public static final int twitterFeed=0x7f07001f;
         public static final int twitterFeedLayout=0x7f07002d;
         public static final int twitterLayout=0x7f07004b;
-        public static final int userManual=0x7f070056;
+        public static final int userManual=0x7f070057;
         public static final int webView1=0x7f070048;
         public static final int wrap_content=0x7f07000f;
     }
@@ -631,6 +633,7 @@ containing a value of this type.
         public static final int app_cd=0x7f06002a;
         public static final int app_name=0x7f060023;
         public static final int bus_eireann_cd=0x7f060028;
+        public static final int change_theme_cd=0x7f060038;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f060009;
@@ -732,6 +735,7 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f060020;
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
+        public static final int dark_theme=0x7f060037;
         public static final int decline=0x7f060003;
         public static final int destination_header=0x7f06002f;
         public static final int dublin_bus_cd=0x7f06002c;
@@ -740,6 +744,7 @@ containing a value of this type.
         public static final int hello_world=0x7f060026;
         public static final int homepage_subheading=0x7f060024;
         public static final int irish_rail_cd=0x7f06002b;
+        public static final int light_theme=0x7f060036;
         public static final int luas_cd=0x7f060029;
         public static final int route_header=0x7f06002e;
         public static final int search=0x7f060031;
@@ -750,6 +755,7 @@ containing a value of this type.
         public static final int tab_favourites=0x7f060034;
         public static final int title_activity_live_map=0x7f060032;
         public static final int title_activity_user_manual=0x7f060035;
+        public static final int user_guide_cd=0x7f060039;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */
@@ -777,11 +783,13 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f05000e;
+        public static final int AppBaseTheme=0x7f05000d;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f05000f;
+        public static final int AppTheme=0x7f05000e;
+        public static final int DarkTheme=0x7f050010;
+        public static final int LightTheme=0x7f050011;
         public static final int Theme_IAPTheme=0x7f050000;
         public static final int WalletFragmentDefaultButtonTextAppearance=0x7f050003;
         public static final int WalletFragmentDefaultDetailsHeaderTextAppearance=0x7f050002;
@@ -792,16 +800,15 @@ containing a value of this type.
     
          */
         public static final int WalletFragmentDefaultStyle=0x7f050004;
-        public static final int background=0x7f050005;
-        public static final int homepage_heading=0x7f050006;
-        public static final int homepage_subheading=0x7f050007;
-        public static final int list_view_heading=0x7f050008;
-        public static final int list_view_item=0x7f050009;
-        public static final int map_stop_name=0x7f05000a;
-        public static final int map_travel_time=0x7f05000b;
-        public static final int search_bar=0x7f05000c;
-        public static final int stop_text_view=0x7f05000d;
-        public static final int tab=0x7f050010;
+        public static final int homepage_heading=0x7f050005;
+        public static final int homepage_subheading=0x7f050006;
+        public static final int list_view_heading=0x7f050007;
+        public static final int list_view_item=0x7f050008;
+        public static final int map_stop_name=0x7f050009;
+        public static final int map_travel_time=0x7f05000a;
+        public static final int search_bar=0x7f05000b;
+        public static final int stop_text_view=0x7f05000c;
+        public static final int tab=0x7f05000f;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

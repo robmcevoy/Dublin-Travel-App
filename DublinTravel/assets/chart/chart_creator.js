@@ -3,14 +3,15 @@
  * are calls to the Android Javscript Interface
  */
 
-const irish_rail_image = "../img/irish_rail.png";
-const dublin_bus_image = "../img/dublin_bus.png";
-const bus_eireann_image = "../img/bus_eireann.png";
-const luas_image="../img/luas.png";
-const db_marker="../img/dublin_bus_marker.png";
-const ir_marker="../img/irish_rail_marker.png";
-const be_marker="../img/bus_eireann_marker.png";
-const luas_marker="../img/luas_marker.png";
+const IRISH_RAIL_IMAGE = "../img/irish_rail.png";
+const DUBLIN_BUS_IMAGE = "../img/dublin_bus.png";
+const BUS_EIREANN_IMAGE = "../img/bus_eireann.png";
+const LUAS_IMAGE="../img/luas.png";
+const LUAS_DARK_IMAGE="../img/luas_dark.png";
+const DB_MARKER="../img/dublin_bus_marker.png";
+const IR_MARKER="../img/irish_rail_marker.png";
+const BE_MARKER="../img/bus_eireann_marker.png";
+const LUAS_MARKER="../img/luas_marker.png";
 var active_image;
 var marker;
 const CAT_TITLE = "Due Time";
@@ -34,30 +35,33 @@ window.onload = function () {
 }
 
 if(Android.getOperator() === Android.getDublinBusOpCode()){
-	active_image= dublin_bus_image;
-	marker = db_marker;
+	active_image= DUBLIN_BUS_IMAGE;
+	marker = DB_MARKER;
 }
 
 else if(Android.getOperator() === Android.getIrishRailOpCode()){
-	active_image= irish_rail_image;
-	marker = ir_marker;
+	active_image= IRISH_RAIL_IMAGE;
+	marker = IR_MARKER;
 }
 
 else if(Android.getOperator() === Android.getLuasOpCode()){
-	active_image= luas_image;
-	marker = luas_marker;
+	active_image= LUAS_IMAGE;
+	if(Android.isDarkTheme()){
+		active_image= LUAS_DARK_IMAGE;
+	}
+	marker = LUAS_MARKER;
 }
 
 else{
-	active_image= bus_eireann_image;
-	marker = be_marker;
+	active_image= BUS_EIREANN_IMAGE;
+	marker = BE_MARKER;
 }
 
 function getData(){
 	var serverTime = Android.getServerTime();
-	if(active_image != irish_rail_image){
+	if(active_image != IRISH_RAIL_IMAGE){
 		serverTime = rtpiStringParser(serverTime);
-	}else if(active_image == irish_rail_image){
+	}else if(active_image == IRISH_RAIL_IMAGE){
 		serverTime = irishRailStringParser(serverTime);
 	}
 	chartData.push({

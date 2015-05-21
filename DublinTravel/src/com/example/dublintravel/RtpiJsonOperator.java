@@ -12,13 +12,13 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 public abstract class RtpiJsonOperator extends Operator{
 	
 	private static final long serialVersionUID = 7458768194716917137L;
-	private final String URL_START = "http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
-	private final String URL_MIDDLE = "&operator=";
-	private final String URL_END = "&format=json";
-	private final String URL_GET_STOPS_START = "http://www.dublinked.ie/cgi-bin/rtpi/busstopinformation?operator=";
-	private final String URL_GET_STOP_LOCATION = "http://www.dublinked.ie/cgi-bin/rtpi/busstopinformation?stopid=";
-	private static boolean NEEDS_AUTH=true;
-	private static boolean REQUIRE_LOCATION_REQUEST=true;
+	private static final String URL_START = "http://www.dublinked.ie/cgi-bin/rtpi/realtimebusinformation?stopid=";
+	private static final String URL_MIDDLE = "&operator=";
+	private static final String URL_END = "&format=json";
+	private static final String URL_GET_STOPS_START = "http://www.dublinked.ie/cgi-bin/rtpi/busstopinformation?operator=";
+	private static final String URL_GET_STOP_LOCATION = "http://www.dublinked.ie/cgi-bin/rtpi/busstopinformation?stopid=";
+	private static final boolean NEEDS_AUTH=true;
+	private static final boolean REQUIRE_LOCATION_REQUEST=true;
 	private static final Parser PARSER = new RtpiJsonParser();
 	
 	public abstract BitmapDescriptor getMarkerColor(Controller controller);

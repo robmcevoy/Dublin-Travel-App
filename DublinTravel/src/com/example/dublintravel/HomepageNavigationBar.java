@@ -3,6 +3,7 @@ package com.example.dublintravel;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -16,6 +17,7 @@ public class HomepageNavigationBar extends NavigationBar {
 	
 	private ImageView userManualImageView;
 	private ImageView themeBtn;
+	private static final String USER_MANUAL_FILE= "https://drive.google.com/file/d/0B9Dvsu3ZVoTWZ0xBeTktcEdLSmM/view?usp=sharing";
 	
 	public HomepageNavigationBar(Activity activity){
 		super(activity, R.layout.activity_homepage);
@@ -65,10 +67,9 @@ public class HomepageNavigationBar extends NavigationBar {
         {
 			public void onClick(View v)
             {
-				Intent i = new Intent(getContext(), UserManualActivity.class);
-				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            	i.putExtras(createBundle());
-            	getContext().startActivity(i);
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(USER_MANUAL_FILE));
+				browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				getContext().startActivity(browserIntent);
             }
 			
         });

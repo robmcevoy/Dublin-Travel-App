@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public abstract class Parser implements Serializable {
 
 	private static final long serialVersionUID = -7454288656434101180L;
-	protected final String DEFAULT_ERROR_MESSAGE = "Unable to retrieve results";
+	protected static final String DEFAULT_ERROR_MESSAGE = "Unable to retrieve results";
 
 	public abstract ArrayList<StopInfo> getStopInfo(String data);
 	

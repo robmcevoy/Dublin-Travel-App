@@ -3,10 +3,50 @@
     <style name="DarkTheme" >
 		<item name="android:windowBackground">@color/dark_color</item>
 		<item name="android:textColor">@color/light_color</item>
+		<item name="android:textColorPrimary">@color/light_color</item>
+        <item name="android:textColorSecondary">@color/light_color</item>
+        <item name="android:textColorTertiary">@color/light_color</item>
+        <item name="android:textColorPrimaryInverse">@color/light_color</item>
+        <item name="android:textColorSecondaryInverse">@color/light_color</item>
+        <item name="android:textColorTertiaryInverse">@color/light_color</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/light_color</item>
+        <item name="android:textColorPrimaryInverseDisableOnly">@color/light_color</item>
+        <item name="android:textColorPrimaryNoDisable">@color/light_color</item>
+        <item name="android:textColorSecondaryNoDisable">@color/light_color</item>
+        <item name="android:textColorPrimaryInverseNoDisable">@color/light_color</item>
+        <item name="android:textColorSecondaryInverseNoDisable">@color/light_color</item>
+        <item name="android:textColorHint">@color/light_color</item>
+        <item name="android:textColorHintInverse">@color/light_color</item>
+        <item name="android:textColorHighlight">@color/light_color</item>
+        <item name="android:textColorHighlightInverse">@color/light_color</item>
+        <item name="android:textColorLink">@color/light_color</item>
+        <item name="android:textColorLinkInverse">@color/light_color</item>
+        <item name="android:textColorAlertDialogListItem">@color/light_color</item>
+        <item name="android:editTextColor">@color/light_color</item>
 	</style>
 
 	<style name="LightTheme">
 		<item name="android:windowBackground">@color/light_color</item>
 		<item name="android:textColor">@color/dark_color</item>
+		<item name="android:textColorPrimary">@color/dark_color</item>
+        <item name="android:textColorSecondary">@color/dark_color</item>
+        <item name="android:textColorTertiary">@color/dark_color</item>
+        <item name="android:textColorPrimaryInverse">@color/dark_color</item>
+        <item name="android:textColorSecondaryInverse">@color/dark_color</item>
+        <item name="android:textColorTertiaryInverse">@color/dark_color</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/dark_color</item>
+        <item name="android:textColorPrimaryInverseDisableOnly">@color/dark_color</item>
+        <item name="android:textColorPrimaryNoDisable">@color/dark_color</item>
+        <item name="android:textColorSecondaryNoDisable">@color/dark_color</item>
+        <item name="android:textColorPrimaryInverseNoDisable">@color/dark_color</item>
+        <item name="android:textColorSecondaryInverseNoDisable">@color/dark_color</item>
+        <item name="android:textColorHint">@color/dark_color</item>
+        <item name="android:textColorHintInverse">@color/dark_color</item>
+        <item name="android:textColorHighlight">@color/dark_color</item>
+        <item name="android:textColorHighlightInverse">@color/dark_color</item>
+        <item name="android:textColorLink">@color/dark_color</item>
+        <item name="android:textColorLinkInverse">@color/dark_color</item>
+        <item name="android:textColorAlertDialogListItem">@color/dark_color</item>
+        <item name="android:editTextColor">@color/dark_color</item>
 	</style>
 </resources>

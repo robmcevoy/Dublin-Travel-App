@@ -31,7 +31,6 @@ public class StopListDialog {
 	private PTDController controller;
 	private ArrayList<Stop> allStops;
 	private ArrayList<Stop> toDisplay;
-	ArrayList<Stop> favourites;
 	private TextView allStopsBtn;
 	private TextView favouritesBtn;
 	private LinearLayout tabBar;
@@ -46,6 +45,7 @@ public class StopListDialog {
 	private final double TAB_ICON_SIZE_MULTIPLIER= 0.7;
 	private final int ORIENTATION_LANDSCAPE = 2;
 	private WindowManager.LayoutParams lp;
+	private ArrayList<Stop> favouritedStops;
 	
 	public StopListDialog(PTDController controller){
 		this.controller = controller;
@@ -60,7 +60,6 @@ public class StopListDialog {
 		allStopsBtn = (TextView) dialog.findViewById(R.id.allStopsBtn);
 		favouritesBtn = (TextView) dialog.findViewById(R.id.favouritesBtn);
 		favouritesTabActive = false;
-		favourites = new ArrayList<Stop>();
 		allStops = new ArrayList<Stop>();
 		favouritesDb = new FavouritesDatabase(controller.getCurrentContext());
 		favouritesDb.open();
@@ -108,7 +107,7 @@ public class StopListDialog {
 	
 	private void displayStops(){
 		favouritesDb.open();
-		ArrayList<Stop> favouritedStops = favouritesDb.getFavourites(controller.getCurrentOperator());
+		favouritedStops = favouritesDb.getFavourites(controller.getCurrentOperator());
 		boolean favourited;
 		for(Stop stop: toDisplay){
 			favourited = false;
@@ -251,7 +250,13 @@ public class StopListDialog {
 
 			String search = s+"";
 			ArrayList<Stop> subset = new ArrayList<Stop>();
-			ArrayList<Stop> toSearch = allStops;
+			ArrayList<Stop> toSearch = new ArrayList<Stop>();
+			if(favouritesTabActive){
+				toSearch = favouritedStops;
+			}
+			else{
+				toSearch = allStops;
+			}
 			for(Stop tempStop: toSearch){
 				if(tempStop.getName().toLowerCase().contains(search.toLowerCase()) ||
 						tempStop.getID().toLowerCase().contains(search.toLowerCase())){

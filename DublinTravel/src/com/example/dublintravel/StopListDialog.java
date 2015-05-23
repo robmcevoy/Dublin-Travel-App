@@ -52,6 +52,7 @@ public class StopListDialog {
 		dialog = new Dialog(controller.getActivity(), Theme.getCurrentTheme());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog);
+		dialog.getWindow().setSoftInputMode((WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN));
 		setDialogSize();
 		listview = (ListView) dialog.findViewById(R.id.stopsListView);
 		searchBar = (EditText) dialog.findViewById(R.id.searchBar);

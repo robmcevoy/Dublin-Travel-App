@@ -100,4 +100,8 @@ public abstract class NavigationBar {
 		getContext().startActivity(i);	
 	}
 	
+	public static String getOperatorsKey(){
+		return OPERATORS_KEY;
+	}
+	
 }

@@ -108,7 +108,7 @@ public class StopInfo implements Comparable<StopInfo> {
 		} catch (ParseException e) {
 			return 0;
 		}
-		long diff = actual.getTime() - scheduled.getTime();
+		long diff = scheduled.getTime() - actual.getTime();
 		long diffMinutes = diff / (60 * 1000);
 		return (int) diffMinutes;
 	}

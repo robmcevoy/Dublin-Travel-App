@@ -11,7 +11,7 @@ public class StopInfoTests extends TestCase {
 	private final String ARRIVAL_TIME = "15/04/2015 16:42:24";
 	private final String SERVER_TIME = "15/04/2015 16:24:27";
 	private final String SCH_ARRIVAL_TIME = "15/04/2015 16:41:00";
-	private final int EXPECTED_DIFF_IN_MINS = 1;
+	private final int EXPECTED_DIFF_IN_MINS = -1;
 	private final int EXPECTED_DUE_TIME = 2;
 	
 	private final StopInfo TO_COMPARE_1 = new StopInfo(ROUTE_ID, DESTINATION, "3", ARRIVAL_TIME, SCH_ARRIVAL_TIME, SERVER_TIME);
